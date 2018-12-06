@@ -64,8 +64,8 @@ if (!isset($_SESSION["userid"])) {
 		<div class="col-md-3">
 				<div class="card">
 						<div class="card-body">
-						<h4 class="card-title">Products</h4>
-						<p class="card-text">Here you can manage your prpducts and you add new products</p>
+						<h4 class="card-title">Items</h4>
+						<p class="card-text">Here you can manage your items and add new items to the inventory.</p>
 						<a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
 						<a href="manage_product.php" class="btn btn-primary">Manage</a>
 					</div>
@@ -75,7 +75,7 @@ if (!isset($_SESSION["userid"])) {
 				<div class="card">
 						<div class="card-body">
 						<h4 class="card-title">Sales</h4> <!-- Categories -->
-						<p class="card-text">Here you can manage your Sales manage your current sales</p>
+						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
 						<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
 						<a href="manage_categories.php" class="btn btn-primary">Manage</a>
 					</div>
@@ -85,7 +85,7 @@ if (!isset($_SESSION["userid"])) {
 				<div class="card">
 						<div class="card-body">
 						<h4 class="card-title">Purchases</h4> <!-- Brands -->
-						<p class="card-text">Here you can manage your Purchases and you can add new Purchases</p>
+						<p class="card-text">Here you can manage your Purchases and you can add new Purchases.</p>
 						<a href="#" data-toggle="modal" data-target="#form_brand" class="btn btn-primary">Add</a>
 						<a href="manage_brand.php" class="btn btn-primary">Manage</a>
 					</div>
@@ -95,9 +95,9 @@ if (!isset($_SESSION["userid"])) {
 				<div class="card">
 						<div class="card-body">
 						<h4 class="card-title">People</h4>
-						<p class="card-text">Here you can manage your users and you can add new users</p>
-						<a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
-						<a href="manage_product.php" class="btn btn-primary">Manage</a>
+						<p class="card-text">Here you can manage your users and you can add new users.</p>
+						<a href="#" data-toggle="modal" data-target="#form_people" class="btn btn-primary">Add</a>
+						<a href="manage_people.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
 			</div>

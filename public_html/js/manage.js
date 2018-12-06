@@ -258,6 +258,80 @@ $(document).ready(function(){
 			})
 	})
 
+	//---------------------People-----------------
+	managePeople(1);
+	function managePeople(pn){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {managePeople:1,pageno:pn},
+			success : function(data){
+				$("#get_people").html(data);		
+			}
+		})
+	}
+	// delete profile
+	$("body").delegate(".page-link","click",function(){
+		var pn = $(this).attr("pn");
+		managePeople(pn);
+	})
 
+	$("body").delegate(".del_product","click",function(){
+		var did = $(this).attr("did");
+		if (confirm("Are you sure ? You want to delete..!")) {
+			$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : {deleteProduct:1,id:did},
+				success : function(data){
+					if (data == "DELETED") {
+						alert("Product is deleted");
+						manageProduct(1);
+					}else{
+						alert(data);
+					}
+						
+				}
+			})
+		}
+	})
+
+	//Update people
+	$("body").delegate(".edit_product","click",function(){
+		var eid = $(this).attr("eid");
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			dataType : "json",
+			data : {updateProduct:1,id:eid},
+			success : function(data){
+				console.log(data);
+				$("#pid").val(data["pid"]);
+				$("#update_product").val(data["product_name"]);
+				$("#select_cat").val(data["cid"]);
+				$("#select_brand").val(data["bid"]);
+				$("#product_price").val(data["product_price"]);
+				$("#product_qty").val(data["product_stock"]);
+
+			}
+		})
+	})
+
+	//Update people
+	$("#update_people_form").on("submit",function(){
+		$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : $("#update_people_form").serialize(),
+				success : function(data){
+					if (data == "UPDATED") {
+						alert("Profile Updated Successfully..!");
+						window.location.href = "";
+					}else{
+						alert(data);
+					}
+				}
+			})
+	})
 	
 })
