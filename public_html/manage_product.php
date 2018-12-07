@@ -27,8 +27,8 @@ if (!isset($_SESSION["userid"])) {
 		      <tr>
 		        <th>#</th>
 		        <th>Product</th>
-		        <th>Category</th>  <!-- Supplier -->
-		        <th>Brand</th>		<!-- No Need -->
+		        <th>Category</th>
+		        <th>Brand</th>
 		        <th>Price</th>
 		        <th>Stock</th>
 		        <th>Added Date</th>

@@ -318,7 +318,7 @@ if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 
 if (isset($_POST["managePeople"])) {
 	$m = new Manage();
-	$result = $m->manageRecordWithPagination("users",$_POST["pageno"]);
+	$result = $m->manageRecordWithPagination("user",$_POST["pageno"]);
 	$rows = $result["rows"];
 	$pagination = $result["pagination"];
 	if (count($rows) > 0) {

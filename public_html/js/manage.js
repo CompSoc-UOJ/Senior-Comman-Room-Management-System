@@ -190,7 +190,7 @@ $(document).ready(function(){
 			method : "POST",
 			data : {manageProduct:1,pageno:pn},
 			success : function(data){
-				$("#get_product").html(data);		
+				$("#get_product").html(data);	
 			}
 		})
 	}
@@ -266,7 +266,7 @@ $(document).ready(function(){
 			method : "POST",
 			data : {managePeople:1,pageno:pn},
 			success : function(data){
-				$("#get_people").html(data);		
+				$("#get_people").html(data);	
 			}
 		})
 	}
