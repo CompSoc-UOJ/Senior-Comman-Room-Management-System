@@ -30,7 +30,7 @@ if (!isset($_SESSION["userid"])) {
 				    <h4 class="card-title">Profile Info</h4>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i>Ruwan Kalpage</p>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i>Admin</p>
-				    <p class="card-text">Last Login : xxxx-xx-xx</p>
+				    <p class="card-text">Last Login : <?php echo date("Y-m-d"); ?></p>
 				    <a href="#" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
 				  </div>
 				</div>
@@ -41,7 +41,6 @@ if (!isset($_SESSION["userid"])) {
 					<div class="row">
 						<div class="col-sm-6">
 							<iframe src="http://free.timeanddate.com/clock/i616j2aa/n1993/szw160/szh160/cf100/hnce1ead6" frameborder="0" width="160" height="160"></iframe>
-
 						</div>
 						<div class="col-sm-6">
 							<div class="card">
@@ -104,8 +103,6 @@ if (!isset($_SESSION["userid"])) {
 		</div>
 	</div>
 
-
-	
 	<?php
 	//Categpry Form
 	include_once("./templates/category.php");
@@ -118,7 +115,6 @@ if (!isset($_SESSION["userid"])) {
 	//Products Form
 	include_once("./templates/products.php");
 	 ?>
-
 
 </body>
 </html>

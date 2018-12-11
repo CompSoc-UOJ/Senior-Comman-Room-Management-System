@@ -59,8 +59,8 @@ if (isset($_POST["brand_name"])) {
 //Add Product
 if (isset($_POST["added_date"]) AND isset($_POST["product_name"])) {
 	$obj = new DBOperation();
-	$result = $obj->addProduct($_POST["select_cat"],
-							$_POST["select_brand"],
+	$result = $obj->addProduct($_POST["select_cat2"],
+							// $_POST["select_brand"],
 							$_POST["product_name"],
 							$_POST["product_price"],
 							$_POST["product_qty"],
@@ -197,16 +197,16 @@ if (isset($_POST["manageProduct"])) {
 			        <td><?php echo $n; ?></td>
 			        <td><?php echo $row["product_name"]; ?></td>
 			        <td><?php echo $row["category_name"]; ?></td>
-			        <td><?php echo $row["brand_name"]; ?></td>
+			        <!-- <td><php echo $row["brand_name"]; ?></td> -->
 			        <td><?php echo $row["product_price"]; ?></td>
 			        <td><?php echo $row["product_stock"]; ?></td>
 			        <td><?php echo $row["added_date"]; ?></td>
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['pid']; ?>" class="btn btn-danger btn-sm del_product">Delete</a>
-			        	<a href="#" eid="<?php echo $row['pid']; ?>" data-toggle="modal" data-target="#form_products" class="btn btn-info btn-sm edit_product">Edit</a>
+			        	<a href="#" eid="<?php echo $row['pid']; ?>" data-toggle="modal" data-target="#update_product_form" class="btn btn-info btn-sm edit_product">Edit</a>
 			        </td>
-			      </tr>
+			    </tr>
 			<?php
 			$n++;
 		}
@@ -238,11 +238,11 @@ if (isset($_POST["update_product"])) {
 	$id = $_POST["pid"];
 	$name = $_POST["update_product"];
 	$cat = $_POST["select_cat"];
-	$brand = $_POST["select_brand"];
+	//$brand = $_POST["select_brand"];
 	$price = $_POST["product_price"];
 	$qty = $_POST["product_qty"];
 	$date = $_POST["added_date"];
-	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>$brand,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
+	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>1,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
 	echo $result;
 }
 
@@ -370,11 +370,11 @@ if (isset($_POST["update_product"])) {
 	$id = $_POST["pid"];
 	$name = $_POST["update_product"];
 	$cat = $_POST["select_cat"];
-	$brand = $_POST["select_brand"];
+	// $brand = $_POST["select_brand"];
 	$price = $_POST["product_price"];
 	$qty = $_POST["product_qty"];
 	$date = $_POST["added_date"];
-	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>$brand,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
+	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>0,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
 	echo $result;
 }
 

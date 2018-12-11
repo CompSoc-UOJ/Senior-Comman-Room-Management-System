@@ -194,12 +194,13 @@ $(document).ready(function(){
 			}
 		})
 	}
-
+	//page Number Buttons
 	$("body").delegate(".page-link","click",function(){
 		var pn = $(this).attr("pn");
 		manageProduct(pn);
 	})
 
+	//delete product
 	$("body").delegate(".del_product","click",function(){
 		var did = $(this).attr("did");
 		if (confirm("Are you sure ? You want to delete..!")) {
@@ -229,14 +230,12 @@ $(document).ready(function(){
 			dataType : "json",
 			data : {updateProduct:1,id:eid},
 			success : function(data){
-				console.log(data);
 				$("#pid").val(data["pid"]);
 				$("#update_product").val(data["product_name"]);
 				$("#select_cat").val(data["cid"]);
-				$("#select_brand").val(data["bid"]);
+				//$("#select_brand").val(data["bid"]);
 				$("#product_price").val(data["product_price"]);
 				$("#product_qty").val(data["product_stock"]);
-
 			}
 		})
 	})

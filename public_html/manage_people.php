@@ -38,7 +38,7 @@ if (!isset($_SESSION["userid"])) {
 					 <!--on manage.js-->
 		    </tbody>
 		  </table>
-			<a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
+			<a href="#" data-toggle="modal" data-target="#" class="btn btn-primary">Add</a>
 	</div>
 
 

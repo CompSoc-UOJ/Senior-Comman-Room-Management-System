@@ -16,29 +16,23 @@
               <input type="text" class="form-control" name="added_date" id="added_date" value="<?php echo date("Y-m-d"); ?>" readonly/>
             </div>
             <div class="form-group col-md-6">
-              <label>Product Name</label>
-              <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name" required>
+              <label>Item Name</label>
+              <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Item Name" required>
             </div>
           </div>
           <div class="form-group">
-            <label>Category</label>
-            <select class="form-control" id="select_cat" name="select_cat" required/>
-              
-
-              
+            <label>Category </label>
+            <select class="form-control" id="select_cat2" name="select_cat2" required/>
             </select>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label>Brand</label>
-            <select class="form-control" id="select_brand" name="select_brand" required/>
-              
-
-              
+            <select class="form-control" id="select_brand" name="select_brand" required/>  
             </select>
-          </div>
+          </div> -->
           <div class="form-group">
-            <label>Product Price</label>
-            <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product" required/>
+            <label>Item Price</label>
+            <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of the item" required/>
           </div>
           <div class="form-group">
             <label>Quantity</label>
