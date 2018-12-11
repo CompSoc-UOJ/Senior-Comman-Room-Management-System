@@ -60,11 +60,11 @@ if (isset($_POST["brand_name"])) {
 if (isset($_POST["added_date"]) AND isset($_POST["product_name"])) {
 	$obj = new DBOperation();
 	$result = $obj->addProduct($_POST["select_cat2"],
-							// $_POST["select_brand"],
-							$_POST["product_name"],
-							$_POST["product_price"],
-							$_POST["product_qty"],
-							$_POST["added_date"]);
+	// $_POST["select_brand"],
+	$_POST["product_name"],
+	$_POST["product_price"],
+	$_POST["product_qty"],
+	$_POST["added_date"]);
 	echo $result;
 	exit();
 }
@@ -286,11 +286,9 @@ if (isset($_POST["getPriceAndQty"])) {
 
 if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 	
+	//Now getting array from order_form
 	$orderdate = $_POST["order_date"];
 	$cust_name = $_POST["cust_name"];
-
-
-	//Now getting array from order_form
 	$ar_tqty = $_POST["tqty"];
 	$ar_qty = $_POST["qty"];
 	$ar_price = $_POST["price"];
@@ -304,13 +302,8 @@ if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 	$paid = $_POST["paid"];
 	$due = $_POST["due"];
 	$payment_type = $_POST["payment_type"];
-
-
 	$m = new Manage();
 	echo $result = $m->storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_pro_name,$sub_total,$gst,$discount,$net_total,$paid,$due,$payment_type);
-
-
-
 
 }
 
@@ -350,33 +343,33 @@ if (isset($_POST["managePeople"])) {
 }
 
 //Delete 
-if (isset($_POST["deleteProduct"])) {
-	$m = new Manage();
-	$result = $m->deleteRecord("user","id",$_POST["id"]);
-	echo $result;
-}
+// if (isset($_POST["deleteProduct"])) {
+// 	$m = new Manage();
+// 	$result = $m->deleteRecord("user","id",$_POST["id"]);
+// 	echo $result;
+// }
 
 //Update Product
-if (isset($_POST["updateProduct"])) {
-	$m = new Manage();
-	$result = $m->getSingleRecord("user","id",$_POST["id"]);
-	echo json_encode($result);
-	exit();
-}
+// if (isset($_POST["updateProduct"])) {
+// 	$m = new Manage();
+// 	$result = $m->getSingleRecord("user","id",$_POST["id"]);
+// 	echo json_encode($result);
+// 	exit();
+// }
 
 //Update Record after getting data
-if (isset($_POST["update_product"])) {
-	$m = new Manage();
-	$id = $_POST["pid"];
-	$name = $_POST["update_product"];
-	$cat = $_POST["select_cat"];
-	// $brand = $_POST["select_brand"];
-	$price = $_POST["product_price"];
-	$qty = $_POST["product_qty"];
-	$date = $_POST["added_date"];
-	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>0,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
-	echo $result;
-}
+// if (isset($_POST["update_product"])) {
+// 	$m = new Manage();
+// 	$id = $_POST["pid"];
+// 	$name = $_POST["update_product"];
+// 	$cat = $_POST["select_cat"];
+// 	// $brand = $_POST["select_brand"];
+// 	$price = $_POST["product_price"];
+// 	$qty = $_POST["product_qty"];
+// 	$date = $_POST["added_date"];
+// 	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>1,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
+// 	echo $result;
+// }
 
 
 ?>

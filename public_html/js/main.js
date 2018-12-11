@@ -219,11 +219,11 @@ $(document).ready(function(){
 					if (data == "NEW_PRODUCT_ADDED") {
 						alert("New Product Added Successfully..!");
 						$("#product_name").val("");
-						$("#select_cat").val("");
+						$("#select_cat2").val("");
 						// $("#select_brand").val("");
 						$("#product_price").val("");
 						$("#product_qty").val("");
-
+						window.location.href = "";
 					}else{
 						alert(data);
 					}

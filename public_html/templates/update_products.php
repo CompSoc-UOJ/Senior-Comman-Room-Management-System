@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="update_product_form" onsubmit="return false">
+        <form id="form_update_product" onsubmit="return false" name="test">
           <div class="form-row">
             <div class="form-group col-md-6">
               <input type="hidden" name="pid" id="pid" value=""/>
