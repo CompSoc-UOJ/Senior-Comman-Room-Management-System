@@ -4,6 +4,7 @@ if (!isset($_SESSION["userid"])) {
 	header("location:".DOMAIN."/");
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,8 @@ if (!isset($_SESSION["userid"])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<script type="text/javascript" src="./js/manage.js"></script>
+	 <script type="text/javascript" src="./js/main.js"></script>
+
  </head>
 <body>
 	<!-- Navbar -->
@@ -26,9 +29,9 @@ if (!isset($_SESSION["userid"])) {
 		    <thead>
 		      <tr>
 		        <th>#</th>
-		        <th>Product</th>
-		        <th>Category</th>  <!-- Supplier -->
-		        <th>Brand</th>		<!-- No Need -->
+		        <th>Item Name</th>
+		        <th>Category</th>
+		        <!-- <th>Brand</th> -->   
 		        <th>Price</th>
 		        <th>Stock</th>
 		        <th>Added Date</th>
@@ -39,15 +42,17 @@ if (!isset($_SESSION["userid"])) {
 		    <tbody id="get_product">
 					 <!--on manage.js-->
 		    </tbody>
-		  </table>
-			<a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
+		</table>
+		  <a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
 	</div>
-
+	
 
 	<?php
-		include_once("./templates/update_products.php");
+		//Update Products Form
+		include_once("./templates/update_products.php");  
+		//Products Form
+		include_once("./templates/products.php");
 	?>
-	
 	
 </body>
 </html>

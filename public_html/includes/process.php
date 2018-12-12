@@ -59,12 +59,12 @@ if (isset($_POST["brand_name"])) {
 //Add Product
 if (isset($_POST["added_date"]) AND isset($_POST["product_name"])) {
 	$obj = new DBOperation();
-	$result = $obj->addProduct($_POST["select_cat"],
-							$_POST["select_brand"],
-							$_POST["product_name"],
-							$_POST["product_price"],
-							$_POST["product_qty"],
-							$_POST["added_date"]);
+	$result = $obj->addProduct($_POST["select_cat2"],
+	// $_POST["select_brand"],
+	$_POST["product_name"],
+	$_POST["product_price"],
+	$_POST["product_qty"],
+	$_POST["added_date"]);
 	echo $result;
 	exit();
 }
@@ -197,16 +197,16 @@ if (isset($_POST["manageProduct"])) {
 			        <td><?php echo $n; ?></td>
 			        <td><?php echo $row["product_name"]; ?></td>
 			        <td><?php echo $row["category_name"]; ?></td>
-			        <td><?php echo $row["brand_name"]; ?></td>
+			        <!-- <td><php echo $row["brand_name"]; ?></td> -->
 			        <td><?php echo $row["product_price"]; ?></td>
 			        <td><?php echo $row["product_stock"]; ?></td>
 			        <td><?php echo $row["added_date"]; ?></td>
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['pid']; ?>" class="btn btn-danger btn-sm del_product">Delete</a>
-			        	<a href="#" eid="<?php echo $row['pid']; ?>" data-toggle="modal" data-target="#form_products" class="btn btn-info btn-sm edit_product">Edit</a>
+			        	<a href="#" eid="<?php echo $row['pid']; ?>" data-toggle="modal" data-target="#update_product_form" class="btn btn-info btn-sm edit_product">Edit</a>
 			        </td>
-			      </tr>
+			    </tr>
 			<?php
 			$n++;
 		}
@@ -238,11 +238,11 @@ if (isset($_POST["update_product"])) {
 	$id = $_POST["pid"];
 	$name = $_POST["update_product"];
 	$cat = $_POST["select_cat"];
-	$brand = $_POST["select_brand"];
+	//$brand = $_POST["select_brand"];
 	$price = $_POST["product_price"];
 	$qty = $_POST["product_qty"];
 	$date = $_POST["added_date"];
-	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>$brand,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
+	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>1,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
 	echo $result;
 }
 
@@ -286,11 +286,9 @@ if (isset($_POST["getPriceAndQty"])) {
 
 if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 	
+	//Now getting array from order_form
 	$orderdate = $_POST["order_date"];
 	$cust_name = $_POST["cust_name"];
-
-
-	//Now getting array from order_form
 	$ar_tqty = $_POST["tqty"];
 	$ar_qty = $_POST["qty"];
 	$ar_price = $_POST["price"];
@@ -304,14 +302,74 @@ if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 	$paid = $_POST["paid"];
 	$due = $_POST["due"];
 	$payment_type = $_POST["payment_type"];
-
-
 	$m = new Manage();
 	echo $result = $m->storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_pro_name,$sub_total,$gst,$discount,$net_total,$paid,$due,$payment_type);
 
-
-
-
 }
+
+//----------------People---------------------
+
+if (isset($_POST["managePeople"])) {
+	$m = new Manage();
+	$result = $m->manageRecordWithPagination("user",$_POST["pageno"]);
+	$rows = $result["rows"];
+	$pagination = $result["pagination"];
+	if (count($rows) > 0) {
+		$n = (($_POST["pageno"] - 1) * 5)+1;
+		foreach ($rows as $row) {
+			?>
+				<tr>
+			        <td><?php echo $n; ?></td>
+			        <td><?php echo $row["username"]; ?></td>
+			        <td><?php echo $row["email"]; ?></td>
+			        <td><?php echo $row["usertype"]; ?></td>
+			        <td><?php echo $row["register_date"]; ?></td>
+			        <td><?php echo $row["last_login"]; ?></td>
+			        <td><?php echo $row["notes"]; ?></td>
+			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+			        <td>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_product">Delete</a>
+			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_people" class="btn btn-info btn-sm edit_product">Edit</a>
+			        </td>
+			      </tr>
+			<?php
+			$n++;
+		}
+		?>
+			<tr><td colspan="5"><?php echo $pagination; ?></td></tr>
+		<?php
+		exit();
+	}
+}
+
+//Delete 
+// if (isset($_POST["deleteProduct"])) {
+// 	$m = new Manage();
+// 	$result = $m->deleteRecord("user","id",$_POST["id"]);
+// 	echo $result;
+// }
+
+//Update Product
+// if (isset($_POST["updateProduct"])) {
+// 	$m = new Manage();
+// 	$result = $m->getSingleRecord("user","id",$_POST["id"]);
+// 	echo json_encode($result);
+// 	exit();
+// }
+
+//Update Record after getting data
+// if (isset($_POST["update_product"])) {
+// 	$m = new Manage();
+// 	$id = $_POST["pid"];
+// 	$name = $_POST["update_product"];
+// 	$cat = $_POST["select_cat"];
+// 	// $brand = $_POST["select_brand"];
+// 	$price = $_POST["product_price"];
+// 	$qty = $_POST["product_qty"];
+// 	$date = $_POST["added_date"];
+// 	$result = $m->update_record("products",["pid"=>$id],["cid"=>$cat,"bid"=>1,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
+// 	echo $result;
+// }
+
 
 ?>

@@ -140,7 +140,7 @@ $(document).ready(function(){
 				var root = "<option value='0'>Root</option>";
 				var choose = "<option value=''>Choose Category</option>";
 				$("#parent_cat").html(root+data);
-				$("#select_cat").html(choose+data);
+				$("#select_cat2").html(choose+data); //vikum ayya
 			}
 		})
 	}
@@ -219,13 +219,12 @@ $(document).ready(function(){
 					if (data == "NEW_PRODUCT_ADDED") {
 						alert("New Product Added Successfully..!");
 						$("#product_name").val("");
-						$("#select_cat").val("");
-						$("#select_brand").val("");
+						$("#select_cat2").val("");
+						// $("#select_brand").val("");
 						$("#product_price").val("");
 						$("#product_qty").val("");
-
+						window.location.href = "";
 					}else{
-						console.log(data);
 						alert(data);
 					}
 						
