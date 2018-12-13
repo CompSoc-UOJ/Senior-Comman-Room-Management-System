@@ -95,7 +95,7 @@ if (!isset($_SESSION["userid"])) {
 						<div class="card-body">
 						<h4 class="card-title">People</h4>
 						<p class="card-text">Here you can manage your users and you can add new users.</p>
-						<a href="#" data-toggle="modal" data-target="#form_people" class="btn btn-primary">Add</a>
+						<a href="registerinside.php"  class="btn btn-primary">Register</a>
 						<a href="manage_people.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
