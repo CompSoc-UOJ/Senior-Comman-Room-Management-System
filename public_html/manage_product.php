@@ -31,9 +31,9 @@ if (!isset($_SESSION["userid"])) {
 		        <th>#</th>
 		        <th>Item Name</th>
 		        <th>Category</th>
-		        <!-- <th>Brand</th> -->   
+		        <th>Supplier</th>   
 		        <th>Price</th>
-		        <th>Stock</th>
+		        <th>Available Stock</th>
 		        <th>Added Date</th>
 		        <th>Status</th>
 		        <th>Action</th>

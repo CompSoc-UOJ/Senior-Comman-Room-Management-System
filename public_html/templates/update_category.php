@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="form_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="form_update_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -18,10 +18,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Parent Category</label>
-            <select class="form-control" id="parent_cat" name="parent_cat">
-              
-
-              
+            <select class="form-control" id="parent_cat" name="parent_cat">  
             </select>
           </div>
           <button type="submit" class="btn btn-primary">Update Category</button>

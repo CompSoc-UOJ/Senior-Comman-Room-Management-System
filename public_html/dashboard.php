@@ -101,6 +101,30 @@ if (!isset($_SESSION["userid"])) {
 				</div>
 			</div>
 		</div>
+		<div class="row">
+		<div class="col-md-3">
+			</div>
+			<div class="col-md-3">
+				<div class="card">
+						<div class="card-body">
+						<h4 class="card-title">Categories</h4> 
+						<p class="card-text">Here you can manage your item categories of your current sales.</p>
+						<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
+						<a href="manage_categories.php" class="btn btn-primary">Manage</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card">
+						<div class="card-body">
+						<h4 class="card-title">Suppliers</h4> <!-- Brands -->
+						<p class="card-text">Here you can manage your item suppliers and you can add new suppliers.</p>
+						<a href="#" data-toggle="modal" data-target="#form_brand" class="btn btn-primary">Add</a>
+						<a href="manage_brand.php" class="btn btn-primary">Manage</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<?php

@@ -233,7 +233,7 @@ $(document).ready(function(){
 				$("#pid").val(data["pid"]);
 				$("#update_product").val(data["product_name"]);
 				$("#select_cat").val(data["cid"]);
-				//$("#select_brand").val(data["bid"]);
+				$("#select_brand").val(data["bid"]);
 				$("#product_price").val(data["product_price"]);
 				$("#product_qty").val(data["product_stock"]);
 			}

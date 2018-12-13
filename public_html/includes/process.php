@@ -41,9 +41,9 @@ if (isset($_POST["getBrand"])) {
 }
 
 //Add Category
-if (isset($_POST["category_name"]) AND isset($_POST["parent_cat"])) {
+if (isset($_POST["category_name"]) AND isset($_POST["parent_cat2"])) {
 	$obj = new DBOperation();
-	$result = $obj->addCategory($_POST["parent_cat"],$_POST["category_name"]);
+	$result = $obj->addCategory($_POST["parent_cat2"],$_POST["category_name"]);
 	echo $result;
 	exit();
 }
@@ -60,7 +60,7 @@ if (isset($_POST["brand_name"])) {
 if (isset($_POST["added_date"]) AND isset($_POST["product_name"])) {
 	$obj = new DBOperation();
 	$result = $obj->addProduct($_POST["select_cat2"],
-	// $_POST["select_brand"],
+	$_POST["select_brand2"],
 	$_POST["product_name"],
 	$_POST["product_price"],
 	$_POST["product_qty"],
@@ -86,7 +86,7 @@ if (isset($_POST["manageCategory"])) {
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['cid']; ?>" class="btn btn-danger btn-sm del_cat">Delete</a>
-			        	<a href="#" eid="<?php echo $row['cid']; ?>" data-toggle="modal" data-target="#form_category" class="btn btn-info btn-sm edit_cat">Edit</a>
+			        	<a href="#" eid="<?php echo $row['cid']; ?>" data-toggle="modal" data-target="#form_update_category" class="btn btn-info btn-sm edit_cat">Edit</a>
 			        </td>
 			      </tr>
 			<?php
@@ -144,7 +144,7 @@ if (isset($_POST["manageBrand"])) {
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['bid']; ?>" class="btn btn-danger btn-sm del_brand">Delete</a>
-			        	<a href="#" eid="<?php echo $row['bid']; ?>" data-toggle="modal" data-target="#form_brand" class="btn btn-info btn-sm edit_brand">Edit</a>
+			        	<a href="#" eid="<?php echo $row['bid']; ?>" data-toggle="modal" data-target="#form_update_brand" class="btn btn-info btn-sm edit_brand">Edit</a>
 			        </td>
 			      </tr>
 			<?php
@@ -197,7 +197,7 @@ if (isset($_POST["manageProduct"])) {
 			        <td><?php echo $n; ?></td>
 			        <td><?php echo $row["product_name"]; ?></td>
 			        <td><?php echo $row["category_name"]; ?></td>
-			        <!-- <td><php echo $row["brand_name"]; ?></td> -->
+			        <td><?php echo $row["brand_name"]; ?></td>
 			        <td><?php echo $row["product_price"]; ?></td>
 			        <td><?php echo $row["product_stock"]; ?></td>
 			        <td><?php echo $row["added_date"]; ?></td>
@@ -238,7 +238,7 @@ if (isset($_POST["update_product"])) {
 	$id = $_POST["pid"];
 	$name = $_POST["update_product"];
 	$cat = $_POST["select_cat"];
-	//$brand = $_POST["select_brand"];
+	$brand = $_POST["select_brand"];
 	$price = $_POST["product_price"];
 	$qty = $_POST["product_qty"];
 	$date = $_POST["added_date"];
