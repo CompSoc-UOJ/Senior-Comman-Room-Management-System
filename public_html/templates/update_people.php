@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="form_people" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="form_update_people" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,39 +12,28 @@
         <form id="update_people_form" onsubmit="return false">
           <div class="form-row">
             <div class="form-group col-md-6">
+              <input type="hidden" name="id" id="id" value=""/>
               <label>Date</label>
               <input type="text" class="form-control" name="added_date" id="added_date" value="<?php echo date("Y-m-d"); ?>" readonly/>
             </div>
             <div class="form-group col-md-6">
-              <label>Product Name</label>
-              <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name" required>
+              <label>Full Name</label>
+              <input type="text" class="form-control" name="update_name" id="update_name" placeholder="Edit Full Name" required/>
             </div>
           </div>
           <div class="form-group">
-            <label>Category</label>
-            <select class="form-control" id="select_cat" name="select_cat" required/>
-              
-
-              
-            </select>
+            <label>Email</label>
+            <input type="text" class="form-control" id="update_email" name="update_email" placeholder="Edit Email" required/> 
           </div>
           <div class="form-group">
-            <label>Brand</label>
-            <select class="form-control" id="select_brand" name="select_brand" required/>
-              
-
-              
-            </select>
+            <label>User Type</label>
+            <input type="text" class="form-control" id="update_type" name="update_type" required/> 
           </div>
           <div class="form-group">
-            <label>Product Price</label>
-            <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product" required/>
+            <label>Notes</label>
+            <input type="text" class="form-control" id="update_notes" name="update_notes" placeholder="Enter any notes here" />
           </div>
-          <div class="form-group">
-            <label>Quantity</label>
-            <input type="text" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity" required/>
-          </div>
-          <button type="submit" class="btn btn-success">Add Product</button>
+          <button type="submit" class="btn btn-success">Edit Profile</button>
         </form>
       </div>
       <div class="modal-footer">

@@ -26,11 +26,11 @@
             <select class="form-control" id="select_cat" name="select_cat" required/> 
             </select>
           </div>
-          <!-- <div class="form-group">
-            <label>Brand</label>
+          <div class="form-group">
+            <label>Supplier</label>
             <select class="form-control" id="select_brand" name="select_brand" required/> 
             </select>
-          </div> -->
+          </div>
           <div class="form-group">
             <label>Product Price</label>
             <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product" required/>

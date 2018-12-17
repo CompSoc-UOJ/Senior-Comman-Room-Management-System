@@ -233,7 +233,7 @@ $(document).ready(function(){
 				$("#pid").val(data["pid"]);
 				$("#update_product").val(data["product_name"]);
 				$("#select_cat").val(data["cid"]);
-				//$("#select_brand").val(data["bid"]);
+				$("#select_brand").val(data["bid"]);
 				$("#product_price").val(data["product_price"]);
 				$("#product_qty").val(data["product_stock"]);
 			}
@@ -247,12 +247,12 @@ $(document).ready(function(){
 				url : DOMAIN+"/includes/process.php",
 				method : "POST",
 				data : $("#form_update_product").serialize(),
-				success : function(data2){
-					if (data2 == "UPDATED") {
+				success : function(data){
+					if (data == "UPDATED") {
 						alert("Product Updated Successfully..!");
 						window.location.href = "";
 					}else{
-						alert(data2);
+						alert(data);
 					}
 				}
 			})
@@ -276,46 +276,45 @@ $(document).ready(function(){
 		managePeople(pn);
 	})
 
-	// $("body").delegate(".del_product","click",function(){
-	// 	var did = $(this).attr("did");
-	// 	if (confirm("Are you sure ? You want to delete..!")) {
-	// 		$.ajax({
-	// 			url : DOMAIN+"/includes/process.php",
-	// 			method : "POST",
-	// 			data : {deleteProduct:1,id:did},
-	// 			success : function(data){
-	// 				if (data == "DELETED") {
-	// 					alert("Product is deleted");
-	// 					manageProduct(1);
-	// 				}else{
-	// 					alert(data);
-	// 				}
+	$("body").delegate(".del_people","click",function(){
+		var did = $(this).attr("did");
+		if (confirm("Are you sure ? You want to delete..!")) {
+			$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : {deletePeople:1,id:did},
+				success : function(data){
+					if (data == "DELETED") {
+						alert("Profile is deleted");
+						managePeople(1);
+					}else{
+						alert(data);
+					}
 						
-	// 			}
-	// 		})
-	// 	}
-	// })
+				}
+			})
+		}
+	})
 
 	//Update people
-	// $("body").delegate(".edit_product","click",function(){
-	// 	var eid = $(this).attr("eid");
-	// 	$.ajax({
-	// 		url : DOMAIN+"/includes/process.php",
-	// 		method : "POST",
-	// 		dataType : "json",
-	// 		data : {updateProduct:1,id:eid},
-	// 		success : function(data){
-	// 			console.log(data);
-	// 			$("#pid").val(data["pid"]);
-	// 			$("#update_product").val(data["product_name"]);
-	// 			$("#select_cat").val(data["cid"]);
-	// 			$("#select_brand").val(data["bid"]);
-	// 			$("#product_price").val(data["product_price"]);
-	// 			$("#product_qty").val(data["product_stock"]);
+	$("body").delegate(".edit_people","click",function(){
+		var eid = $(this).attr("eid");
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			dataType : "json",
+			data : {updatePeople:1,id:eid},
+			success : function(data){
+				console.log(data);
+				$("#id").val(data["id"]);
+				$("#update_name").val(data["username"]);
+				$("#update_email").val(data["email"]);
+				$("#update_type").val(data["usertype"]);
+				$("#update_notes").val(data["notes"]);
 
-	// 		}
-	// 	})
-	// })
+			}
+		})
+	})
 
 	//Update people
 	$("#update_people_form").on("submit",function(){

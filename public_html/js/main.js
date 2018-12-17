@@ -139,7 +139,7 @@ $(document).ready(function(){
 			success : function(data){
 				var root = "<option value='0'>Root</option>";
 				var choose = "<option value=''>Choose Category</option>";
-				$("#parent_cat").html(root+data);
+				$("#parent_cat2").html(root+data);
 				$("#select_cat2").html(choose+data); //vikum ayya
 			}
 		})
@@ -154,7 +154,7 @@ $(document).ready(function(){
 			data : {getBrand:1},
 			success : function(data){
 				var choose = "<option value=''>Choose Brand</option>";
-				$("#select_brand").html(choose+data);
+				$("#select_brand2").html(choose+data);
 			}
 		})
 	}
@@ -171,10 +171,12 @@ $(document).ready(function(){
 				data  : $("#category_form").serialize(),
 				success : function(data){
 					if (data == "CATEGORY_ADDED") {
-							$("#category_name").removeClass("border-danger");
-							$("#cat_error").html("<span class='text-success'>New Category Added Successfully..!</span>");
-							$("#category_name").val("");
-							fetch_category();
+						alert("New Category Added Successfully..!");
+						// $("#category_name").removeClass("border-danger");
+						// $("#cat_error").html("<span class='text-success'>New Category Added Successfully..!</span>");
+						// $("#category_name").val("");
+						// fetch_category();
+						window.location.href = "";
 					}else{
 						alert(data);
 					}
@@ -196,10 +198,12 @@ $(document).ready(function(){
 				data : $("#brand_form").serialize(),
 				success : function(data){
 					if (data == "BRAND_ADDED") {
-						$("#brand_name").removeClass("border-danger");
-						$("#brand_error").html("<span class='text-success'>New Brand Added Successfully..!</span>");
-						$("#brand_name").val("");
+						alert("New Brand Added Successfully..!");
+						// $("#brand_name").removeClass("border-danger");
+						// $("#brand_error").html("<span class='text-success'>New Brand Added Successfully..!</span>");
+						// $("#brand_name").val("");
 						fetch_brand();
+						window.location.href = "";
 					}else{
 						alert(data);
 					}
@@ -220,7 +224,7 @@ $(document).ready(function(){
 						alert("New Product Added Successfully..!");
 						$("#product_name").val("");
 						$("#select_cat2").val("");
-						// $("#select_brand").val("");
+						$("#select_brand").val("");
 						$("#product_price").val("");
 						$("#product_qty").val("");
 						window.location.href = "";
