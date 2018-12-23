@@ -266,8 +266,8 @@ if (isset($_POST["getNewOrderItem"])) {
 		    </td>
 		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>   
 		    <td><input name="qty[]" type="text" class="form-control form-control-sm qty" required></td>
-		    <td><input name="price[]" type="text" class="form-control form-control-sm price" readonly></span>
-		    <span><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
+		    <td><input name="price[]" type="text" class="form-control form-control-sm price" readonly></td>
+		    <td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
 		    <td>Rs.<span class="amt">0</span></td>
 	</tr>
 	<?php
@@ -369,4 +369,65 @@ if (isset($_POST["update_name"])) {
 	$result = $m->update_record("user",["id"=>$id],["username"=>$name,"email"=>$cat,"usertype"=>$price,"notes"=>$qty,"register_date"=>$date]);
 	echo $result;
 }
+
+//----------------Purchase---------------------
+
+if (isset($_POST["managePurchase"])) {
+	$m = new Manage();
+	$result = $m->manageRecordWithPagination("invoice_details",$_POST["pageno"]);
+	$rows = $result["rows"];
+	$pagination = $result["pagination"];
+	if (count($rows) > 0) {
+		$n = (($_POST["pageno"] - 1) * 5)+1;
+		foreach ($rows as $row) {
+			?>
+				<tr>
+			        <td><?php echo $n; ?></td>
+			        <td><?php echo $row["invoice_no"]; ?></td>
+			        <td><?php echo $row["product_name"]; ?></td>
+			        <td><?php echo $row["price"]; ?></td>
+			        <td><?php echo $row["qty"]; ?></td>
+			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+			        <td>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_purchase">Delete</a>
+			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_purchase" class="btn btn-info btn-sm edit_purchase">Edit</a>
+			        </td>
+			      </tr>
+			<?php
+			$n++;
+		}invoice_no
+		?>
+			<tr><td colspan="5"><?php echo $pagination; ?></td></tr>
+		<?php
+		exit();
+	}
+}
+
+//Delete Purchase
+if (isset($_POST["deletePurchase"])) {
+	$m = new Manage();
+	$result = $m->deleteRecord("invoice_details","id",$_POST["id"]);
+	echo $result;
+}
+
+//Update Purchase
+if (isset($_POST["updatePurchase"])) {
+	$m = new Manage();
+	$result = $m->getSingleRecord("invoice_details","id",$_POST["id"]);
+	echo json_encode($result);
+	exit();
+}
+
+// //Update Record after getting data
+// if (isset($_POST["product_name"])) {
+// 	$m = new Manage();
+// 	$id = $_POST["id"];
+// 	$name = $_POST["update_name"];
+// 	$cat = $_POST["update_email"];
+// 	$price = $_POST["update_type"];
+// 	$qty = $_POST["update_notes"];
+// 	$date = $_POST["added_date"];
+// 	$result = $m->update_record("user",["id"=>$id],["username"=>$name,"email"=>$cat,"usertype"=>$price,"notes"=>$qty,"register_date"=>$date]);
+// 	echo $result;
+// }
 ?>

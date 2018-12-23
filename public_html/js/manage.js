@@ -157,7 +157,6 @@ $(document).ready(function(){
 			dataType : "json",
 			data : {updateBrand:1,id:eid},
 			success : function(data){
-				console.log(data);
 				$("#bid").val(data["bid"]);
 				$("#update_brand").val(data["brand_name"]);
 			}
@@ -327,11 +326,85 @@ $(document).ready(function(){
 						alert("Profile Updated Successfully..!");
 						window.location.href = "";
 					}else{
-						console.log("hello world");
 						alert(data);
 					}
 				}
 			})
 	})
+
+		//---------------------Purchase-----------------
+		managePurchase(1);
+		function managePurchase(pn){
+			$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : {managePurchase:1,pageno:pn},
+				success : function(data){
+					$("#get_purchase").html(data);	
+				}
+			})
+		}
+		// delete purchase
+		$("body").delegate(".page-link","click",function(){
+			var pn = $(this).attr("pn");
+			managePurchase(pn);
+		})
+	
+		$("body").delegate(".del_purchase","click",function(){
+			var did = $(this).attr("did");
+			if (confirm("Are you sure ? You want to delete..!")) {
+				$.ajax({
+					url : DOMAIN+"/includes/process.php",
+					method : "POST",
+					data : {deletePurchase:1,id:did},
+					success : function(data){
+						if (data == "DELETED") {
+							alert("Purchase is deleted");
+							managePurchase(1);
+						}else{
+							alert(data);
+						}
+							
+					}
+				})
+			}
+		})
+	
+		//Update Purchase
+		$("body").delegate(".edit_purchase","click",function(){
+			var eid = $(this).attr("eid");
+			$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				dataType : "json",
+				data : {updatePurchase:1,id:eid},
+				success : function(data){
+					console.log(data);
+					$("#id").val(data["id"]);
+					$("#update_name").val(data["username"]);
+					$("#update_email").val(data["email"]);
+					$("#update_type").val(data["usertype"]);
+					$("#update_notes").val(data["notes"]);
+	
+				}
+			})
+		})
+	
+		//Update Purchase
+		$("#update_Purchase_form").on("submit",function(){
+			$.ajax({
+					url : DOMAIN+"/includes/process.php",
+					method : "POST",
+					data : $("#update_purchase_form").serialize(),
+					success : function(data){
+						if (data == "UPDATED") {
+							alert("Purchase Updated Successfully..!");
+							window.location.href = "";
+						}else{
+							alert(data);
+						}
+					}
+				})
+		})
 	
 })

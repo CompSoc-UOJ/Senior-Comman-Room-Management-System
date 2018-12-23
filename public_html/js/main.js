@@ -153,7 +153,7 @@ $(document).ready(function(){
 			method : "POST",
 			data : {getBrand:1},
 			success : function(data){
-				var choose = "<option value=''>Choose Brand</option>";
+				var choose = "<option value=''>Choose Supplier</option>";
 				$("#select_brand2").html(choose+data);
 			}
 		})

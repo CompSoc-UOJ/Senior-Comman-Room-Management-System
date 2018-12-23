@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Brand Entry</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Supplier Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,10 +13,10 @@
           <div class="form-group">
             <label>Brand Name</label>
             <input type="hidden" name="bid" id="bid" value=""/>
-            <input type="text" class="form-control" name="update_brand" id="update_brand" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="brand_error" class="form-text text-muted"></small>
+            <input type="text" class="form-control" name="update_brand" id="update_brand" placeholder="Edit Supplier Name"/>
+            <small id= "brand_error" class="form-text text-muted"></small>
           </div>
-          <button type="submit" class="btn btn-primary">Update Brand</button>
+          <button type="submit" class="btn btn-primary">Update Supplier</button>
       </form>
       </div>
       <div class="modal-footer">
