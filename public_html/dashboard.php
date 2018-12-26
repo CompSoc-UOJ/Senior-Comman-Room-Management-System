@@ -42,7 +42,7 @@ if (!isset($_SESSION["userid"])) {
 						<div class="col-sm-6">
 							<iframe src="http://free.timeanddate.com/clock/i616j2aa/n1993/szw160/szh160/cf100/hnce1ead6" frameborder="0" width="160" height="160"></iframe>
 						</div>
-						<div class="col-sm-6">
+						<!-- <div class="col-sm-6">
 							<div class="card">
 						      <div class="card-body">
 						        <h4 class="card-title">New Orders</h4> 
@@ -50,7 +50,7 @@ if (!isset($_SESSION["userid"])) {
 						        <a href="new_order.php" class="btn btn-primary">New Orders</a>
 						      </div>
 						    </div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -73,9 +73,9 @@ if (!isset($_SESSION["userid"])) {
 			<div class="col-md-3">
 				<div class="card">
 						<div class="card-body">
-						<h4 class="card-title">Sales</h4> <!-- Categories -->
+						<h4 class="card-title">Sales</h4> 
 						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
-						<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
+						<a href="new_order.php" class="btn btn-primary">Add</a>
 						<a href="manage_categories.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
@@ -83,7 +83,7 @@ if (!isset($_SESSION["userid"])) {
 			<div class="col-md-3">
 				<div class="card">
 						<div class="card-body">
-						<h4 class="card-title">Purchases</h4> <!-- Brands -->
+						<h4 class="card-title">Purchases</h4>
 						<p class="card-text">Here you can manage your Purchases and you can add new Purchases.</p>
 						<a href="new_purchase.php" class="btn btn-primary">Add</a>
 						<a href="manage_purchase.php" class="btn btn-primary">Manage</a>

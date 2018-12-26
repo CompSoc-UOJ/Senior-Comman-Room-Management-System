@@ -41,7 +41,8 @@ if (!isset($_SESSION["userid"])) {
 				  		<div class="form-group row">
 				  			<label class="col-sm-3 col-form-label" align="right">Customer Name*</label>
 				  			<div class="col-sm-6">
-				  				<input type="text" id="cust_name" name="cust_name"class="form-control form-control-sm" placeholder="Enter Customer Name" required/>
+								<select id="cust_name" name="cust_name"class="form-control form-control-sm" required>
+									</select>
 				  			</div>
 				  		</div>
 
@@ -89,12 +90,12 @@ if (!isset($_SESSION["userid"])) {
                         <input type="text" readonly name="sub_total" class="form-control form-control-sm" id="sub_total" required/>
                       </div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                       <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label>
                       <div class="col-sm-6">
-                        <input type="text" readonly name="gst" class="form-control form-control-sm" id="gst" required/>
+                        <input type="hidden" value="1" readonly name="gst" class="form-control form-control-sm" id="gst" required/>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row">
                       <label for="discount" class="col-sm-3 col-form-label" align="right">Discount</label>
                       <div class="col-sm-6">
@@ -130,22 +131,18 @@ if (!isset($_SESSION["userid"])) {
                         </select>
                       </div>
                     </div>
+										<input name="typ" type="hidden" value="sale" class="form-control form-control-sm typ">
 
                     <center>
                       <input type="submit" id="order_form" style="width:150px;" class="btn btn-info" value="Order">
                       <input type="submit" id="print_invoice" style="width:150px;" class="btn btn-success d-none" value="Print Invoice">
                     </center>
-
-
+										
 				  	</form>
-
 				  </div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-
-
 </body>
 </html>

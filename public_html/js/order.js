@@ -1,6 +1,20 @@
 $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
 
+	//Fetch People
+	fetch_people();
+	function fetch_people(){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {getPeople:1},
+			success : function(data){
+				var choose = "<option value=''>Choose Customer</option>";
+				$("#cust_name").html(choose+data);
+			}
+		})
+	}
+
 	addNewRow();
 
 	$("#add").click(function(){
@@ -39,6 +53,7 @@ $(document).ready(function(){
 			success : function(data){
 				tr.find(".tqty").val(data["product_stock"]);
 				tr.find(".pro_name").val(data["product_name"]);
+				tr.find(".tpid").val(data["pid"]);
 				tr.find(".qty").val(1);
 				tr.find(".price").val(data["product_price"]);
 				tr.find(".amt").html( tr.find(".qty").val() * tr.find(".price").val() );
@@ -62,12 +77,11 @@ $(document).ready(function(){
 				calculate(0,0);
 			}
 		}
-
 	})
 
 	function calculate(dis,paid){
 		var sub_total = 0;
-		var gst = 0;
+		// var gst = 1; //if sale
 		var net_total = 0;
 		var discount = dis;
 		var paid_amt = paid;
@@ -75,13 +89,12 @@ $(document).ready(function(){
 		$(".amt").each(function(){
 			sub_total = sub_total + ($(this).html() * 1);
 		})
-		gst = 0.18 * sub_total;
-		net_total = gst + sub_total;
-		net_total = net_total - discount;
+		// gst = 0.18 * sub_total;
+		// net_total = gst + sub_total;
+		net_total = sub_total - discount;
 		due = net_total - paid_amt;
-		$("#gst").val(gst);
+		// $("#gst").val(gst);
 		$("#sub_total").val(sub_total);
-		
 		$("#discount").val(discount);
 		$("#net_total").val(net_total);
 		//$("#paid")
@@ -104,8 +117,8 @@ $(document).ready(function(){
 	/*Order Accepting*/
 
 	$("#order_form").click(function(){
-
 		var invoice = $("#get_order_data").serialize();
+		alert(invoice);
 		if ($("#cust_name").val() === "") {
 			alert("Plaese enter customer name");
 		}else if($("#paid").val() === ""){
@@ -126,20 +139,8 @@ $(document).ready(function(){
 							window.location.href = DOMAIN+"/includes/invoice_bill.php?invoice_no="+data+"&"+invoice;
 						}
 					}
-
-						
-						
-
-					
-
 				}
 			});
 		}
-		
-			
-		
-		
-
 	});
-
 });

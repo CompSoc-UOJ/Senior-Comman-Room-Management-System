@@ -36,12 +36,9 @@ $(document).ready(function(){
 						alert("Deleted Successfully");
 					}else{
 						alert(data);
-					}
-						
+					}		
 				}
 			})
-		}else{
-
 		}
 	})
 
@@ -213,8 +210,7 @@ $(document).ready(function(){
 						manageProduct(1);
 					}else{
 						alert(data);
-					}
-						
+					}		
 				}
 			})
 		}
@@ -243,18 +239,18 @@ $(document).ready(function(){
 	$("#form_update_product").on("submit",function(){
 		// console.log($("#form_update_product").serialize());
 		$.ajax({
-				url : DOMAIN+"/includes/process.php",
-				method : "POST",
-				data : $("#form_update_product").serialize(),
-				success : function(data){
-					if (data == "UPDATED") {
-						alert("Product Updated Successfully..!");
-						window.location.href = "";
-					}else{
-						alert(data);
-					}
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : $("#form_update_product").serialize(),
+			success : function(data){
+				if (data == "UPDATED") {
+					alert("Product Updated Successfully..!");
+					window.location.href = "";
+				}else{
+					alert(data);
 				}
-			})
+			}
+		})
 	})
 
 	//---------------------People-----------------
@@ -269,6 +265,7 @@ $(document).ready(function(){
 			}
 		})
 	}
+	
 	// delete profile
 	$("body").delegate(".page-link","click",function(){
 		var pn = $(this).attr("pn");

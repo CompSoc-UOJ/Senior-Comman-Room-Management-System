@@ -38,7 +38,7 @@ if (!isset($_SESSION["userid"])) {
 					 <!--on manage.js-->
 		    </tbody>
 		  </table>
-			<a href="new_purchase.php"  class="btn btn-primary">New Purchase</a>
+			<a href="new_order.php"  class="btn btn-primary">New Purchase</a>
 	</div>	
 </body>
 </html>

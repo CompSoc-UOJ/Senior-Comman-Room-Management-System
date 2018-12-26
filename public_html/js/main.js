@@ -224,7 +224,7 @@ $(document).ready(function(){
 						alert("New Product Added Successfully..!");
 						$("#product_name").val("");
 						$("#select_cat2").val("");
-						$("#select_brand").val("");
+						$("#select_brand2").val("");
 						$("#product_price").val("");
 						$("#product_qty").val("");
 						window.location.href = "";

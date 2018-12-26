@@ -23,12 +23,12 @@
           </div>
           <div class="form-group">
             <label>Category</label>
-            <select class="form-control" id="select_cat" name="select_cat" required/> 
+            <select class="form-control" id="select_cat" name="select_cat" required> 
             </select>
           </div>
           <div class="form-group">
             <label>Supplier</label>
-            <select class="form-control" id="select_brand" name="select_brand" required/> 
+            <select class="form-control" id="select_brand" name="select_brand" required> 
             </select>
           </div>
           <div class="form-group">

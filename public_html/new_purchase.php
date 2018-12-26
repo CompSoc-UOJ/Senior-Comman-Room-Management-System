@@ -92,10 +92,13 @@ if (!isset($_SESSION["userid"])) {
                       </div>
                     </div>
                     <div class="form-group row">
+                      <!-- <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label> -->
+                       <!-- <div class="form-group row">
                       <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label>
                       <div class="col-sm-6">
-                        <input type="text" readonly name="gst" class="form-control form-control-sm" id="gst" required/>
+                        <input type="hidden" value="1" readonly name="gst" class="form-control form-control-sm" id="gst" required/>
                       </div>
+                    </div> -->
                     </div>
                     <div class="form-group row">
                       <label for="discount" class="col-sm-3 col-form-label" align="right">Discount</label>
@@ -124,7 +127,7 @@ if (!isset($_SESSION["userid"])) {
                     <div class="form-group row">
                       <label for="payment_type" class="col-sm-3 col-form-label" align="right">Payment Method</label>
                       <div class="col-sm-6">
-                        <select name="payment_type" class="form-control form-control-sm" id="payment_type" required/>
+                        <select name="payment_type" class="form-control form-control-sm" id="payment_type" required>
                           <option>Cash</option>
                           <option>Card</option>
                           <option>Draft</option>
@@ -132,24 +135,19 @@ if (!isset($_SESSION["userid"])) {
                         </select>
                       </div>
                     </div>
+										<input name="typ" type="hidden" value="purchase" class="form-control form-control-sm typ">
+
 
 										<center>
                       <input type="submit" id="purchase_form" style="width:150px;" class="btn btn-info" value="Order">
                       <input type="submit" id="print_invoice" style="width:150px;" class="btn btn-success d-none" value="Print Invoice">
                     </center>
 										
-                   
-
-
 				  	</form>
-
 				  </div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-
-
 </body>
 </html>
