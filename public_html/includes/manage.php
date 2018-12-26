@@ -23,8 +23,16 @@ class Manage
 			$sql = "SELECT p.pid,p.product_name,c.category_name,b.brand_name,p.product_price,p.product_stock,p.added_date,p.p_status FROM products p,brands b,categories c WHERE p.bid = b.bid AND p.cid = c.cid ".$a["limit"];
 		}
 		else if($table == "invoice_details"){
-			$sql = "SELECT p.pid,p.product_name,c.category_name,b.brand_name,p.product_price,p.product_stock,p.added_date,p.p_status FROM products p,brands b,categories c WHERE p.bid = b.bid AND p.cid = c.cid ".$a["limit"];
+			$sql = "SELECT p.product_name,i_d.price,i_d.qty,b.brand_name,i.order_date,i.sub_total,i.payment_type,i_d.invoice_no
+			FROM invoice_details i_d,invoice i,products p,brands b 
+			WHERE i_d.invoice_no = i.invoice_no AND i_d.product_name = p.pid AND i.customer_name = b.bid ".$a["limit"];
 		}
+		// else if($table == "sale_details"){
+		// 	$sql = "SELECT s_d.id,p.product_name,s_d.price,s_d.qty,u.username,i.order_date,i.sub_total,i.discount,
+		// 	(i.sub_total-i.discount) AS net_total,i.paid,((i.sub_total-i.discount)-i.paid) AS due,i.payment_type 
+		// 	FROM invoice_details i_d,invoice i,products p,brands b 
+		// 	WHERE i_d.invoice_no = i.invoice_no AND i_d.product_name = p.pid AND i.customer_name = b.bid; ".$a["limit"];
+		// }
 		else{
 			$sql = "SELECT * FROM ".$table." ".$a["limit"];
 		}

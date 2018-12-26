@@ -95,7 +95,7 @@ if (!isset($_SESSION["userid"])) {
 						<div class="card-body">
 						<h4 class="card-title">People</h4>
 						<p class="card-text">Here you can manage your users and you can add new users.</p>
-						<a href="registerinside.php"  class="btn btn-primary">Register</a>
+						<a href="#" data-toggle="modal" data-target="#form_register" class="btn btn-primary">Register</a>
 						<a href="manage_people.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
@@ -138,6 +138,10 @@ if (!isset($_SESSION["userid"])) {
 	 <?php
 	//Products Form
 	include_once("./templates/products.php");
+	 ?>
+	 <?php
+	//Register Form
+	include_once("./templates/registerinside.php");
 	 ?>
 
 </body>

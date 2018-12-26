@@ -92,7 +92,7 @@ $(document).ready(function(){
 		// gst = 0.18 * sub_total;
 		// net_total = gst + sub_total;
 		net_total = sub_total - discount;
-		due = net_total - paid_amt;
+		due = paid_amt - net_total;
 		// $("#gst").val(gst);
 		$("#sub_total").val(sub_total);
 		$("#discount").val(discount);

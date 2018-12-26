@@ -392,10 +392,14 @@ if (isset($_POST["managePurchase"])) {
 			?>
 				<tr>
 			        <td><?php echo $n; ?></td>
-			        <td><?php echo $row["invoice_no"]; ?></td>
 			        <td><?php echo $row["product_name"]; ?></td>
 			        <td><?php echo $row["price"]; ?></td>
 			        <td><?php echo $row["qty"]; ?></td>
+			        <td><?php echo $row["brand_name"]; ?></td>
+					<td><?php echo $row["order_date"]; ?></td>
+					<td><?php echo $row["payment_type"]; ?></td>
+					<td><?php echo $row["invoice_no"]; ?></td>
+
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_purchase">Delete</a>

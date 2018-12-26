@@ -36,8 +36,8 @@ if ($_GET["order_date"] && $_GET["invoice_no"]) {
 
 	$pdf->Cell(50,10,"Sub Total",0,0);
 	$pdf->Cell(50,10,": ".$_GET["sub_total"],0,1);
-	$pdf->Cell(50,10,"Gst Tax",0,0);
-	$pdf->Cell(50,10,": ".$_GET["gst"],0,1);
+	// $pdf->Cell(50,10,"Gst Tax",0,0);
+	// $pdf->Cell(50,10,": ".$_GET["gst"],0,1);
 	$pdf->Cell(50,10,"Discount",0,0);
 	$pdf->Cell(50,10,": ".$_GET["discount"],0,1);
 	$pdf->Cell(50,10,"Net Total",0,0);

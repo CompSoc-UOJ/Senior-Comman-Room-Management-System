@@ -16,12 +16,14 @@ if (!isset($_SESSION["userid"])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<script type="text/javascript" src="./js/manage.js"></script>
+	 <script type="text/javascript" src="./js/main.js"></script>
+
  </head>
 <body>
 	<!-- Navbar -->
 	<?php include_once("./templates/header.php"); ?>
 	<br/><br/>
-	<div class="container">
+	<div class="container-fluid">
 		<table class="table table-hover table-bordered">
 		    <thead>
 		      <tr>
@@ -38,14 +40,17 @@ if (!isset($_SESSION["userid"])) {
 					 <!--on manage.js-->
 		    </tbody>
 		  </table>
-			<a href="registerinside.php"  class="btn btn-primary">Register</a>
+			<a href="#" data-toggle="modal" data-target="#form_register" class="btn btn-primary">Register</a>
 	</div>
 
 
 	<?php
+	//Update Register Form
 		include_once("./templates/update_people.php");
 	?>
-	
-	
+	<?php
+	//Register Form
+	include_once("./templates/registerinside.php");
+	 ?>
 </body>
 </html>

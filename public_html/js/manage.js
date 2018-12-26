@@ -301,7 +301,6 @@ $(document).ready(function(){
 			dataType : "json",
 			data : {updatePeople:1,id:eid},
 			success : function(data){
-				console.log(data);
 				$("#id").val(data["id"]);
 				$("#update_name").val(data["username"]);
 				$("#update_email").val(data["email"]);
@@ -337,7 +336,7 @@ $(document).ready(function(){
 				method : "POST",
 				data : {managePurchase:1,pageno:pn},
 				success : function(data){
-					$("#get_purchase").html(data);	
+					$("#get_purchase").html(data);
 				}
 			})
 		}
@@ -376,7 +375,6 @@ $(document).ready(function(){
 				dataType : "json",
 				data : {updatePurchase:1,id:eid},
 				success : function(data){
-					console.log(data);
 					$("#id").val(data["id"]);
 					$("#update_name").val(data["username"]);
 					$("#update_email").val(data["email"]);
