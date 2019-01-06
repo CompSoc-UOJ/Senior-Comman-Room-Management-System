@@ -381,6 +381,33 @@ if (isset($_POST["update_name"])) {
 
 //----------------Purchase---------------------
 
+if (isset($_POST["getNewPurchaseItem"])) {
+	$obj = new DBOperation();
+	$rows = $obj->getAllRecord("products");
+	?>
+	<tr>
+		    <td><b class="number">1</b></td>
+		    <td>
+		        <select name="pid[]" class="form-control form-control-sm pid" required>
+		            <option value="">Choose Product</option>
+		            <?php 
+		            	foreach ($rows as $row) {
+		            		?><option value="<?php echo $row['pid']; ?>"><?php echo $row["product_name"]; ?></option><?php
+		            	}
+		            ?>
+		        </select>
+		    </td>
+		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>   
+		    <td><input name="qty[]" type="text" class="form-control form-control-sm qty" onfocus="this.value=''" required></td>
+		    <td><input name="price[]" type="text" class="form-control form-control-sm price" onfocus="this.value=''"></td>
+		    <td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
+		    <td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>			
+		    <td>Rs.<span class="amt">0</span></td>
+	</tr>
+	<?php
+	exit();
+}
+
 if (isset($_POST["managePurchase"])) {
 	$m = new Manage();
 	$result = $m->manageRecordWithPagination("invoice_details",$_POST["pageno"]);

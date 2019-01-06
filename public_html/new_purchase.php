@@ -56,7 +56,7 @@ if (!isset($_SESSION["userid"])) {
 		                              <tr>
 		                                <th>#</th>
 		                                <th style="text-align:center;">Item Name</th>
-		                                <th style="text-align:center;">Total Quantity</th>
+		                                <th style="text-align:center;">Available Quantity</th>
 		                                <th style="text-align:center;">Quantity</th>
 		                                <th style="text-align:center;">Price</th>
 		                                <th>Total</th>

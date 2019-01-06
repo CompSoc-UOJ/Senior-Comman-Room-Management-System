@@ -25,7 +25,7 @@ $(document).ready(function(){
 		$.ajax({
 			url : DOMAIN+"/includes/process.php",
 			method : "POST",
-			data : {getNewOrderItem:1},
+			data : {getNewPurchaseItem:1},
 			success : function(data){
 				$("#invoice_item").append(data);
 				var n = 0;
@@ -54,9 +54,9 @@ $(document).ready(function(){
 				tr.find(".tqty").val(data["product_stock"]);
 				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".tpid").val(data["pid"]);
-				tr.find(".qty").val(1);
-				tr.find(".price").val(data["product_price"]);
-				tr.find(".amt").html( tr.find(".qty").val() * tr.find(".price").val() );
+				tr.find(".qty").val(0);
+				tr.find(".price").val("(Selling Price) "+data["product_price"]);
+				tr.find(".amt").val(0);
 				calculate(0,0);
 			}
 		})
@@ -67,15 +67,26 @@ $(document).ready(function(){
 		var tr = $(this).parent().parent();
 		if (isNaN(qty.val())) {
 			alert("Please enter a valid quantity");
-			qty.val(1);
+			qty.val(0);
 		}else{
-			if ((qty.val() - 0) > (tr.find(".tqty").val()-0)) {
-				alert("Sorry ! This much of quantity is not available");
-				aty.val(1);
-			}else{
+			
 				tr.find(".amt").html(qty.val() * tr.find(".price").val());
 				calculate(0,0);
-			}
+			
+		}
+	})
+
+	$("#invoice_item").delegate(".price","keyup",function(){
+		var price = $(this);
+		var tr = $(this).parent().parent();
+		if (isNaN(price.val())) {
+			alert("Please enter a valid price");
+			price.val(0);
+		}else{
+			
+				tr.find(".amt").html(price.val() * tr.find(".qty").val());
+				calculate(0,0);
+			
 		}
 	})
 
