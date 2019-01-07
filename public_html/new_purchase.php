@@ -15,7 +15,8 @@ if (!isset($_SESSION["userid"])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 	<script type="text/javascript" src="./js/order.js"></script>
+ 	<script type="text/javascript" src="./js/purchase.js"></script>
+
  </head>
 <body>
 <div class="overlay"><div class="loader"></div></div>
@@ -31,17 +32,18 @@ if (!isset($_SESSION["userid"])) {
 				   	<h4>New Purchase</h4>
 				  </div>
 				  <center class="card-body">
-				  	<form id="get_order_data" onsubmit="return false">
+				  	<form id="get_purchase_data" onsubmit="return false">
 				  		<div class="form-group row">
 				  			<label class="col-sm-3 col-form-label" align="right">Purchase Date</label>
 				  			<div class="col-sm-6">
-				  				<input type="text" id="order_date" name="order_date" readonly class="form-control form-control-sm" value="<?php echo date("Y-d-m"); ?>">
+				  				<input type="text" id="order_date" name="order_date" readonly class="form-control form-control-sm" value="<?php echo date("Y-m-d"); ?>">
 				  			</div>
 				  		</div>
 				  		<div class="form-group row">
 				  			<label class="col-sm-3 col-form-label" align="right">Supplier Name*</label>
 				  			<div class="col-sm-6">
-				  				<input type="text" id="cust_name" name="cust_name"class="form-control form-control-sm" placeholder="Enter Customer Name" required/>
+				  				<select id="cust_name" name="cust_name"class="form-control form-control-sm" required>
+									</select>
 				  			</div>
 				  		</div>
 
@@ -54,7 +56,7 @@ if (!isset($_SESSION["userid"])) {
 		                              <tr>
 		                                <th>#</th>
 		                                <th style="text-align:center;">Item Name</th>
-		                                <th style="text-align:center;">Total Quantity</th>
+		                                <th style="text-align:center;">Available Quantity</th>
 		                                <th style="text-align:center;">Quantity</th>
 		                                <th style="text-align:center;">Price</th>
 		                                <th>Total</th>
@@ -89,12 +91,15 @@ if (!isset($_SESSION["userid"])) {
                         <input type="text" readonly name="sub_total" class="form-control form-control-sm" id="sub_total" required/>
                       </div>
                     </div>
-                    <!-- <div class="form-group row">
+                    <div class="form-group row">
+                      <!-- <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label> -->
+                       <!-- <div class="form-group row">
                       <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label>
                       <div class="col-sm-6">
-                        <input type="text" readonly name="gst" class="form-control form-control-sm" id="gst" required/>
+                        <input type="hidden" value="1" readonly name="gst" class="form-control form-control-sm" id="gst" required/>
                       </div>
                     </div> -->
+                    </div>
                     <div class="form-group row">
                       <label for="discount" class="col-sm-3 col-form-label" align="right">Discount</label>
                       <div class="col-sm-6">
@@ -122,7 +127,7 @@ if (!isset($_SESSION["userid"])) {
                     <div class="form-group row">
                       <label for="payment_type" class="col-sm-3 col-form-label" align="right">Payment Method</label>
                       <div class="col-sm-6">
-                        <select name="payment_type" class="form-control form-control-sm" id="payment_type" required/>
+                        <select name="payment_type" class="form-control form-control-sm" id="payment_type" required>
                           <option>Cash</option>
                           <option>Card</option>
                           <option>Draft</option>
@@ -130,24 +135,19 @@ if (!isset($_SESSION["userid"])) {
                         </select>
                       </div>
                     </div>
+										<input name="typ" type="hidden" value="purchase" class="form-control form-control-sm typ">
 
-										</center>
-											<button type="submit" id="order_form" style="width:150px;" class="btn btn-success" value="Order">Order</button><br>
-											<button type="submit" id="print_invoice" style="width:150px;" class="btn btn-success" value="Print Invoice">Print Invoice</button>
+
+										<center>
+                      <input type="submit" id="purchase_form" style="width:150px;" class="btn btn-info" value="Order">
+                      <input type="submit" id="print_invoice" style="width:150px;" class="btn btn-success d-none" value="Print Invoice">
                     </center>
 										
-                   
-
-
 				  	</form>
-
 				  </div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-
-
 </body>
 </html>

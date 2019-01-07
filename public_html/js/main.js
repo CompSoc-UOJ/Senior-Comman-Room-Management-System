@@ -153,7 +153,7 @@ $(document).ready(function(){
 			method : "POST",
 			data : {getBrand:1},
 			success : function(data){
-				var choose = "<option value=''>Choose Brand</option>";
+				var choose = "<option value=''>Choose Supplier</option>";
 				$("#select_brand2").html(choose+data);
 			}
 		})
@@ -224,7 +224,7 @@ $(document).ready(function(){
 						alert("New Product Added Successfully..!");
 						$("#product_name").val("");
 						$("#select_cat2").val("");
-						$("#select_brand").val("");
+						$("#select_brand2").val("");
 						$("#product_price").val("");
 						$("#product_qty").val("");
 						window.location.href = "";

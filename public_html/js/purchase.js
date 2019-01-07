@@ -1,15 +1,15 @@
 $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
 
-	//Fetch People
-	fetch_people();
-	function fetch_people(){
+	//Fetch Brand
+	fetch_brand();
+	function fetch_brand(){
 		$.ajax({
 			url : DOMAIN+"/includes/process.php",
 			method : "POST",
-			data : {getPeople:1},
+			data : {getBrand:1},
 			success : function(data){
-				var choose = "<option value=''>Choose Customer</option>";
+				var choose = "<option value=''>Choose Supplier</option>";
 				$("#cust_name").html(choose+data);
 			}
 		})
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		$.ajax({
 			url : DOMAIN+"/includes/process.php",
 			method : "POST",
-			data : {getNewOrderItem:1},
+			data : {getNewPurchaseItem:1},
 			success : function(data){
 				$("#invoice_item").append(data);
 				var n = 0;
@@ -54,9 +54,9 @@ $(document).ready(function(){
 				tr.find(".tqty").val(data["product_stock"]);
 				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".tpid").val(data["pid"]);
-				tr.find(".qty").val(1);
-				tr.find(".price").val(data["product_price"]);
-				tr.find(".amt").html( tr.find(".qty").val() * tr.find(".price").val() );
+				tr.find(".qty").val(0);
+				tr.find(".price").val("(Selling Price) "+data["product_price"]);
+				tr.find(".amt").val(0);
 				calculate(0,0);
 			}
 		})
@@ -67,21 +67,32 @@ $(document).ready(function(){
 		var tr = $(this).parent().parent();
 		if (isNaN(qty.val())) {
 			alert("Please enter a valid quantity");
-			qty.val(1);
+			qty.val(0);
 		}else{
-			if ((qty.val() - 0) > (tr.find(".tqty").val()-0)) {
-				alert("Sorry ! This much of quantity is not available");
-				aty.val(1);
-			}else{
+			
 				tr.find(".amt").html(qty.val() * tr.find(".price").val());
 				calculate(0,0);
-			}
+			
+		}
+	})
+
+	$("#invoice_item").delegate(".price","keyup",function(){
+		var price = $(this);
+		var tr = $(this).parent().parent();
+		if (isNaN(price.val())) {
+			alert("Please enter a valid price");
+			price.val(0);
+		}else{
+			
+				tr.find(".amt").html(price.val() * tr.find(".qty").val());
+				calculate(0,0);
+			
 		}
 	})
 
 	function calculate(dis,paid){
 		var sub_total = 0;
-		// var gst = 1; //if sale
+		// var gst = 0; //if purchase
 		var net_total = 0;
 		var discount = dis;
 		var paid_amt = paid;
@@ -115,26 +126,27 @@ $(document).ready(function(){
 
 
 	/*Order Accepting*/
-
-	$("#order_form").click(function(){
-		var invoice = $("#get_order_data").serialize();
+	
+	$("#purchase_form").click(function(){
+		var invoice = $("#get_purchase_data").serialize();
 		alert(invoice);
 		if ($("#cust_name").val() === "") {
-			alert("Plaese enter customer name");
+			alert("Please select supplier name");
 		}else if($("#paid").val() === ""){
 			alert("Please enter paid amount");
 		}else{
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
 				method : "POST",
-				data : $("#get_order_data").serialize(),
+				data : $("#get_purchase_data").serialize(),
 				success : function(data){
 
 					if (data < 0) {
 						alert(data);
 					}else{
-						$("#get_order_data").trigger("reset");
 
+						$("#get_purchase_data").trigger("reset");
+						
 						if (confirm("Do u want to print invoice ?")) {
 							window.location.href = DOMAIN+"/includes/invoice_bill.php?invoice_no="+data+"&"+invoice;
 						}

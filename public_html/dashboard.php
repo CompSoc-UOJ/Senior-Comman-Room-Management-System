@@ -42,15 +42,15 @@ if (!isset($_SESSION["userid"])) {
 						<div class="col-sm-6">
 							<iframe src="http://free.timeanddate.com/clock/i616j2aa/n1993/szw160/szh160/cf100/hnce1ead6" frameborder="0" width="160" height="160"></iframe>
 						</div>
-						<div class="col-sm-6">
-							<!-- <div class="card">
+						<!-- <div class="col-sm-6">
+							<div class="card">
 						      <div class="card-body">
 						        <h4 class="card-title">New Orders</h4> 
 						        <p class="card-text">Here you can make invoices and create new orders</p>
 						        <a href="new_order.php" class="btn btn-primary">New Orders</a>
 						      </div>
-						    </div> -->
-						</div>
+						    </div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -73,20 +73,20 @@ if (!isset($_SESSION["userid"])) {
 			<div class="col-md-3">
 				<div class="card">
 						<div class="card-body">
-						<h4 class="card-title">Sales</h4> <!-- Categories -->
+						<h4 class="card-title">Sales</h4> 
 						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
-						<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
-						<a href="manage_categories.php" class="btn btn-primary">Manage</a>
+						<a href="new_order.php" class="btn btn-primary">Add</a>
+						<a href="manage_sale.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="card">
 						<div class="card-body">
-						<h4 class="card-title">Purchases</h4> <!-- Brands -->
+						<h4 class="card-title">Purchases</h4>
 						<p class="card-text">Here you can manage your Purchases and you can add new Purchases.</p>
 						<a href="new_purchase.php" class="btn btn-primary">Add</a>
-						<a href="manage_brand.php" class="btn btn-primary">Manage</a>
+						<a href="manage_purchase.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
 			</div>
@@ -95,7 +95,7 @@ if (!isset($_SESSION["userid"])) {
 						<div class="card-body">
 						<h4 class="card-title">People</h4>
 						<p class="card-text">Here you can manage your users and you can add new users.</p>
-						<a href="registerinside.php"  class="btn btn-primary">Register</a>
+						<a href="#" data-toggle="modal" data-target="#form_register" class="btn btn-primary">Register</a>
 						<a href="manage_people.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
@@ -138,6 +138,10 @@ if (!isset($_SESSION["userid"])) {
 	 <?php
 	//Products Form
 	include_once("./templates/products.php");
+	 ?>
+	 <?php
+	//Register Form
+	include_once("./templates/registerinside.php");
 	 ?>
 
 </body>
