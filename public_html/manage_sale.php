@@ -21,20 +21,26 @@ if (!isset($_SESSION["userid"])) {
 	<!-- Navbar -->
 	<?php include_once("./templates/header.php"); ?>
 	<br/><br/>
-	<div class="container">
+	<div class="container-fluid">
 		<table class="table table-hover table-bordered">
 		    <thead>
 		      <tr>
-		        <th>#</th>
-		        <th>Invoice No</th>
-		        <th>Item Name</th> 
-		        <th>Buying Price</th>
+					<th>#</th>
+		        <th>Item Name</th>
+		        <th>Buying Price</th> 
 		        <th>Buy Quantity</th>
-		        <th>Status</th>
-		        <th>Action</th>
+		        <th>Supplier Name</th>
+		        <th>Order Date</th>
+		        <!-- <th>Sub Total</th>
+						<th>Discount</th>
+						<th>Net Total</th>
+						<th>Paid</th>
+						<th>Due</th> -->
+						<th>Payment Method</th>
+						<th>Invoice ID</th>
 		      </tr>
 		    </thead>
-		    <tbody id="get_purchase">
+		    <tbody id="get_order">
 					 <!--on manage.js-->
 		    </tbody>
 		  </table>

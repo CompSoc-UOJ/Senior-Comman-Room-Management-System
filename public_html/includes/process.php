@@ -283,6 +283,49 @@ if (isset($_POST["getNewOrderItem"])) {
 	exit();
 }
 
+if (isset($_POST["manageOrder"])) {
+	$m = new Manage();
+	$result = $m->manageRecordWithPagination("sale_details",$_POST["pageno"]);
+	$rows = $result["rows"];
+	$pagination = $result["pagination"];
+	if (count($rows) > 0) {
+		$n = (($_POST["pageno"] - 1) * 5)+1;
+		foreach ($rows as $row) {
+			?>
+				<tr>
+			        <td><?php echo $n; ?></td>
+			        <td><?php echo $row["product_name"]; ?></td>
+			        <td><?php echo $row["price"]; ?></td>
+			        <td><?php echo $row["qty"]; ?></td>
+			        <td><?php echo $row["username"]; ?></td>
+					<td><?php echo $row["order_date"]; ?></td>
+					<td><?php echo $row["payment_type"]; ?></td>
+					<td><?php echo $row["invoice_no"]; ?></td>
+
+			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+			        <td>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_order">Delete</a>
+			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_purchase" class="btn btn-info btn-sm edit_order">Edit</a>
+			        </td>
+			      </tr>
+			<?php
+			$n++;
+		}
+		?>
+			<tr><td colspan="5"><?php echo $pagination; ?></td></tr>
+		<?php
+		exit();
+	}
+}
+
+//Delete Sale
+if (isset($_POST["deleteOrder"])) {
+	$m = new Manage();
+	$result = $m->deleteRecord("sale_details","id",$_POST["id"]);
+	echo $result;
+}
+
+//-------------------------Order and Purchase Processing--------------
 
 //Get price and qty of one item
 if (isset($_POST["getPriceAndQty"])) {

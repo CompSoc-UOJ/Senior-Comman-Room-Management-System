@@ -76,7 +76,7 @@ if (!isset($_SESSION["userid"])) {
 						<h4 class="card-title">Sales</h4> 
 						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
 						<a href="new_order.php" class="btn btn-primary">Add</a>
-						<a href="manage_categories.php" class="btn btn-primary">Manage</a>
+						<a href="manage_sale.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
 			</div>

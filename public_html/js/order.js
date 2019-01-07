@@ -122,7 +122,7 @@ $(document).ready(function(){
 		if ($("#cust_name").val() === "") {
 			alert("Plaese enter customer name");
 		}else if($("#paid").val() === ""){
-			alert("Plaese eneter paid amount");
+			alert("Please enter paid amount");
 		}else{
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",

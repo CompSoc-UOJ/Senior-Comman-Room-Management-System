@@ -27,12 +27,11 @@ class Manage
 			FROM invoice_details i_d,invoice i,products p,brands b 
 			WHERE i_d.invoice_no = i.invoice_no AND i_d.product_name = p.pid AND i.customer_name = b.bid ".$a["limit"];
 		}
-		// else if($table == "sale_details"){
-		// 	$sql = "SELECT s_d.id,p.product_name,s_d.price,s_d.qty,u.username,i.order_date,i.sub_total,i.discount,
-		// 	(i.sub_total-i.discount) AS net_total,i.paid,((i.sub_total-i.discount)-i.paid) AS due,i.payment_type 
-		// 	FROM invoice_details i_d,invoice i,products p,brands b 
-		// 	WHERE i_d.invoice_no = i.invoice_no AND i_d.product_name = p.pid AND i.customer_name = b.bid; ".$a["limit"];
-		// }
+		else if($table == "sale_details"){
+			$sql = "SELECT s_d.id,p.product_name,s_d.price,s_d.qty,u.username,s_i.order_date,s_i.sub_total,s_i.discount,(s_i.sub_total-s_i.discount) AS net_total,s_i.paid,((s_i.sub_total-s_i.discount)-s_i.paid) AS due,s_i.payment_type,s_d.invoice_no
+			FROM sale_details s_d,sale_invoice s_i,products p,user u
+			WHERE s_d.invoice_no = s_i.invoice_no AND s_d.product_name = p.pid AND s_i.customer_name = u.id ".$a["limit"];
+		}
 		else{
 			$sql = "SELECT * FROM ".$table." ".$a["limit"];
 		}
@@ -148,15 +147,17 @@ class Manage
 
 
 	public function storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$typ){
-		$pre_stmt = $this->con->prepare("INSERT INTO 
+		
+		if($typ == "purchase"){
+			$pre_stmt = $this->con->prepare("INSERT INTO 
 			`invoice`(`customer_name`, `order_date`, `sub_total`,
 			 `discount`, `paid`, `payment_type`) VALUES (?,?,?,?,?,?)");
-		$pre_stmt->bind_param("ssddds",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type);
-		$pre_stmt->execute() or die($this->con->error);
-		$invoice_no = $pre_stmt->insert_id;
-		if ($invoice_no != null) {
-			for ($i=0; $i < count($ar_price) ; $i++) {
-				if($typ == "purchase"){
+			$pre_stmt->bind_param("ssddds",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type);
+			$pre_stmt->execute() or die($this->con->error);
+			$invoice_no = $pre_stmt->insert_id;
+			if ($invoice_no != null) {
+				for ($i=0; $i < count($ar_price) ; $i++) {
+				
 					//Here we are finding the remaining quantity after buying from supplier
 					$rem_qty = $ar_tqty[$i] + $ar_qty[$i]; //purchase increased
 
@@ -164,8 +165,29 @@ class Manage
 					VALUES (?,?,?,?)");
 					$insert_product->bind_param("isdd",$invoice_no,$ar_tpid[$i],$ar_price[$i],$ar_qty[$i]);
 					$insert_product->execute() or die($this->con->error);
+				
+					if ($rem_qty < 0) {
+						return "ORDER_FAIL_TO_COMPLETE";
+					}else{
+						//Update Product stock
+						$sql = "UPDATE products SET product_stock = '$rem_qty' WHERE pid = '".$ar_tpid[$i]."'";
+						$this->con->query($sql);
+					}
 				}
-				if($typ == "sale"){
+				return $invoice_no;
+			}
+		}
+
+		else if($typ == "sale"){
+			$pre_stmt = $this->con->prepare("INSERT INTO 
+			`sale_invoice`(`customer_name`, `order_date`, `sub_total`,
+			 `discount`, `paid`, `payment_type`) VALUES (?,?,?,?,?,?)");
+			$pre_stmt->bind_param("ssddds",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type);
+			$pre_stmt->execute() or die($this->con->error);
+			$invoice_no = $pre_stmt->insert_id;
+			if ($invoice_no != null) {
+				for ($i=0; $i < count($ar_price) ; $i++) {
+		
 					//Here we are finding the remaining quantity after giving customer
 					$rem_qty = $ar_tqty[$i] - $ar_qty[$i]; //sale decreased
 
@@ -173,17 +195,17 @@ class Manage
 					VALUES (?,?,?,?)");
 					$insert_product->bind_param("isdd",$invoice_no,$ar_tpid[$i],$ar_price[$i],$ar_qty[$i]);
 					$insert_product->execute() or die($this->con->error);
+					
+					if ($rem_qty < 0) {
+						return "ORDER_FAIL_TO_COMPLETE";
+					}else{
+						//Update Product stock
+						$sql = "UPDATE products SET product_stock = '$rem_qty' WHERE pid = '".$ar_tpid[$i]."'";
+						$this->con->query($sql);
+					}
 				}
-				
-				if ($rem_qty < 0) {
-					return "ORDER_FAIL_TO_COMPLETE";
-				}else{
-					//Update Product stock
-					$sql = "UPDATE products SET product_stock = '$rem_qty' WHERE pid = '".$ar_tpid[$i]."'";
-					$this->con->query($sql);
-				}
+				return $invoice_no;
 			}
-			return $invoice_no;
 		}
 	}	
 }

@@ -328,78 +328,125 @@ $(document).ready(function(){
 			})
 	})
 
-		//---------------------Purchase-----------------
-		managePurchase(1);
-		function managePurchase(pn){
+	//---------------------Purchase-----------------
+	managePurchase(1);
+	function managePurchase(pn){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {managePurchase:1,pageno:pn},
+			success : function(data){
+				$("#get_purchase").html(data);
+			}
+		})
+	}
+	// delete purchase
+	$("body").delegate(".page-link","click",function(){
+		var pn = $(this).attr("pn");
+		managePurchase(pn);
+	})
+
+	$("body").delegate(".del_purchase","click",function(){
+		var did = $(this).attr("did");
+		if (confirm("Are you sure ? You want to delete..!")) {
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
 				method : "POST",
-				data : {managePurchase:1,pageno:pn},
+				data : {deletePurchase:1,id:did},
 				success : function(data){
-					$("#get_purchase").html(data);
+					if (data == "DELETED") {
+						alert("Purchase is deleted");
+						managePurchase(1);
+					}else{
+						alert(data);
+					}
+						
 				}
 			})
 		}
-		// delete purchase
-		$("body").delegate(".page-link","click",function(){
-			var pn = $(this).attr("pn");
-			managePurchase(pn);
-		})
-	
-		$("body").delegate(".del_purchase","click",function(){
-			var did = $(this).attr("did");
-			if (confirm("Are you sure ? You want to delete..!")) {
-				$.ajax({
-					url : DOMAIN+"/includes/process.php",
-					method : "POST",
-					data : {deletePurchase:1,id:did},
-					success : function(data){
-						if (data == "DELETED") {
-							alert("Purchase is deleted");
-							managePurchase(1);
-						}else{
-							alert(data);
-						}
-							
-					}
-				})
+	})
+
+	//Update Purchase
+	$("body").delegate(".edit_purchase","click",function(){
+		alert("We can`t allow you to do so bro")
+	})
+
+	// //Update Purchase
+	// $("#update_purchase_form").on("submit",function(){
+	// 	$.ajax({
+	// 			url : DOMAIN+"/includes/process.php",
+	// 			method : "POST",
+	// 			data : $("#update_purchase_form").serialize(),
+	// 			success : function(data){
+	// 				if (data == "UPDATED") {
+	// 					alert("Purchase Updated Successfully..!");
+	// 					window.location.href = "";
+	// 				}else{
+	// 					alert(data);
+	// 				}
+	// 			}
+	// 		})
+	// })
+
+
+	//---------------------Order-----------------
+	manageOrder(1);
+	function manageOrder(pn){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {manageOrder:1,pageno:pn},
+			success : function(data){
+				$("#get_order").html(data);
 			}
 		})
-	
-		//Update Purchase
-		$("body").delegate(".edit_purchase","click",function(){
-			var eid = $(this).attr("eid");
+	}
+	// delete order
+	$("body").delegate(".page-link","click",function(){
+		var pn = $(this).attr("pn");
+		manageOrder(pn);
+	})
+
+	$("body").delegate(".del_order","click",function(){
+		var did = $(this).attr("did");
+		if (confirm("Are you sure ? You want to delete..!")) {
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
 				method : "POST",
-				dataType : "json",
-				data : {updatePurchase:1,id:eid},
+				data : {deleteOrder:1,id:did},
 				success : function(data){
-					$("#id").val(data["id"]);
-					$("#update_name").val(data["username"]);
-					$("#update_email").val(data["email"]);
-					$("#update_type").val(data["usertype"]);
-					$("#update_notes").val(data["notes"]);
-	
+					if (data == "DELETED") {
+						alert("Order is deleted");
+						manageOrder(1);
+					}else{
+						alert(data);
+					}
+						
 				}
 			})
-		})
-	
-		//Update Purchase
-		$("#update_Purchase_form").on("submit",function(){
-			$.ajax({
-					url : DOMAIN+"/includes/process.php",
-					method : "POST",
-					data : $("#update_purchase_form").serialize(),
-					success : function(data){
-						if (data == "UPDATED") {
-							alert("Purchase Updated Successfully..!");
-							window.location.href = "";
-						}else{
-							alert(data);
-						}
-					}
-				})
-		})
+		}
+	})
+
+	// //Update Order
+	$("body").delegate(".edit_purchase","click",function(){
+		alert("We can`t allow you to do so bro")
+	})
+
+	// //Update Purchase
+	// $("#update_order_form").on("submit",function(){
+	// 	$.ajax({
+	// 			url : DOMAIN+"/includes/process.php",
+	// 			method : "POST",
+	// 			data : $("#update_order_form").serialize(),
+	// 			success : function(data){
+	// 				if (data == "UPDATED") {
+	// 					alert("Purchase Updated Successfully..!");
+	// 					window.location.href = "";
+	// 				}else{
+	// 					alert(data);
+	// 				}
+	// 			}
+	// 		})
+	// })
 	
 })
