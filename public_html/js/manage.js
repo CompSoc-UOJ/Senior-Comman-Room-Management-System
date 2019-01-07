@@ -428,7 +428,7 @@ $(document).ready(function(){
 	})
 
 	// //Update Order
-	$("body").delegate(".edit_purchase","click",function(){
+	$("body").delegate(".edit_order","click",function(){
 		alert("We can`t allow you to do so bro")
 	})
 

@@ -27,10 +27,10 @@ if (!isset($_SESSION["userid"])) {
 		      <tr>
 					<th>#</th>
 		        <th>Item Name</th>
-		        <th>Buying Price</th> 
-		        <th>Buy Quantity</th>
-		        <th>Supplier Name</th>
-		        <th>Order Date</th>
+		        <th>Selling Price</th> 
+		        <th>Sale Quantity</th>
+		        <th>Customer Name</th>
+		        <th>Sale Date</th>
 		        <!-- <th>Sub Total</th>
 						<th>Discount</th>
 						<th>Net Total</th>
@@ -44,7 +44,7 @@ if (!isset($_SESSION["userid"])) {
 					 <!--on manage.js-->
 		    </tbody>
 		  </table>
-			<a href="new_order.php"  class="btn btn-primary">New Purchase</a>
+			<a href="new_order.php"  class="btn btn-primary">New Sale</a>
 	</div>	
 </body>
 </html>

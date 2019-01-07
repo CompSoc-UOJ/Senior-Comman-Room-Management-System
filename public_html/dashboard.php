@@ -39,8 +39,18 @@ if (!isset($_SESSION["userid"])) {
 				<div class="jumbotron" style="width:100%;height:100%;">
 					<h1>Welcome Admin,</h1>
 					<div class="row">
-						<div class="col-sm-6">
-							<iframe src="http://free.timeanddate.com/clock/i616j2aa/n1993/szw160/szh160/cf100/hnce1ead6" frameborder="0" width="160" height="160"></iframe>
+
+						<div class="col-sm-3">
+							          <table>
+              <tr><td style="text-align: center;"><canvas id="canvas_tt5c33a0e4b9ffd" width="160" height="160"></canvas></td></tr>
+              <tr><td style="text-align: center; font-weight: bold"><a href="//24timezones.com/world_directory/current_colombo_time.php" style="text-decoration: none" class="clock24" id="tz24-1546887396-c1389-eyJzaXplIjoiMTc1IiwiYmdjb2xvciI6IjAwOTlGRiIsImxhbmciOiJlbiIsInR5cGUiOiJhIiwiY2FudmFzX2lkIjoiY2FudmFzX3R0NWMzM2EwZTRiOWZmZCJ9" title="local time in Colombo" target="_blank" rel="nofollow">Colombo time</a></td></tr>
+          </table>
+<script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+						</div>
+
+						<div class="col-sm-3">
+						<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffcc&amp;src=en.lk%23holiday%40group.v.calendar.google.com&amp;color=%230F4B38&amp;ctz=Asia%2FColombo" 
+						style="border:solid 1px #777" width="500" height="300" frameborder="0" scrolling="no"></iframe>
 						</div>
 						<!-- <div class="col-sm-6">
 							<div class="card">
