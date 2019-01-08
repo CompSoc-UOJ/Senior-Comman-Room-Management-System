@@ -23,8 +23,9 @@ if (!isset($_SESSION["userid"])) {
 	<br/><br/>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">
-				<div class="card mx-auto">
+			
+			<div class="col-md-3">
+				<div class="card mx-auto" style="border:solid 1px #777">
 				  <img class="card-img-top mx-auto" style="width:60%;" src="./images/user.png" alt="Card image cap">
 				  <div class="card-body">
 				    <h4 class="card-title">Profile Info</h4>
@@ -35,32 +36,24 @@ if (!isset($_SESSION["userid"])) {
 				  </div>
 				</div>
 			</div>
-			<div class="col-md-8">
-				<div class="jumbotron" style="width:100%;height:100%;">
-					<h1>Welcome Admin,</h1>
+			<div class="col-md-9">
+				<div class="jumbotron" style="border:solid 1px #777" width="100%" height="100%">
+
 					<div class="row">
 
-						<div class="col-sm-3">
-							          <table>
-              <tr><td style="text-align: center;"><canvas id="canvas_tt5c33a0e4b9ffd" width="160" height="160"></canvas></td></tr>
-              <tr><td style="text-align: center; font-weight: bold"><a href="//24timezones.com/world_directory/current_colombo_time.php" style="text-decoration: none" class="clock24" id="tz24-1546887396-c1389-eyJzaXplIjoiMTc1IiwiYmdjb2xvciI6IjAwOTlGRiIsImxhbmciOiJlbiIsInR5cGUiOiJhIiwiY2FudmFzX2lkIjoiY2FudmFzX3R0NWMzM2EwZTRiOWZmZCJ9" title="local time in Colombo" target="_blank" rel="nofollow">Colombo time</a></td></tr>
-          </table>
-<script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+						<div class="col-sm-4">
+							<table >
+								<tr><td style="text-align: center;"><canvas id="canvas_tt5c33a0e4b9ffd" width="225%" height="225%"></canvas></td></tr>
+								<tr><td style="text-align: center; font-weight: bold"><a href="//24timezones.com/world_directory/current_colombo_time.php" style="text-decoration: none" class="clock24" id="tz24-1546887396-c1389-eyJzaXplIjoiMTc1IiwiYmdjb2xvciI6IjAwOTlGRiIsImxhbmciOiJlbiIsInR5cGUiOiJhIiwiY2FudmFzX2lkIjoiY2FudmFzX3R0NWMzM2EwZTRiOWZmZCJ9" title="local time in Colombo" target="_blank" rel="nofollow">Colombo time</a></td></tr>
+							</table>
+							<script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
 						</div>
 
-						<div class="col-sm-3">
-						<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffcc&amp;src=en.lk%23holiday%40group.v.calendar.google.com&amp;color=%230F4B38&amp;ctz=Asia%2FColombo" 
-						style="border:solid 1px #777" width="500" height="300" frameborder="0" scrolling="no"></iframe>
+						<div class="col-sm-4">
+							<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffcc&amp;src=en.lk%23holiday%40group.v.calendar.google.com&amp;color=%230F4B38&amp;ctz=Asia%2FColombo" 
+							style="border:solid 1px #777" width="225%" height="100%" frameborder="0" scrolling="no"></iframe>
 						</div>
-						<!-- <div class="col-sm-6">
-							<div class="card">
-						      <div class="card-body">
-						        <h4 class="card-title">New Orders</h4> 
-						        <p class="card-text">Here you can make invoices and create new orders</p>
-						        <a href="new_order.php" class="btn btn-primary">New Orders</a>
-						      </div>
-						    </div>
-						</div> -->
+			
 					</div>
 				</div>
 			</div>
@@ -71,7 +64,7 @@ if (!isset($_SESSION["userid"])) {
 	<div class="container">
 		<div class="row">
 		<div class="col-md-3">
-				<div class="card">
+				<div class="card" style="border:solid 1px #777">
 						<div class="card-body">
 						<h4 class="card-title">Items</h4>
 						<p class="card-text">Here you can manage your items and add new items to the inventory.</p>
@@ -81,7 +74,7 @@ if (!isset($_SESSION["userid"])) {
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card">
+				<div class="card" style="border:solid 1px #777">
 						<div class="card-body">
 						<h4 class="card-title">Sales</h4> 
 						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
@@ -91,7 +84,7 @@ if (!isset($_SESSION["userid"])) {
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card">
+				<div class="card" style="border:solid 1px #777">
 						<div class="card-body">
 						<h4 class="card-title">Purchases</h4>
 						<p class="card-text">Here you can manage your Purchases and you can add new Purchases.</p>
@@ -101,7 +94,7 @@ if (!isset($_SESSION["userid"])) {
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card">
+				<div class="card" style="border:solid 1px #777">
 						<div class="card-body">
 						<h4 class="card-title">People</h4>
 						<p class="card-text">Here you can manage your users and you can add new users.</p>
@@ -115,7 +108,7 @@ if (!isset($_SESSION["userid"])) {
 		<div class="col-md-3">
 			</div>
 			<div class="col-md-3">
-				<div class="card">
+				<div class="card" style="border:solid 1px #777">
 						<div class="card-body">
 						<h4 class="card-title">Categories</h4> 
 						<p class="card-text">Here you can manage your item categories of your current sales.</p>
@@ -125,7 +118,7 @@ if (!isset($_SESSION["userid"])) {
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card">
+				<div class="card" style="border:solid 1px #777">
 						<div class="card-body">
 						<h4 class="card-title">Suppliers</h4> <!-- Brands -->
 						<p class="card-text">Here you can manage your item suppliers and you can add new suppliers.</p>

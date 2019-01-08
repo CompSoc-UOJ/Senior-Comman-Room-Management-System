@@ -34,6 +34,8 @@ if (!isset($_SESSION["userid"])) {
 		        <th>Register Date</th>
 		        <th>Last Login</th>
 		        <th>Notes</th>
+						<th>Status</th>
+		        <th>Action</th>
 		      </tr>
 		    </thead>
 		    <tbody id="get_people">

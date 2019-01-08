@@ -305,7 +305,7 @@ if (isset($_POST["manageOrder"])) {
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_order">Delete</a>
-			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_purchase" class="btn btn-info btn-sm edit_order">Edit</a>
+			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#" class="btn btn-info btn-sm edit_order">Edit</a>
 			        </td>
 			      </tr>
 			<?php
@@ -473,7 +473,7 @@ if (isset($_POST["managePurchase"])) {
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_purchase">Delete</a>
-			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_purchase" class="btn btn-info btn-sm edit_purchase">Edit</a>
+			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#" class="btn btn-info btn-sm edit_purchase">Edit</a>
 			        </td>
 			      </tr>
 			<?php

@@ -38,6 +38,8 @@ if (!isset($_SESSION["userid"])) {
 						<th>Due</th> -->
 						<th>Payment Method</th>
 						<th>Invoice ID</th>
+						<th>Status</th>
+		        <th>Action</th>
 		      </tr>
 		    </thead>
 		    <tbody id="get_order">
