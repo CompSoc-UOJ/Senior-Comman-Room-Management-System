@@ -62,18 +62,18 @@ if (!isset($_SESSION["userid"])) {
 		                              </tr>
 		                            </thead>
 		                            <tbody id="invoice_item">
-		<!--<tr>
-		    <td><b id="number">1</b></td>
-		    <td>
-		        <select name="pid[]" class="form-control form-control-sm" required>
-		            <option>Washing Machine</option>
-		        </select>
-		    </td>
-		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm"></td>   
-		    <td><input name="qty[]" type="text" class="form-control form-control-sm" required></td>
-		    <td><input name="price[]" type="text" class="form-control form-control-sm" readonly></td>
-		    <td>Rs.1540</td>
-		</tr>-->
+																	<!--<tr>
+																			<td><b id="number">1</b></td>
+																			<td>
+																					<select name="pid[]" class="form-control form-control-sm" required>
+																							<option>Washing Machine</option>
+																					</select>
+																			</td>
+																			<td><input name="tqty[]" readonly type="text" class="form-control form-control-sm"></td>   
+																			<td><input name="qty[]" type="text" class="form-control form-control-sm" required></td>
+																			<td><input name="price[]" type="text" class="form-control form-control-sm" readonly></td>
+																			<td>Rs.1540</td>
+																	</tr>-->
 		                            </tbody>
 		                        </table> <!--Table Ends-->
 		                        <center style="padding:10px;">

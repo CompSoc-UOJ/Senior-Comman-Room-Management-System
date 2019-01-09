@@ -53,6 +53,7 @@ if (!isset($_SESSION["userid"])) {
 	<?php
 		//update category form
 		include_once("./templates/update_category.php");
+		
 		//Category Form
 		include_once("./templates/category.php");
 	?>

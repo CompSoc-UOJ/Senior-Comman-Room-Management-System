@@ -24,7 +24,7 @@ if (!isset($_SESSION["userid"])) {
 	<!-- Navbar -->
 	<?php include_once("./templates/header.php"); ?>
 	<br/><br/>
-	<div class="container">
+	<div class="container-fluid">
 		<table class="table table-hover table-bordered">
 		    <thead>
 		      <tr>
@@ -46,7 +46,6 @@ if (!isset($_SESSION["userid"])) {
 		  <a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
 	</div>
 	
-
 	<?php
 		//Update Products Form
 		include_once("./templates/update_products.php");  

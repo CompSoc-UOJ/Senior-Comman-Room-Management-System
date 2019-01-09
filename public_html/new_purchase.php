@@ -52,39 +52,39 @@ if (!isset($_SESSION["userid"])) {
 				  			<div class="card-body">
 				  				<h3>Make a order list</h3>
 				  				<table align="center" style="width:800px;">
-		                            <thead>
-		                              <tr>
-		                                <th>#</th>
-		                                <th style="text-align:center;">Item Name</th>
-		                                <th style="text-align:center;">Available Quantity</th>
-		                                <th style="text-align:center;">Quantity</th>
-		                                <th style="text-align:center;">Price</th>
-		                                <th>Total</th>
-		                              </tr>
-		                            </thead>
-		                            <tbody id="invoice_item">
-		<!--<tr>
-		    <td><b id="number">1</b></td>
-		    <td>
-		        <select name="pid[]" class="form-control form-control-sm" required>
-		            <option>Washing Machine</option>
-		        </select>
-		    </td>
-		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm"></td>   
-		    <td><input name="qty[]" type="text" class="form-control form-control-sm" required></td>
-		    <td><input name="price[]" type="text" class="form-control form-control-sm" readonly></td>
-		    <td>Rs.1540</td>
-		</tr>-->
-		                            </tbody>
-		                        </table> <!--Table Ends-->
-		                        <center style="padding:10px;">
-		                        	<button id="add" style="width:150px;" class="btn btn-success">Add</button>
-		                        	<button id="remove" style="width:150px;" class="btn btn-danger">Remove</button>
-		                        </center>
+										<thead>
+											<tr>
+												<th>#</th>
+												<th style="text-align:center;">Item Name</th>
+												<th style="text-align:center;">Available Quantity</th>
+												<th style="text-align:center;">Quantity</th>
+												<th style="text-align:center;">Price</th>
+												<th>Total</th>
+											</tr>
+										</thead>
+										<tbody id="invoice_item">
+											<!--<tr>
+													<td><b id="number">1</b></td>
+													<td>
+															<select name="pid[]" class="form-control form-control-sm" required>
+																	<option>Washing Machine</option>
+															</select>
+													</td>
+													<td><input name="tqty[]" readonly type="text" class="form-control form-control-sm"></td>   
+													<td><input name="qty[]" type="text" class="form-control form-control-sm" required></td>
+													<td><input name="price[]" type="text" class="form-control form-control-sm" readonly></td>
+													<td>Rs.1540</td>
+											</tr>-->
+										</tbody>
+									</table> <!--Table Ends-->
+										<center style="padding:10px;">
+											<button id="add" style="width:150px;" class="btn btn-success">Add</button>
+											<button id="remove" style="width:150px;" class="btn btn-danger">Remove</button>
+										</center>
 				  			</div> <!--Crad Body Ends-->
 				  		</div> <!-- Order List Crad Ends-->
 
-				  	<p></p>
+				  	
                     <div class="form-group row">
                       <label for="sub_total" class="col-sm-3 col-form-label" align="right">Sub Total</label>
                       <div class="col-sm-6">
@@ -136,7 +136,6 @@ if (!isset($_SESSION["userid"])) {
                       </div>
                     </div>
 										<input name="typ" type="hidden" value="purchase" class="form-control form-control-sm typ">
-
 
 										<center>
                       <input type="submit" id="purchase_form" style="width:150px;" class="btn btn-info" value="Order">

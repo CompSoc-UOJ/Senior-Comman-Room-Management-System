@@ -49,8 +49,7 @@ if (!isset($_SESSION["userid"])) {
 	<?php
 	//Update Register Form
 		include_once("./templates/update_people.php");
-	?>
-	<?php
+		
 	//Register Form
 	include_once("./templates/registerinside.php");
 	 ?>

@@ -51,6 +51,7 @@ if (!isset($_SESSION["userid"])) {
 	<?php
 		//update brand form
 		include_once("./templates/update_brand.php");
+		
 		//Brand Form
 		include_once("./templates/brand.php");
 	?>

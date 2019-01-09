@@ -47,7 +47,7 @@ $(document).ready(function(){
 		}
 		if(type.val() == ""){
 			type.addClass("border-danger");
-			$("#t_error").html("<span class='text-danger'>Please Enter more than 9 digit password</span>");
+			$("#t_error").html("<span class='text-danger'>Please select User type</span>");
 			status = false;
 		}else{
 			type.removeClass("border-danger");
@@ -178,7 +178,7 @@ $(document).ready(function(){
 						// fetch_category();
 						window.location.href = "";
 					}else{
-						alert(data);
+						alert("Sorry this category already exists.");
 					}
 				}
 			})

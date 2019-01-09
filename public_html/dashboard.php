@@ -104,6 +104,7 @@ if (!isset($_SESSION["userid"])) {
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="row">
 		<div class="col-md-3">
 			</div>
@@ -133,16 +134,13 @@ if (!isset($_SESSION["userid"])) {
 	<?php
 	//Categpry Form
 	include_once("./templates/category.php");
-	 ?>
-	 <?php
+	 
 	//Brand Form
 	include_once("./templates/brand.php");
-	 ?>
-	 <?php
+	 
 	//Products Form
 	include_once("./templates/products.php");
-	 ?>
-	 <?php
+	 
 	//Register Form
 	include_once("./templates/registerinside.php");
 	 ?>
