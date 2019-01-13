@@ -2,6 +2,7 @@ $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
 	$("#register_form").on("submit",function(){
 		var status = false;
+		var count = 0;
 		var name = $("#username");
 		var email = $("#email");
 		var pass1 = $("#password1");
@@ -17,6 +18,7 @@ $(document).ready(function(){
 			name.removeClass("border-danger");
 			$("#u_error").html("");
 			status = true;
+			count++;
 		}
 		if(!e_patt.test(email.val())){
 			email.addClass("border-danger");
@@ -26,6 +28,7 @@ $(document).ready(function(){
 			email.removeClass("border-danger");
 			$("#e_error").html("");
 			status = true;
+			count++;
 		}
 		if(pass1.val() == "" || pass1.val().length < 9){
 			pass1.addClass("border-danger");
@@ -35,6 +38,7 @@ $(document).ready(function(){
 			pass1.removeClass("border-danger");
 			$("#p1_error").html("");
 			status = true;
+			count++;
 		}
 		if(pass2.val() == "" || pass2.val().length < 9){
 			pass2.addClass("border-danger");
@@ -44,6 +48,7 @@ $(document).ready(function(){
 			pass2.removeClass("border-danger");
 			$("#p2_error").html("");
 			status = true;
+			count++;
 		}
 		if(type.val() == ""){
 			type.addClass("border-danger");
@@ -53,8 +58,9 @@ $(document).ready(function(){
 			type.removeClass("border-danger");
 			$("#t_error").html("");
 			status = true;
+			count++;
 		}
-		if ((pass1.val() == pass2.val()) && status == true) {
+		if ((pass1.val() == pass2.val()) && status == true && count == 5 ) {
 			$(".overlay").show();
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
