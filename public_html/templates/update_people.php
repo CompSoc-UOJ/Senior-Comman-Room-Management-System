@@ -22,6 +22,10 @@
             </div>
           </div>
           <div class="form-group">
+            <label>Employee ID</label>
+            <input type="text" class="form-control" id="update_employeeid" name="update_employeeid" placeholder="Edit Employee ID" required/> 
+          </div>
+          <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" id="update_email" name="update_email" placeholder="Edit Email" required/> 
           </div>

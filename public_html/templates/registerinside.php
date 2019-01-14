@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="form_register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="register_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,6 +13,11 @@
 		          <div class="form-group">
 		            <label for="username">Full Name</label>
 		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+		            <small id="u_error" class="form-text text-muted"></small>
+		          </div>
+							<div class="form-group">
+		            <label for="employeeid">Employee ID</label>
+		            <input type="text" name="employeeid" class="form-control" id="employeeid" placeholder="Enter Employee ID">
 		            <small id="u_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">
@@ -34,8 +39,8 @@
 		            <label for="usertype">Usertype</label>
 		            <select name="usertype" class="form-control" id="usertype">
 		              <option value="">Choose User Type</option>
-		              <option value="Admin">Staff Member</option>
-		              <option value="Other">SCR Member</option>
+		              <option value="Staff_Member">Staff Member</option>
+		              <option value="Canteen_Staff">Canteen Staff</option>
 		            </select>
 		            <small id="t_error" class="form-text text-muted"></small>
 		          </div>

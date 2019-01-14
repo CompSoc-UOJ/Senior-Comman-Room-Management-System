@@ -16,7 +16,6 @@ $(document).ready(function(){
 	}
 
 	addNewRow();
-
 	$("#add").click(function(){
 		addNewRow();
 	})
@@ -51,11 +50,11 @@ $(document).ready(function(){
 			dataType : "json",
 			data : {getPriceAndQty:1,id:pid},
 			success : function(data){
-				tr.find(".tqty").val(data["product_stock"]);
-				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".tpid").val(data["pid"]);
-				tr.find(".qty").val(0);
+				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".price").val("(Selling Price) "+data["product_price"]);
+				tr.find(".tqty").val(data["product_stock"]);
+				tr.find(".qty").val(0);
 				tr.find(".amt").val(0);
 				calculate(0,0);
 			}
@@ -124,12 +123,9 @@ $(document).ready(function(){
 		calculate(discount,paid);
 	})
 
-
 	/*Order Accepting*/
-	
 	$("#purchase_form").click(function(){
 		var invoice = $("#get_purchase_data").serialize();
-		alert(invoice);
 		if ($("#cust_name").val() === "") {
 			alert("Please select supplier name");
 		}else if($("#paid").val() === ""){

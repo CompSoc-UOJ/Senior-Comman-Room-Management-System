@@ -15,7 +15,7 @@ if (!isset($_SESSION["userid"])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 	<script type="text/javascript" src="./js/main.js"></script>
+ 	<script type="text/javascript" src="./js/main.js" async></script>
  </head>
 <body>
 	<!-- Navbar -->
@@ -98,7 +98,7 @@ if (!isset($_SESSION["userid"])) {
 						<div class="card-body">
 						<h4 class="card-title">People</h4>
 						<p class="card-text">Here you can manage your users and you can add new users.</p>
-						<a href="#" data-toggle="modal" data-target="#form_register" class="btn btn-primary">Register</a>
+						<a href="#" data-toggle="modal" data-target="#register_form" class="btn btn-primary">Register</a>
 						<a href="manage_people.php" class="btn btn-primary">Manage</a>
 					</div>
 				</div>

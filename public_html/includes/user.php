@@ -14,8 +14,19 @@ class User
 		$db = new Database();
 		$this->con = $db->connect();
 	}
-
 	//User is already registered or not
+	private function usernameExists($username){
+		$pre_stmt = $this->con->prepare("SELECT id FROM user WHERE username = ? ");
+		$pre_stmt->bind_param("s",$username);
+		$pre_stmt->execute() or die($this->con->error);
+		$result = $pre_stmt->get_result();
+		if($result->num_rows > 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
 	private function emailExists($email){
 		$pre_stmt = $this->con->prepare("SELECT id FROM user WHERE email = ? ");
 		$pre_stmt->bind_param("s",$email);
@@ -28,18 +39,37 @@ class User
 		}
 	}
 
-	public function createUserAccount($username,$email,$password,$usertype){
+	private function employeeidExists($employeeid){
+		$pre_stmt = $this->con->prepare("SELECT id FROM user WHERE employeeid = ? ");
+		$pre_stmt->bind_param("s",$employeeid);
+		$pre_stmt->execute() or die($this->con->error);
+		$result = $pre_stmt->get_result();
+		if($result->num_rows > 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	public function createUserAccount($username,$employeeid,$email,$password,$usertype){
 		//To protect your application from sql attack you can user 
 		//prepares statment
-		if ($this->emailExists($email)) {
+		if ($this->usernameExists($username)) {
+			return "USERNAME_ALREADY_EXISTS";
+		}
+		else if ($this->emailExists($email)) {
 			return "EMAIL_ALREADY_EXISTS";
-		}else{
+		}
+		else if ($this->employeeidExists($employeeid)) {
+			return "EMPLOYEEID_ALREADY_EXISTS";
+		}
+		else{
 			$pass_hash = password_hash($password,PASSWORD_BCRYPT,["cost"=>8]);
 			$date = date("Y-m-d");
 			$notes = "";
-			$pre_stmt = $this->con->prepare("INSERT INTO `user`(`username`, `email`, `password`, `usertype`, `register_date`, `last_login`, `notes`)
-			 VALUES (?,?,?,?,?,?,?)");
-			$pre_stmt->bind_param("sssssss",$username,$email,$pass_hash,$usertype,$date,$date,$notes);
+			$pre_stmt = $this->con->prepare("INSERT INTO `user`(`username`,`employeeid`, `email`, `password`, `usertype`, `register_date`, `last_login`, `notes`)
+			 VALUES (?,?,?,?,?,?,?,?)");
+			$pre_stmt->bind_param("ssssssss",$username,$employeeid,$email,$pass_hash,$usertype,$date,$date,$notes);
 			$result = $pre_stmt->execute() or die($this->con->error);
 			if ($result) {
 				return $this->con->insert_id;

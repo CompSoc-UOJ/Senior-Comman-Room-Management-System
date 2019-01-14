@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<link rel="stylesheet" type="text/css" href="./includes/style.css">
- 	<script type="text/javascript" src="./js/main.js"></script>
+ 	<script type="text/javascript" src="./js/main.js" async></script>
  </head>
 <body>
 <div class="overlay"><div class="loader"></div></div>
@@ -24,12 +24,17 @@
 		        <form id="register_form" onsubmit="return false" autocomplete="off">
 		          <div class="form-group">
 		            <label for="username">Full Name</label>
-		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username (Nayananga Muhandiram)">
+		            <small id="u_error" class="form-text text-muted"></small>
+		          </div>
+							<div class="form-group">
+		            <label for="employeeid">Employee ID</label>
+		            <input type="text" name="employeeid" class="form-control" id="employeeid" placeholder="Enter Employee ID">
 		            <small id="u_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">
 		            <label for="email">Email address</label>
-		            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+		            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email (example@example.com)">
 		            <small id="e_error" class="form-text text-muted">We'll never share your email with anyone else.</small>
 		          </div>
 		          <div class="form-group">
@@ -46,8 +51,8 @@
 		            <label for="usertype">Usertype</label>
 		            <select name="usertype" class="form-control" id="usertype">
 		              <option value="">Choose User Type</option>
-		              <option value="Admin">Staff Member</option>
-		              <option value="Other">Canteen staff</option>
+		              <option value="Staff_Member">Staff Member</option>
+		              <option value="Canteen_Staff">Canteen Staff</option>
 		            </select>
 		            <small id="t_error" class="form-text text-muted"></small>
 		          </div>

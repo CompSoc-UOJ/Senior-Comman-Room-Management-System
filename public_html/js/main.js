@@ -1,73 +1,77 @@
 $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
 	$("#register_form").on("submit",function(){
-		var status = false;
 		var count = 0;
 		var name = $("#username");
+		var employeeid = $("#employeeid");
 		var email = $("#email");
 		var pass1 = $("#password1");
 		var pass2 = $("#password2");
 		var type = $("#usertype");
-		//rizwan@gmail.com
+		
 		var e_patt = new RegExp(/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,4})$/);
 		if(name.val() == "" || name.val().length < 6){
 			name.addClass("border-danger");
 			$("#u_error").html("<span class='text-danger'>Please Enter Name and Name should be more than 6 char</span>");
-			status = false;
 		}else{
 			name.removeClass("border-danger");
 			$("#u_error").html("");
-			status = true;
+			count++;
+		}
+		if(employeeid.val() == "" || employeeid.val().length < 6){
+			employeeid.addClass("border-danger");
+			$("#u_error").html("<span class='text-danger'>Please Enter Employee ID and Employee ID should be more than 6 char</span>");
+		}else{
+			employeeid.removeClass("border-danger");
+			$("#u_error").html("");
 			count++;
 		}
 		if(!e_patt.test(email.val())){
 			email.addClass("border-danger");
 			$("#e_error").html("<span class='text-danger'>Please Enter Valid Email Address</span>");
-			status = false;
 		}else{
 			email.removeClass("border-danger");
 			$("#e_error").html("");
-			status = true;
 			count++;
 		}
 		if(pass1.val() == "" || pass1.val().length < 9){
 			pass1.addClass("border-danger");
 			$("#p1_error").html("<span class='text-danger'>Please Enter more than 9 digit password</span>");
-			status = false;
 		}else{
 			pass1.removeClass("border-danger");
 			$("#p1_error").html("");
-			status = true;
 			count++;
 		}
 		if(pass2.val() == "" || pass2.val().length < 9){
 			pass2.addClass("border-danger");
 			$("#p2_error").html("<span class='text-danger'>Please Enter more than 9 digit password</span>");
-			status = false;
 		}else{
 			pass2.removeClass("border-danger");
 			$("#p2_error").html("");
-			status = true;
 			count++;
 		}
 		if(type.val() == ""){
 			type.addClass("border-danger");
 			$("#t_error").html("<span class='text-danger'>Please select User type</span>");
-			status = false;
 		}else{
 			type.removeClass("border-danger");
 			$("#t_error").html("");
-			status = true;
 			count++;
 		}
-		if ((pass1.val() == pass2.val()) && status == true && count == 5 ) {
+		if ((pass1.val() == pass2.val()) && count == 6 ) {
 			$(".overlay").show();
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
 				method : "POST",
 				data : $("#register_form").serialize(),
 				success : function(data){
-					if (data == "EMAIL_ALREADY_EXISTS") {
+					if (data == "USERNAME_ALREADY_EXISTS") {
+						$(".overlay").hide();
+						alert("It seems like you user name is already used");
+					}else if(data == "EMPLOYEEID_ALREADY_EXISTS"){
+						$(".overlay").hide();
+						alert("It seems like you employee id is already used");
+					}else if(data == "EMAIL_ALREADY_EXISTS"){
 						$(".overlay").hide();
 						alert("It seems like you email is already used");
 					}else if(data == "SOME_ERROR"){
@@ -82,7 +86,6 @@ $(document).ready(function(){
 		}else{
 			pass2.addClass("border-danger");
 			$("#p2_error").html("<span class='text-danger'>Password is not matched</span>");
-			status = true;
 		}
 	})
 
@@ -191,7 +194,6 @@ $(document).ready(function(){
 		}
 	})
 
-
 	//Add Brand
 	$("#brand_form").on("submit",function(){
 		if ($("#brand_name").val() == "") {
@@ -212,8 +214,7 @@ $(document).ready(function(){
 						window.location.href = "";
 					}else{
 						alert(data);
-					}
-						
+					}		
 				}
 			})
 		}
@@ -222,26 +223,22 @@ $(document).ready(function(){
 	//add product
 	$("#product_form").on("submit",function(){
 		$.ajax({
-				url : DOMAIN+"/includes/process.php",
-				method : "POST",
-				data : $("#product_form").serialize(),
-				success : function(data){
-					if (data == "NEW_PRODUCT_ADDED") {
-						alert("New Product Added Successfully..!");
-						$("#product_name").val("");
-						$("#select_cat2").val("");
-						$("#select_brand2").val("");
-						$("#product_price").val("");
-						$("#product_qty").val("");
-						window.location.href = "";
-					}else{
-						alert(data);
-					}
-						
-				}
-			})
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : $("#product_form").serialize(),
+			success : function(data){
+				if (data == "NEW_PRODUCT_ADDED") {
+					alert("New Product Added Successfully..!");
+					$("#product_name").val("");
+					$("#select_cat2").val("");
+					$("#select_brand2").val("");
+					$("#product_price").val("");
+					$("#product_qty").val("");
+					window.location.href = "";
+				}else{
+					alert(data);
+				}	
+			}
+		})
 	})
-
-
-
 })

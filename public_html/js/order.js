@@ -16,7 +16,6 @@ $(document).ready(function(){
 	}
 
 	addNewRow();
-
 	$("#add").click(function(){
 		addNewRow();
 	})
@@ -51,12 +50,12 @@ $(document).ready(function(){
 			dataType : "json",
 			data : {getPriceAndQty:1,id:pid},
 			success : function(data){
-				tr.find(".tqty").val(data["product_stock"]);
-				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".tpid").val(data["pid"]);
-				tr.find(".qty").val(1);
+				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".price").val(data["product_price"]);
-				tr.find(".amt").html( tr.find(".qty").val() * tr.find(".price").val() );
+				tr.find(".tqty").val(data["product_stock"]);
+				tr.find(".qty").val(1);
+				tr.find(".amt").html( tr.find(".qty").val() * tr.find(".price").val());
 				calculate(0,0);
 			}
 		})
@@ -99,7 +98,6 @@ $(document).ready(function(){
 		$("#net_total").val(net_total);
 		//$("#paid")
 		$("#due").val(due);
-
 	}
 
 	$("#discount").keyup(function(){
@@ -113,12 +111,9 @@ $(document).ready(function(){
 		calculate(discount,paid);
 	})
 
-
 	/*Order Accepting*/
-
 	$("#order_form").click(function(){
 		var invoice = $("#get_order_data").serialize();
-		alert(invoice);
 		if ($("#cust_name").val() === "") {
 			alert("Plaese enter customer name");
 		}else if($("#paid").val() === ""){

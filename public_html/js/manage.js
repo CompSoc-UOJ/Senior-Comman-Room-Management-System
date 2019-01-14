@@ -72,7 +72,6 @@ $(document).ready(function(){
 		})
 	}
 
-
 	//Update Category
 	$("body").delegate(".edit_cat","click",function(){
 		var eid = $(this).attr("eid");
@@ -105,7 +104,6 @@ $(document).ready(function(){
 			})
 		}
 	})
-
 
 	//----------Brand-------------
 	manageBrand(1);
@@ -176,7 +174,6 @@ $(document).ready(function(){
 			})
 		}
 	})
-
 
 	//---------------------Products-----------------
 	manageProduct(1);
@@ -303,6 +300,7 @@ $(document).ready(function(){
 			success : function(data){
 				$("#id").val(data["id"]);
 				$("#update_name").val(data["username"]);
+				$("#update_employeeid").val(data["employeeid"]);
 				$("#update_email").val(data["email"]);
 				$("#update_type").val(data["usertype"]);
 				$("#update_notes").val(data["notes"]);
@@ -371,24 +369,6 @@ $(document).ready(function(){
 		alert("We can`t allow you to do so bro")
 	})
 
-	// //Update Purchase
-	// $("#update_purchase_form").on("submit",function(){
-	// 	$.ajax({
-	// 			url : DOMAIN+"/includes/process.php",
-	// 			method : "POST",
-	// 			data : $("#update_purchase_form").serialize(),
-	// 			success : function(data){
-	// 				if (data == "UPDATED") {
-	// 					alert("Purchase Updated Successfully..!");
-	// 					window.location.href = "";
-	// 				}else{
-	// 					alert(data);
-	// 				}
-	// 			}
-	// 		})
-	// })
-
-
 	//---------------------Order-----------------
 	manageOrder(1);
 	function manageOrder(pn){
@@ -431,22 +411,4 @@ $(document).ready(function(){
 	$("body").delegate(".edit_order","click",function(){
 		alert("We can`t allow you to do so bro")
 	})
-
-	// //Update Purchase
-	// $("#update_order_form").on("submit",function(){
-	// 	$.ajax({
-	// 			url : DOMAIN+"/includes/process.php",
-	// 			method : "POST",
-	// 			data : $("#update_order_form").serialize(),
-	// 			success : function(data){
-	// 				if (data == "UPDATED") {
-	// 					alert("Purchase Updated Successfully..!");
-	// 					window.location.href = "";
-	// 				}else{
-	// 					alert(data);
-	// 				}
-	// 			}
-	// 		})
-	// })
-	
 })

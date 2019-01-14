@@ -7,7 +7,7 @@ include_once("manage.php");
 //For Registration Processsing
 if (isset($_POST["username"]) AND isset($_POST["email"])) {
 	$user = new User();
-	$result = $user->createUserAccount($_POST["username"],$_POST["email"],$_POST["password1"],$_POST["usertype"]);
+	$result = $user->createUserAccount($_POST["username"],$_POST["employeeid"],$_POST["email"],$_POST["password1"],$_POST["usertype"]);
 	echo $result;
 	exit();
 }
@@ -373,6 +373,7 @@ if (isset($_POST["managePeople"])) {
 				<tr>
 			        <td><?php echo $n; ?></td>
 			        <td><?php echo $row["username"]; ?></td>
+					<td><?php echo $row["employeeid"]; ?></td>
 			        <td><?php echo $row["email"]; ?></td>
 			        <td><?php echo $row["usertype"]; ?></td>
 			        <td><?php echo $row["register_date"]; ?></td>
@@ -414,11 +415,12 @@ if (isset($_POST["update_name"])) {
 	$m = new Manage();
 	$id = $_POST["id"];
 	$name = $_POST["update_name"];
+	$employeeid = $_POST["update_employeeid"];
 	$cat = $_POST["update_email"];
 	$price = $_POST["update_type"];
 	$qty = $_POST["update_notes"];
 	$date = $_POST["added_date"];
-	$result = $m->update_record("user",["id"=>$id],["username"=>$name,"email"=>$cat,"usertype"=>$price,"notes"=>$qty,"register_date"=>$date]);
+	$result = $m->update_record("user",["id"=>$id],["username"=>$name,"employeeid"=>$employeeid,"email"=>$cat,"usertype"=>$price,"notes"=>$qty,"register_date"=>$date]);
 	echo $result;
 }
 
