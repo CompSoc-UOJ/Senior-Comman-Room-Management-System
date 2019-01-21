@@ -5,6 +5,7 @@ $(document).ready(function(){
 		var name = $("#username");
 		var employeeid = $("#employeeid");
 		var email = $("#email");
+		var contactno = $("#contactno");
 		var pass1 = $("#password1");
 		var pass2 = $("#password2");
 		var type = $("#usertype");
@@ -20,10 +21,10 @@ $(document).ready(function(){
 		}
 		if(employeeid.val() == "" || employeeid.val().length < 6){
 			employeeid.addClass("border-danger");
-			$("#u_error").html("<span class='text-danger'>Please Enter Employee ID and Employee ID should be more than 6 char</span>");
+			$("#eid_error").html("<span class='text-danger'>Please Enter Employee ID and Employee ID should be more than 6 char</span>");
 		}else{
 			employeeid.removeClass("border-danger");
-			$("#u_error").html("");
+			$("#eid_error").html("");
 			count++;
 		}
 		if(!e_patt.test(email.val())){
@@ -32,6 +33,14 @@ $(document).ready(function(){
 		}else{
 			email.removeClass("border-danger");
 			$("#e_error").html("");
+			count++;
+		}
+		if(contactno.val() == "" || contactno.val().length < 9){
+			contactno.addClass("border-danger");
+			$("#cn_error").html("<span class='text-danger'>Please Enter Contact-No and Contact-No should be more than 9 numbers</span>");
+		}else{
+			contactno.removeClass("border-danger");
+			$("#cn_error").html("");
 			count++;
 		}
 		if(pass1.val() == "" || pass1.val().length < 9){
@@ -58,7 +67,7 @@ $(document).ready(function(){
 			$("#t_error").html("");
 			count++;
 		}
-		if ((pass1.val() == pass2.val()) && count == 6 ) {
+		if ((pass1.val() == pass2.val()) && count == 7 ) {
 			$(".overlay").show();
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
@@ -79,7 +88,9 @@ $(document).ready(function(){
 						alert("Something Wrong");
 					}else{
 						$(".overlay").hide();
-						window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
+						alert("You are registered Now you can login");
+						window.location.href = "";
+						// window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
 					}
 				}
 			})
@@ -184,7 +195,7 @@ $(document).ready(function(){
 						// $("#category_name").removeClass("border-danger");
 						// $("#cat_error").html("<span class='text-success'>New Category Added Successfully..!</span>");
 						// $("#category_name").val("");
-						// fetch_category();
+						fetch_category();
 						window.location.href = "";
 					}else{
 						alert("Sorry this category already exists.");
@@ -199,6 +210,12 @@ $(document).ready(function(){
 		if ($("#brand_name").val() == "") {
 			$("#brand_name").addClass("border-danger");
 			$("#brand_error").html("<span class='text-danger'>Please Enter Brand Name</span>");
+		}else if ($("#s_contactno").val() != "" && $("#s_contactno").val().length < 9) {
+			$("#s_contactno").addClass("border-danger");
+			$("#scn_error").html("<span class='text-danger'>Please Enter valid Contact No</span>");
+		}else if ($("#address").val() == "") {
+			$("#address").addClass("border-danger");
+			$("#adr_error").html("<span class='text-danger'>Please Enter Address</span>");
 		}else{
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
@@ -207,9 +224,6 @@ $(document).ready(function(){
 				success : function(data){
 					if (data == "BRAND_ADDED") {
 						alert("New Brand Added Successfully..!");
-						// $("#brand_name").removeClass("border-danger");
-						// $("#brand_error").html("<span class='text-success'>New Brand Added Successfully..!</span>");
-						// $("#brand_name").val("");
 						fetch_brand();
 						window.location.href = "";
 					}else{
@@ -241,4 +255,17 @@ $(document).ready(function(){
 			}
 		})
 	})
+	//Fetch Name
+	// $("body").on("load",function(){
+	// 	var eid = $(this).attr("eid");
+	// 	$.ajax({
+	// 		url : DOMAIN+"/includes/process.php",
+	// 		method : "POST",
+	// 		dataType : "json",
+	// 		data : {updatePeople:1,id:eid},
+	// 		success : function(data){
+	// 			$("#fetch_name").val(data["username"]);	
+	// 		}
+	// 	})
+	// })
 })

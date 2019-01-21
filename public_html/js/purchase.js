@@ -68,9 +68,8 @@ $(document).ready(function(){
 			alert("Please enter a valid quantity");
 			qty.val(0);
 		}else{
-			
-				tr.find(".amt").html(qty.val() * tr.find(".price").val());
-				calculate(0,0);
+			tr.find(".amt").val(qty.val() * tr.find(".price").val());
+			calculate(0,0);
 			
 		}
 	})
@@ -82,9 +81,8 @@ $(document).ready(function(){
 			alert("Please enter a valid price");
 			price.val(0);
 		}else{
-			
-				tr.find(".amt").html(price.val() * tr.find(".qty").val());
-				calculate(0,0);
+			tr.find(".amt").val(price.val() * tr.find(".qty").val());
+			calculate(0,0);
 			
 		}
 	})

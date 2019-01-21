@@ -55,7 +55,7 @@ $(document).ready(function(){
 				tr.find(".price").val(data["product_price"]);
 				tr.find(".tqty").val(data["product_stock"]);
 				tr.find(".qty").val(1);
-				tr.find(".amt").html( tr.find(".qty").val() * tr.find(".price").val());
+				tr.find(".amt").val(tr.find(".qty").val() * tr.find(".price").val());
 				calculate(0,0);
 			}
 		})
@@ -70,9 +70,9 @@ $(document).ready(function(){
 		}else{
 			if ((qty.val() - 0) > (tr.find(".tqty").val()-0)) {
 				alert("Sorry ! This much of quantity is not available");
-				aty.val(1);
+				qty.val(1);
 			}else{
-				tr.find(".amt").html(qty.val() * tr.find(".price").val());
+				tr.find(".amt").val(qty.val() * tr.find(".price").val());
 				calculate(0,0);
 			}
 		}

@@ -51,7 +51,7 @@ class User
 		}
 	}
 
-	public function createUserAccount($username,$employeeid,$email,$password,$usertype){
+	public function createUserAccount($username,$employeeid,$email,$contactno,$password,$usertype){
 		//To protect your application from sql attack you can user 
 		//prepares statment
 		if ($this->usernameExists($username)) {
@@ -67,9 +67,9 @@ class User
 			$pass_hash = password_hash($password,PASSWORD_BCRYPT,["cost"=>8]);
 			$date = date("Y-m-d");
 			$notes = "";
-			$pre_stmt = $this->con->prepare("INSERT INTO `user`(`username`,`employeeid`, `email`, `password`, `usertype`, `register_date`, `last_login`, `notes`)
-			 VALUES (?,?,?,?,?,?,?,?)");
-			$pre_stmt->bind_param("ssssssss",$username,$employeeid,$email,$pass_hash,$usertype,$date,$date,$notes);
+			$pre_stmt = $this->con->prepare("INSERT INTO `user`(`username`,`employeeid`, `email`, `contactno`,`password`, `usertype`, `register_date`, `last_login`, `notes`)
+			 VALUES (?,?,?,?,?,?,?,?,?)");
+			$pre_stmt->bind_param("sssssssss",$username,$employeeid,$email,$contactno,$pass_hash,$usertype,$date,$date,$notes);
 			$result = $pre_stmt->execute() or die($this->con->error);
 			if ($result) {
 				return $this->con->insert_id;

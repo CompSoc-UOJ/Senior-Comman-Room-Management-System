@@ -154,6 +154,8 @@ $(document).ready(function(){
 			success : function(data){
 				$("#bid").val(data["bid"]);
 				$("#update_brand").val(data["brand_name"]);
+				$("#update_s_contactno").val(data["s_contactno"]);
+				$("#update_address").val(data["address"]);
 			}
 		})
 	})
@@ -161,7 +163,13 @@ $(document).ready(function(){
 	$("#update_brand_form").on("submit",function(){
 		if ($("#update_brand").val() == "") {
 			$("#update_brand").addClass("border-danger");
-			$("#brand_error").html("<span class='text-danger'>Please Enter Brand Name</span>");
+			$("#update_brand_error").html("<span class='text-danger'>Please Enter Brand Name</span>");
+		}else if ($("#update_s_contactno").val() != ""  && $("#update_s_contactno").val().length < 9) {
+			$("#update_s_contactno").addClass("border-danger");
+			$("#update_scn_error").html("<span class='text-danger'>Please Enter valid Contact No</span>");
+		}else if ($("#update_address").val() == "") {
+			$("#update_address").addClass("border-danger");
+			$("#update_adr_error").html("<span class='text-danger'>Please Enter Address</span>");
 		}else{
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
@@ -302,9 +310,9 @@ $(document).ready(function(){
 				$("#update_name").val(data["username"]);
 				$("#update_employeeid").val(data["employeeid"]);
 				$("#update_email").val(data["email"]);
+				$("#update_contactno").val(data["contactno"]);
 				$("#update_type").val(data["usertype"]);
 				$("#update_notes").val(data["notes"]);
-
 			}
 		})
 	})
@@ -312,18 +320,18 @@ $(document).ready(function(){
 	//Update people
 	$("#update_people_form").on("submit",function(){
 		$.ajax({
-				url : DOMAIN+"/includes/process.php",
-				method : "POST",
-				data : $("#update_people_form").serialize(),
-				success : function(data){
-					if (data == "UPDATED") {
-						alert("Profile Updated Successfully..!");
-						window.location.href = "";
-					}else{
-						alert(data);
-					}
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : $("#update_people_form").serialize(),
+			success : function(data){
+				if (data == "UPDATED") {
+					alert("Profile Updated Successfully..!");
+					window.location.href = "";
+				}else{
+					alert(data);
 				}
-			})
+			}
+		})
 	})
 
 	//---------------------Purchase-----------------

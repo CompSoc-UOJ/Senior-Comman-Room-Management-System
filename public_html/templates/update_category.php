@@ -13,7 +13,7 @@
           <div class="form-group">
             <label>Category Name</label>
             <input type="hidden" name="cid" id="cid" value=""/>
-            <input type="text" class="form-control" name="update_category" id="update_category" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="text" class="form-control" name="update_category" id="update_category" placeholder="Edit Category">
             <small id="cat_error" class="form-text text-muted"></small>
           </div>
           <div class="form-group">

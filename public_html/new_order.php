@@ -26,11 +26,11 @@ if (!isset($_SESSION["userid"])) {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 mx-auto">
-				<div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+				<center class="card" style="box-shadow:0 0 25px 0 lightgrey;">
 				  <div class="card-header">
 				   	<h4>New Orders</h4>
 				  </div>
-				  <div class="card-body">
+				  <center class="card-body">
 				  	<form id="get_order_data" onsubmit="return false">
 				  		<div class="form-group row">
 				  			<label class="col-sm-3 col-form-label" align="right">Order Date</label>
@@ -45,8 +45,6 @@ if (!isset($_SESSION["userid"])) {
 									</select>
 				  			</div>
 				  		</div>
-
-
 				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 				  			<div class="card-body">
 				  				<h3>Make a order list</h3>
@@ -58,7 +56,7 @@ if (!isset($_SESSION["userid"])) {
 		                                <th style="text-align:center;">Available Quantity</th>
 		                                <th style="text-align:center;">Selling Quantity</th>
 		                                <th style="text-align:center;">Price Per Item</th>
-																		<th>Total Cost</th>
+																		<th style="text-align:center;">Total Cost</th>
 		                              </tr>
 		                            </thead>
 		                            <tbody id="invoice_item">
@@ -126,8 +124,8 @@ if (!isset($_SESSION["userid"])) {
                     </center>
 										
 				  	</form>
-				  </div>
-				</div>
+				  </center>
+				</center>
 			</div>
 		</div>
 	</div>

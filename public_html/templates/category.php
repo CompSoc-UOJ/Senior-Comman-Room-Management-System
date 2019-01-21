@@ -12,15 +12,12 @@
         <form id="category_form" onsubmit="return false">
           <div class="form-group">
             <label>Category Name</label>
-            <input type="text" class="form-control" name="category_name" id="category_name" aria-describedby="emailHelp" placeholder="Enter New Category">
+            <input type="text" class="form-control" name="category_name" id="category_name"  placeholder="Enter New Category">
             <small id="cat_error" class="form-text text-muted"></small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Parent Category</label>
-            <select class="form-control" id="parent_cat2" name="parent_cat2">
-              
-
-              
+            <select class="form-control" id="parent_cat2" name="parent_cat2"> 
             </select>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>

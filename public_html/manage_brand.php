@@ -28,6 +28,8 @@ if (!isset($_SESSION["userid"])) {
 		      <tr>
 		        <th>#</th>
 		        <th>Supplier Name</th>
+						<th>Contact No</th>
+						<th>Address</th>
 		        <th>Status</th>
 		        <th>Action</th>
 		      </tr>
@@ -47,7 +49,6 @@ if (!isset($_SESSION["userid"])) {
 			<a href="#" data-toggle="modal" data-target="#form_brand" class="btn btn-primary">Add</a>
 	</div>
 
-
 	<?php
 		//update brand form
 		include_once("./templates/update_brand.php");
@@ -55,7 +56,6 @@ if (!isset($_SESSION["userid"])) {
 		//Brand Form
 		include_once("./templates/brand.php");
 	?>
-	
-	
+		
 </body>
 </html>

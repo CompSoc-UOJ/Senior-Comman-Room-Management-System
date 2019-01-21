@@ -12,7 +12,7 @@
 		        <form id="register_form" onsubmit="return false" autocomplete="off">
 		          <div class="form-group">
 		            <label for="username">Full Name</label>
-		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username (Nayananga Muhandiram)">
 		            <small id="u_error" class="form-text text-muted"></small>
 		          </div>
 							<div class="form-group">
@@ -22,8 +22,13 @@
 		          </div>
 		          <div class="form-group">
 		            <label for="email">Email address</label>
-		            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+		            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email (example@example.com)">
 		            <small id="e_error" class="form-text text-muted">We'll never share your email with anyone else.</small>
+		          </div>
+							<div class="form-group">
+		            <label for="email">Contact Number</label>
+		            <input type="text" name="contactno" class="form-control" id="contactno" aria-describedby="emailHelp" placeholder="Enter Contact No (94123456789)">
+		            <small id="e_error" class="form-text text-muted">We'll never share your contact-no with anyone else.</small>
 		          </div>
 		          <div class="form-group">
 		            <label for="password1">Password</label>
@@ -32,7 +37,7 @@
 		          </div>
 		          <div class="form-group">
 		            <label for="password2">Re-enter Password</label>
-		            <input type="password" name="password2" class="form-control"  id="password2" placeholder="Password">
+		            <input type="password" name="password2" class="form-control"  id="password2" placeholder="Confirm Password">
 		            <small id="p2_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">

@@ -30,12 +30,17 @@
 							<div class="form-group">
 		            <label for="employeeid">Employee ID</label>
 		            <input type="text" name="employeeid" class="form-control" id="employeeid" placeholder="Enter Employee ID">
-		            <small id="u_error" class="form-text text-muted"></small>
+		            <small id="eid_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">
 		            <label for="email">Email address</label>
 		            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email (example@example.com)">
 		            <small id="e_error" class="form-text text-muted">We'll never share your email with anyone else.</small>
+		          </div>
+							<div class="form-group">
+		            <label for="email">Contact Number</label>
+		            <input type="text" name="contactno" class="form-control" id="contactno" aria-describedby="emailHelp" placeholder="Enter email (example@example.com)">
+		            <small id="cn_error" class="form-text text-muted">We'll never share your contact-no with anyone else.</small>
 		          </div>
 		          <div class="form-group">
 		            <label for="password1">Password</label>
@@ -44,7 +49,7 @@
 		          </div>
 		          <div class="form-group">
 		            <label for="password2">Re-enter Password</label>
-		            <input type="password" name="password2" class="form-control"  id="password2" placeholder="Password">
+		            <input type="password" name="password2" class="form-control"  id="password2" placeholder="Confirm Password">
 		            <small id="p2_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">

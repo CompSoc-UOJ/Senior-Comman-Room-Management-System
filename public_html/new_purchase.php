@@ -46,8 +46,6 @@ if (!isset($_SESSION["userid"])) {
 									</select>
 				  			</div>
 				  		</div>
-
-
 				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 				  			<div class="card-body">
 				  				<h3>Make a order list</h3>
@@ -64,7 +62,6 @@ if (!isset($_SESSION["userid"])) {
 										</thead>
 										<tbody id="invoice_item">
 
-											</tr>
 										</tbody>
 									</table> <!--Table Ends-->
 										<center style="padding:10px;">

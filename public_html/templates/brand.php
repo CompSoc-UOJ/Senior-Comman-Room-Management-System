@@ -15,6 +15,16 @@
             <input type="text" class="form-control" name="brand_name" id="brand_name" placeholder="Enter Supplier Name">
             <small id="brand_error" class="form-text text-muted"></small>
           </div>
+          <div class="form-group">
+            <label>Contact No</label>
+            <input type="text" class="form-control" name="s_contactno" id="s_contactno" placeholder="Enter Supplier Contact No">
+            <small id="scn_error" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" class="form-control" name="address" id="address" placeholder="Enter Supplier Address">
+            <small id="adr_error" class="form-text text-muted"></small>
+          </div>
           <button type="submit" class="btn btn-primary">Add</button>
         </form>
       </div>

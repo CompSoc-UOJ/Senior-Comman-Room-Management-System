@@ -7,7 +7,7 @@ include_once("manage.php");
 //For Registration Processsing
 if (isset($_POST["username"]) AND isset($_POST["email"])) {
 	$user = new User();
-	$result = $user->createUserAccount($_POST["username"],$_POST["employeeid"],$_POST["email"],$_POST["password1"],$_POST["usertype"]);
+	$result = $user->createUserAccount($_POST["username"],$_POST["employeeid"],$_POST["email"],$_POST["contactno"],$_POST["password1"],$_POST["usertype"]);
 	echo $result;
 	exit();
 }
@@ -59,9 +59,11 @@ if (isset($_POST["category_name"]) AND isset($_POST["parent_cat2"])) {
 }
 
 //Add Brand
-if (isset($_POST["brand_name"])) {
+if (isset($_POST["address"])) {
 	$obj = new DBOperation();
-	$result = $obj->addBrand($_POST["brand_name"]);
+	$result = $obj->addBrand($_POST["brand_name"],
+	$_POST["s_contactno"],
+	$_POST["address"]);
 	echo $result;
 	exit();
 }
@@ -150,6 +152,8 @@ if (isset($_POST["manageBrand"])) {
 				<tr>
 			        <td><?php echo $n; ?></td>
 			        <td><?php echo $row["brand_name"]; ?></td>
+					<td><?php echo $row["s_contactno"]; ?></td>
+					<td><?php echo $row["address"]; ?></td>
 			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['bid']; ?>" class="btn btn-danger btn-sm del_brand">Delete</a>
@@ -186,7 +190,9 @@ if (isset($_POST["update_brand"])) {
 	$m = new Manage();
 	$id = $_POST["bid"];
 	$name = $_POST["update_brand"];
-	$result = $m->update_record("brands",["bid"=>$id],["brand_name"=>$name,"status"=>1]);
+	$s_contactno = $_POST["update_s_contactno"];
+	$address = $_POST["update_address"];
+	$result = $m->update_record("brands",["bid"=>$id],["brand_name"=>$name,"s_contactno"=>$s_contactno,"address"=>$address,"status"=>1]);
 	echo $result;
 }
 
@@ -264,7 +270,7 @@ if (isset($_POST["getNewOrderItem"])) {
 		    <td><b class="number">1</b></td>
 		    <td>
 		        <select name="pid[]" class="form-control form-control-sm pid" required>
-		            <option value="">Choose Product</option>
+		            <option value="">Choose Item</option>
 		            <?php 
 		            	foreach ($rows as $row) {
 		            		?><option value="<?php echo $row['pid']; ?>"><?php echo $row["product_name"]; ?></option><?php
@@ -272,12 +278,12 @@ if (isset($_POST["getNewOrderItem"])) {
 		            ?>
 		        </select>
 		    </td>
-		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>   
-		    <td><input name="qty[]" type="text" class="form-control form-control-sm qty" required></td>
-		    <td><input name="price[]" type="text" class="form-control form-control-sm price" readonly></td>
-		    <td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
-		    <td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>			
-		    <td>Rs.<span class="amt">0</span></td>
+		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>  
+		    <td><input name="qty[]" type="text" class="form-control form-control-sm qty" required></td>	
+			<td><input name="price[]" type="text" class="form-control form-control-sm price" readonly></td>		
+		    <td><input name="amt[]" readonly type="text" class="form-control form-control-sm amt"></td> 
+			<td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>
+			<td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
 	</tr>
 	<?php
 	exit();
@@ -335,17 +341,16 @@ if (isset($_POST["getPriceAndQty"])) {
 	exit();
 }
 
-
 if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 	
 	//Now getting array from order_form
 	$orderdate = $_POST["order_date"];
 	$cust_name = $_POST["cust_name"]; // supplierID or saleID
+	$ar_tpid = $_POST["tpid"];
+	$ar_pro_name = $_POST["pro_name"]; //will not use
 	$ar_tqty = $_POST["tqty"];
 	$ar_qty = $_POST["qty"];
 	$ar_price = $_POST["price"];
-	$ar_pro_name = $_POST["pro_name"]; //will not use
-	$ar_tpid = $_POST["tpid"];
 	$sub_total = $_POST["sub_total"];
 	// $gst = $_POST["gst"];
 	$discount = $_POST["discount"];
@@ -375,6 +380,7 @@ if (isset($_POST["managePeople"])) {
 			        <td><?php echo $row["username"]; ?></td>
 					<td><?php echo $row["employeeid"]; ?></td>
 			        <td><?php echo $row["email"]; ?></td>
+					<td><?php echo $row["contactno"]; ?></td>
 			        <td><?php echo $row["usertype"]; ?></td>
 			        <td><?php echo $row["register_date"]; ?></td>
 			        <td><?php echo $row["last_login"]; ?></td>
@@ -417,10 +423,11 @@ if (isset($_POST["update_name"])) {
 	$name = $_POST["update_name"];
 	$employeeid = $_POST["update_employeeid"];
 	$cat = $_POST["update_email"];
+	$contactno = $_POST["update_contactno"];
 	$price = $_POST["update_type"];
 	$qty = $_POST["update_notes"];
 	$date = $_POST["added_date"];
-	$result = $m->update_record("user",["id"=>$id],["username"=>$name,"employeeid"=>$employeeid,"email"=>$cat,"usertype"=>$price,"notes"=>$qty,"register_date"=>$date]);
+	$result = $m->update_record("user",["id"=>$id],["username"=>$name,"employeeid"=>$employeeid,"email"=>$cat,"contactno"=>$contactno,"usertype"=>$price,"notes"=>$qty,"register_date"=>$date]);
 	echo $result;
 }
 
@@ -430,7 +437,7 @@ if (isset($_POST["getNewPurchaseItem"])) {
 	$obj = new DBOperation();
 	$rows = $obj->getAllRecord("products");
 	?>
-	<tr>
+		<tr>
 		    <td><b class="number">1</b></td>
 		    <td>
 		        <select name="pid[]" class="form-control form-control-sm pid" required>
@@ -442,13 +449,14 @@ if (isset($_POST["getNewPurchaseItem"])) {
 		            ?>
 		        </select>
 		    </td>
-		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>   
-		    <td><input name="qty[]" type="text" class="form-control form-control-sm qty" onfocus="this.value=''" required></td>
-		    <td><input name="price[]" type="text" class="form-control form-control-sm price" onfocus="this.value=''"></td>
-		    <td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
-		    <td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>			
-		    <td>Rs.<span class="amt">0</span></td>
-	</tr>
+		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>
+			<td><input name="qty[]" type="text" class="form-control form-control-sm qty" onfocus="this.value=''" required></td>
+			<td><input name="price[]" type="text" class="form-control form-control-sm price" onfocus="this.value=''"></td> 
+			<td><input name="amt[]" readonly type="text" class="form-control form-control-sm amt"></td> 
+			<td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>
+			<td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>			
+		   
+		</tr>
 	<?php
 	exit();
 }
@@ -495,24 +503,4 @@ if (isset($_POST["deletePurchase"])) {
 	echo $result;
 }
 
-//Update Purchase
-// if (isset($_POST["updatePurchase"])) {
-// 	$m = new Manage();
-// 	$result = $m->getSingleRecord("invoice_details","id",$_POST["id"]);
-// 	echo json_encode($result);
-// 	exit();
-// }
-
-// //Update Record after getting data
-// if (isset($_POST["product_name"])) {
-// 	$m = new Manage();
-// 	$id = $_POST["id"];
-// 	$name = $_POST["update_name"];
-// 	$cat = $_POST["update_email"];
-// 	$price = $_POST["update_type"];
-// 	$qty = $_POST["update_notes"];
-// 	$date = $_POST["added_date"];
-// 	$result = $m->update_record("user",["id"=>$id],["username"=>$name,"email"=>$cat,"usertype"=>$price,"notes"=>$qty,"register_date"=>$date]);
-// 	echo $result;
-// }
 ?>

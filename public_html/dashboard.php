@@ -16,6 +16,8 @@ if (!isset($_SESSION["userid"])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<script type="text/javascript" src="./js/main.js" async></script>
+	<script type="text/javascript" src="./js/manage.js" async></script>
+
  </head>
 <body>
 	<!-- Navbar -->
@@ -29,10 +31,10 @@ if (!isset($_SESSION["userid"])) {
 				  <img class="card-img-top mx-auto" style="width:60%;" src="./images/user.png" alt="Card image cap">
 				  <div class="card-body">
 				    <h4 class="card-title">Profile Info</h4>
-				    <p class="card-text"><i class="fa fa-user">&nbsp;</i>Ruwan Kalpage</p>
+				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $_SESSION["userid"]; ?></p>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i>Admin</p>
 				    <p class="card-text">Last Login : <?php echo date("Y-m-d"); ?></p>
-				    <a href="#" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
+					<a href="#" eid="<?php echo $_SESSION["userid"]; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-primary edit_people"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
 				  </div>
 				</div>
 			</div>
@@ -132,6 +134,9 @@ if (!isset($_SESSION["userid"])) {
 	</div>
 
 	<?php
+	//Update Register Form
+	include_once("./templates/update_people.php");
+
 	//Categpry Form
 	include_once("./templates/category.php");
 	 

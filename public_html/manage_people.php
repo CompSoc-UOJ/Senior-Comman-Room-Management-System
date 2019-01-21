@@ -31,6 +31,7 @@ if (!isset($_SESSION["userid"])) {
 		        <th>Full Name</th>
 						<th>Employee ID</th>
 		        <th>Email</th> 
+						<th>Contact-No</th> 
 		        <th>User Type</th>
 		        <th>Register Date</th>
 		        <th>Last Login</th>

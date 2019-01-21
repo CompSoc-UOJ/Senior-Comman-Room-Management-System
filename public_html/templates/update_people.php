@@ -30,6 +30,10 @@
             <input type="text" class="form-control" id="update_email" name="update_email" placeholder="Edit Email" required/> 
           </div>
           <div class="form-group">
+            <label>Contact-No</label>
+            <input type="number" class="form-control" id="update_contactno" name="update_contactno" placeholder="Edit Contact-No" /> 
+          </div>
+          <div class="form-group">
             <label>User Type</label>
             <input type="text" class="form-control" id="update_type" name="update_type" required/> 
           </div>
