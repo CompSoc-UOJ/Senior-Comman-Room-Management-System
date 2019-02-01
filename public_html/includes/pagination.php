@@ -1,6 +1,4 @@
 <?php
-
-
 $con = mysqli_connect("localhost","root","","test");
 
 function pagination($con,$table,$pno,$n){

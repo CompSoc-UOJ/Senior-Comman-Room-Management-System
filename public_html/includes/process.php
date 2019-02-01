@@ -88,7 +88,7 @@ if (isset($_POST["manageCategory"])) {
 	$rows = $result["rows"];
 	$pagination = $result["pagination"];
 	if (count($rows) > 0) {
-		$n = (($_POST["pageno"] - 1) * 5)+1;
+		$n = (($_POST["pageno"] - 1) * 10)+1;
 		foreach ($rows as $row) {
 			?>
 				<tr>
@@ -146,7 +146,7 @@ if (isset($_POST["manageBrand"])) {
 	$rows = $result["rows"];
 	$pagination = $result["pagination"];
 	if (count($rows) > 0) {
-		$n = (($_POST["pageno"] - 1) * 5)+1;
+		$n = (($_POST["pageno"] - 1) * 10)+1;
 		foreach ($rows as $row) {
 			?>
 				<tr>
@@ -204,7 +204,7 @@ if (isset($_POST["manageProduct"])) {
 	$rows = $result["rows"];
 	$pagination = $result["pagination"];
 	if (count($rows) > 0) {
-		$n = (($_POST["pageno"] - 1) * 5)+1;
+		$n = (($_POST["pageno"] - 1) * 10)+1;
 		foreach ($rows as $row) {
 			?>
 				<tr>
@@ -295,7 +295,7 @@ if (isset($_POST["manageOrder"])) {
 	$rows = $result["rows"];
 	$pagination = $result["pagination"];
 	if (count($rows) > 0) {
-		$n = (($_POST["pageno"] - 1) * 5)+1;
+		$n = (($_POST["pageno"] - 1) * 10)+1;
 		foreach ($rows as $row) {
 			?>
 				<tr>
@@ -372,7 +372,7 @@ if (isset($_POST["managePeople"])) {
 	$rows = $result["rows"];
 	$pagination = $result["pagination"];
 	if (count($rows) > 0) {
-		$n = (($_POST["pageno"] - 1) * 5)+1;
+		$n = (($_POST["pageno"] - 1) * 10)+1;
 		foreach ($rows as $row) {
 			?>
 				<tr>
@@ -467,7 +467,7 @@ if (isset($_POST["managePurchase"])) {
 	$rows = $result["rows"];
 	$pagination = $result["pagination"];
 	if (count($rows) > 0) {
-		$n = (($_POST["pageno"] - 1) * 5)+1;
+		$n = (($_POST["pageno"] - 1) * 10)+1;
 		foreach ($rows as $row) {
 			?>
 				<tr>

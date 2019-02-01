@@ -149,6 +149,11 @@ $(document).ready(function(){
 		}
 	})
 
+	$("body").delegate(".page-link","click",function(){
+		$("#parent_cat2").html(root+data);
+		$("#select_cat2").html(choose+data);
+	})
+
 	//Fetch category
 	fetch_category();
 	function fetch_category(){
@@ -255,17 +260,4 @@ $(document).ready(function(){
 			}
 		})
 	})
-	//Fetch Name
-	// $("body").on("load",function(){
-	// 	var eid = $(this).attr("eid");
-	// 	$.ajax({
-	// 		url : DOMAIN+"/includes/process.php",
-	// 		method : "POST",
-	// 		dataType : "json",
-	// 		data : {updatePeople:1,id:eid},
-	// 		success : function(data){
-	// 			$("#fetch_name").val(data["username"]);	
-	// 		}
-	// 	})
-	// })
 })

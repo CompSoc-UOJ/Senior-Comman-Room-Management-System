@@ -12,40 +12,40 @@
 		        <form id="register_form" onsubmit="return false" autocomplete="off">
 		          <div class="form-group">
 		            <label for="username">Full Name</label>
-		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username (Nayananga Muhandiram)">
+		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username (Nayananga Muhandiram)"/>
 		            <small id="u_error" class="form-text text-muted"></small>
 		          </div>
 							<div class="form-group">
 		            <label for="employeeid">Employee ID</label>
-		            <input type="text" name="employeeid" class="form-control" id="employeeid" placeholder="Enter Employee ID">
+		            <input type="text" name="employeeid" class="form-control" id="employeeid" placeholder="Enter Employee ID"/>
 		            <small id="u_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">
 		            <label for="email">Email address</label>
-		            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email (example@example.com)">
+		            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email (example@example.com)"/>
 		            <small id="e_error" class="form-text text-muted">We'll never share your email with anyone else.</small>
 		          </div>
 							<div class="form-group">
 		            <label for="email">Contact Number</label>
-		            <input type="text" name="contactno" class="form-control" id="contactno" aria-describedby="emailHelp" placeholder="Enter Contact No (94123456789)">
+		            <input type="text" name="contactno" class="form-control" id="contactno" aria-describedby="emailHelp" placeholder="Enter Contact No (94123456789)"/>
 		            <small id="e_error" class="form-text text-muted">We'll never share your contact-no with anyone else.</small>
 		          </div>
 		          <div class="form-group">
 		            <label for="password1">Password</label>
-		            <input type="password" name="password1" class="form-control"  id="password1" placeholder="Password">
+		            <input type="password" name="password1" class="form-control" id="password1" placeholder="Password"/>
 		            <small id="p1_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">
 		            <label for="password2">Re-enter Password</label>
-		            <input type="password" name="password2" class="form-control"  id="password2" placeholder="Confirm Password">
+		            <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm Password"/>
 		            <small id="p2_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">
 		            <label for="usertype">Usertype</label>
 		            <select name="usertype" class="form-control" id="usertype">
 		              <option value="">Choose User Type</option>
-		              <option value="Staff_Member">Staff Member</option>
-		              <option value="Canteen_Staff">Canteen Staff</option>
+		              <option value="Staff Member">Staff Member</option>
+		              <option value="Canteen Staff">Canteen Staff</option>
 		            </select>
 		            <small id="t_error" class="form-text text-muted"></small>
 		          </div>

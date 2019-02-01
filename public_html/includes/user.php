@@ -1,5 +1,4 @@
 <?php
-
 /**
 * User Class for account creation and login pupose
 */
@@ -65,11 +64,12 @@ class User
 		}
 		else{
 			$pass_hash = password_hash($password,PASSWORD_BCRYPT,["cost"=>8]);
-			$date = date("Y-m-d");
+			$reg_date = date("Y-m-d");
+			$last_log = date("Y-m-d h:m:s");
 			$notes = "";
 			$pre_stmt = $this->con->prepare("INSERT INTO `user`(`username`,`employeeid`, `email`, `contactno`,`password`, `usertype`, `register_date`, `last_login`, `notes`)
 			 VALUES (?,?,?,?,?,?,?,?,?)");
-			$pre_stmt->bind_param("sssssssss",$username,$employeeid,$email,$contactno,$pass_hash,$usertype,$date,$date,$notes);
+			$pre_stmt->bind_param("sssssssss",$username,$employeeid,$email,$contactno,$pass_hash,$usertype,$reg_date,$last_log,$notes);
 			$result = $pre_stmt->execute() or die($this->con->error);
 			if ($result) {
 				return $this->con->insert_id;
@@ -81,7 +81,7 @@ class User
 	}
 
 	public function userLogin($email,$password){
-		$pre_stmt = $this->con->prepare("SELECT id,username,password,last_login FROM user WHERE email = ?");
+		$pre_stmt = $this->con->prepare("SELECT id,username,password,usertype,last_login FROM user WHERE email = ?");
 		$pre_stmt->bind_param("s",$email);
 		$pre_stmt->execute() or die($this->con->error);
 		$result = $pre_stmt->get_result();
@@ -94,6 +94,7 @@ class User
 				$_SESSION["userid"] = $row["id"];
 				$_SESSION["username"] = $row["username"];
 				$_SESSION["last_login"] = $row["last_login"];
+				$_SESSION["usertype"] = $row["usertype"];
 
 				//Here we are updating user last login time when he is performing login
 				$last_login = date("Y-m-d h:m:s");

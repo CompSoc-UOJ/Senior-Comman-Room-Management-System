@@ -1,8 +1,5 @@
 <?php
 
-/**
-* 
-*/
 class Database
 {
 	private $con;
@@ -19,5 +16,4 @@ class Database
 
 //$db = new Database();
 //$db->connect();
-
 ?>

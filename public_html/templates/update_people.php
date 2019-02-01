@@ -31,11 +31,15 @@
           </div>
           <div class="form-group">
             <label>Contact-No</label>
-            <input type="number" class="form-control" id="update_contactno" name="update_contactno" placeholder="Edit Contact-No" /> 
+            <input type="text" name="update_contactno" class="form-control" id="update_contactno" placeholder="Edit Contact No (94123456789)"/>
           </div>
           <div class="form-group">
             <label>User Type</label>
-            <input type="text" class="form-control" id="update_type" name="update_type" required/> 
+            <select name="update_type" class="form-control" id="update_type">
+		              <option value="">Choose User Type</option>
+		              <option value="Staff Member">Staff Member</option>
+		              <option value="Canteen Staff">Canteen Staff</option>
+		            </select>
           </div>
           <div class="form-group">
             <label>Notes</label>
