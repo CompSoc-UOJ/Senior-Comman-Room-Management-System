@@ -61,7 +61,7 @@ $(document).ready(function(){
 		})
 	})
 
-	$("#invoice_item").delegate(".qty","keyup",function(){
+	$("#invoice_item").delegate(".qty","change",function(){
 		var qty = $(this);
 		var tr = $(this).parent().parent();
 		if (isNaN(qty.val())) {
@@ -95,24 +95,32 @@ $(document).ready(function(){
 		var paid_amt = paid;
 		var due = 0;
 		$(".amt").each(function(){
-			sub_total = sub_total + ($(this).html() * 1);
+			sub_total = sub_total + ($(this).val() * 1);
 		})
+		$("#sub_total").val(sub_total);
+
 		// gst = 0.18 * sub_total;
 		// net_total = gst + sub_total;
-		net_total = sub_total - discount;
-		due = paid_amt - net_total;
+
+		
 		// $("#gst").val(gst);
-		$("#sub_total").val(sub_total);
-		$("#discount").val(discount);
+		
+		// $("#discount").val(discount);
+
+		net_total = sub_total - discount;
 		$("#net_total").val(net_total);
+
 		//$("#paid")
+
+		due = paid_amt - net_total;
 		$("#due").val(due);
 
 	}
 
 	$("#discount").keyup(function(){
 		var discount = $(this).val();
-		calculate(discount,0);
+		var paid = $("#paid").val();
+		calculate(discount,paid);
 	})
 
 	$("#paid").keyup(function(){
@@ -121,7 +129,7 @@ $(document).ready(function(){
 		calculate(discount,paid);
 	})
 
-	/*Order Accepting*/
+	/*Purchase Accepting*/
 	$("#purchase_form").click(function(){
 		var invoice = $("#get_purchase_data").serialize();
 		if ($("#cust_name").val() === "") {

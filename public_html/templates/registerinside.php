@@ -49,6 +49,7 @@
 		            </select>
 		            <small id="t_error" class="form-text text-muted"></small>
 		          </div>
+							<input type="hidden" name="status" id="status" value="1"/>
 		          <button type="submit" name="user_register" class="btn btn-primary"><span class="fa fa-user"></span>&nbsp;Register</button>
 		        </form>
 		      </div>

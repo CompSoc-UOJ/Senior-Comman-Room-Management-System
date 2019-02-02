@@ -61,6 +61,7 @@
 		            </select>
 		            <small id="t_error" class="form-text text-muted"></small>
 		          </div>
+							<input type="hidden" name="status" id="status" value="0"/>
 		          <button type="submit" name="user_register" class="btn btn-primary"><span class="fa fa-user"></span>&nbsp;Register</button>
 		          <span><a href="index.php">Login</a></span>
 		        </form>

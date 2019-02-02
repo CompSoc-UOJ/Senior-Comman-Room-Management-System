@@ -297,6 +297,27 @@ $(document).ready(function(){
 		}
 	})
 
+	//People status
+	$("body").delegate(".pending","click",function(){
+		var eid = $(this).attr("eid");
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			dataType : "json",
+			data : {updatePeopleStatus:1,id:eid},
+			success : function(data){
+				if (data == "UPDATED") {
+					alert("Profile Updated Successfully..!");
+					window.location.href = "";
+				}else{
+					alert(data);
+				}
+			}
+		})
+	})
+
+	
+
 	//Update people
 	$("body").delegate(".edit_people","click",function(){
 		var eid = $(this).attr("eid");
@@ -316,6 +337,7 @@ $(document).ready(function(){
 			}
 		})
 	})
+
 
 	//Update people
 	$("#update_people_form").on("submit",function(){

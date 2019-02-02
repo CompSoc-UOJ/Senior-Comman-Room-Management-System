@@ -7,7 +7,7 @@ include_once("manage.php");
 //For Registration Processsing
 if (isset($_POST["username"]) AND isset($_POST["email"])) {
 	$user = new User();
-	$result = $user->createUserAccount($_POST["username"],$_POST["employeeid"],$_POST["email"],$_POST["contactno"],$_POST["password1"],$_POST["usertype"]);
+	$result = $user->createUserAccount($_POST["username"],$_POST["employeeid"],$_POST["email"],$_POST["contactno"],$_POST["password1"],$_POST["usertype"],$_POST["status"]);
 	echo $result;
 	exit();
 }
@@ -25,7 +25,9 @@ if (isset($_POST["getPeople"])) {
 	$obj = new DBOperation();
 	$rows = $obj->getAllRecord("user");
 	foreach ($rows as $row) {
-		echo "<option value='".$row["id"]."'>".$row["username"]."</option>";
+		if($row["status"] == 1){
+			echo "<option value='".$row["id"]."'>".$row["username"]."</option>";
+		}
 	}
 	exit();
 }
@@ -279,7 +281,7 @@ if (isset($_POST["getNewOrderItem"])) {
 		        </select>
 		    </td>
 		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>  
-		    <td><input name="qty[]" type="text" class="form-control form-control-sm qty" required></td>	
+		    <td><input name="qty[]" type="number" class="form-control form-control-sm qty" required></td>	
 			<td><input name="price[]" type="text" class="form-control form-control-sm price" readonly></td>		
 		    <td><input name="amt[]" readonly type="text" class="form-control form-control-sm amt"></td> 
 			<td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>
@@ -384,8 +386,21 @@ if (isset($_POST["managePeople"])) {
 			        <td><?php echo $row["usertype"]; ?></td>
 			        <td><?php echo $row["register_date"]; ?></td>
 			        <td><?php echo $row["last_login"]; ?></td>
+			        <td>
+						<?php 
+							if($row["status"] == '1'){		
+						?>
+						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-success active'>Active</a>
+						<?php 
+							}
+							else if($row["status"] == '0'){
+						?>
+						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-warning pending'>Pending</a>
+						<?php 
+							}
+						?>
+					</td>
 			        <td><?php echo $row["notes"]; ?></td>
-			        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
 			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-info btn-sm edit_people">Edit</a>
@@ -405,6 +420,14 @@ if (isset($_POST["managePeople"])) {
 if (isset($_POST["deletePeople"])) {
 	$m = new Manage();
 	$result = $m->deleteRecord("user","id",$_POST["id"]);
+	echo $result;
+}
+
+//Update People status
+if (isset($_POST["updatePeopleStatus"])) {
+	$m = new Manage();
+	$id = $_POST["id"];
+	$result = $m->update_record("user",["id"=>$id],["status"=>1]);
 	echo $result;
 }
 
@@ -450,7 +473,7 @@ if (isset($_POST["getNewPurchaseItem"])) {
 		        </select>
 		    </td>
 		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty"></td>
-			<td><input name="qty[]" type="text" class="form-control form-control-sm qty" onfocus="this.value=''" required></td>
+			<td><input name="qty[]" type="number" class="form-control form-control-sm qty" onfocus="this.value=''" required></td>
 			<td><input name="price[]" type="text" class="form-control form-control-sm price" onfocus="this.value=''"></td> 
 			<td><input name="amt[]" readonly type="text" class="form-control form-control-sm amt"></td> 
 			<td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>

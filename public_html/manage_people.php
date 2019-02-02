@@ -1,6 +1,6 @@
 <?php
 include_once("./database/constants.php");
-if (!isset($_SESSION["userid"])) {
+if($_SESSION["usertype"] != "Staff Member") {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -35,8 +35,8 @@ if (!isset($_SESSION["userid"])) {
 		        <th>User Type</th>
 		        <th>Register Date</th>
 		        <th>Last Login</th>
-		        <th>Notes</th>
 						<th>Status</th>
+		        <th>Notes</th>
 		        <th>Action</th>
 		      </tr>
 		    </thead>

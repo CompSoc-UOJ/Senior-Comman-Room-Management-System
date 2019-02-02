@@ -1,6 +1,6 @@
 <?php
-include_once("./database/constants.php");
-if(!$_SESSION["usertype"] == "Canteen Staff") {
+include_once("../database/constants.php");
+if($_SESSION["usertype"] != "Canteen Staff") {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -15,21 +15,21 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 	<script type="text/javascript" src="./js/main.js" async></script>
-	<script type="text/javascript" src="./js/manage.js" async></script>
+ 	<script type="text/javascript" src="../js/main.js" async></script>
+	<script type="text/javascript" src="../js/manage.js" async></script>
 
  </head>
 <body>
 	<!-- Navbar -->
-	<?php include_once("./templates/header.php"); ?>
+	<?php include_once("../templates/header.php"); ?>
 	<br/><br/>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
 				<div class="card mx-auto" style="border:solid 1px #777">
-				  <img class="card-img-top mx-auto" style="width:60%;" src="./images/user.png" alt="Card image cap">
+				  <img class="card-img-top mx-auto" style="width:60%;" src="../images/user.png" alt="Card image cap">
 				  <div class="card-body">
-				    <h4 class="card-title">Profile Info(Canteen)</h4>
+				    <h4 class="card-title">Profile Info</h4>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $_SESSION["username"]; ?></p>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $_SESSION["usertype"]; ?></p>
 				    <p class="card-text">Last Login : <?php echo $_SESSION["last_login"]; ?></p>
@@ -66,8 +66,8 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
 						<div class="card-body">
 						<h4 class="card-title">Items</h4>
 						<p class="card-text">Here you can manage your items and add new items to the inventory.</p>
-						<a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
-						<a href="manage_product.php" class="btn btn-primary">Manage</a>
+						<a href="#" data-toggle="modal" data-target="#" class="btn btn-danger">Add</a>
+						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>
 			</div>
@@ -76,8 +76,8 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
 						<div class="card-body">
 						<h4 class="card-title">Sales</h4> 
 						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
-						<a href="new_order.php" class="btn btn-primary">Add</a>
-						<a href="manage_sale.php" class="btn btn-primary">Manage</a>
+						<a href="../new_order.php" class="btn btn-primary">Add</a>
+						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>
 			</div>
@@ -86,8 +86,8 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
 						<div class="card-body">
 						<h4 class="card-title">Purchases</h4>
 						<p class="card-text">Here you can manage your Purchases and you can add new Purchases.</p>
-						<a href="new_purchase.php" class="btn btn-primary">Add</a>
-						<a href="manage_purchase.php" class="btn btn-primary">Manage</a>
+						<a href="#" class="btn btn-danger">Add</a>
+						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>
 			</div>
@@ -96,8 +96,8 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
 						<div class="card-body">
 						<h4 class="card-title">People</h4>
 						<p class="card-text">Here you can manage your users and you can add new users.</p>
-						<a href="#" data-toggle="modal" data-target="#register_form" class="btn btn-primary">Register</a>
-						<a href="manage_people.php" class="btn btn-primary">Manage</a>
+						<a href="#" data-toggle="modal" data-target="#" class="btn btn-danger">Register</a>
+						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>
 			</div>
@@ -111,8 +111,8 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
 						<div class="card-body">
 						<h4 class="card-title">Categories</h4> 
 						<p class="card-text">Here you can manage your item categories of your current sales.</p>
-						<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
-						<a href="manage_categories.php" class="btn btn-primary">Manage</a>
+						<a href="#" data-toggle="modal" data-target="#" class="btn btn-danger">Add</a>
+						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>
 			</div>
@@ -121,8 +121,8 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
 						<div class="card-body">
 						<h4 class="card-title">Suppliers</h4> <!-- Brands -->
 						<p class="card-text">Here you can manage your item suppliers and you can add new suppliers.</p>
-						<a href="#" data-toggle="modal" data-target="#form_brand" class="btn btn-primary">Add</a>
-						<a href="manage_brand.php" class="btn btn-primary">Manage</a>
+						<a href="#" data-toggle="modal" data-target="#" class="btn btn-danger">Add</a>
+						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>
 			</div>
@@ -131,19 +131,19 @@ if(!$_SESSION["usertype"] == "Canteen Staff") {
 
 	<?php
 	//Update Register Form
-	include_once("./templates/update_people.php");
+	include_once("../templates/update_people.php");
 
 	//Categpry Form
-	include_once("./templates/category.php");
+	include_once("../templates/category.php");
 	 
 	//Brand Form
-	include_once("./templates/brand.php");
+	include_once("../templates/brand.php");
 	 
 	//Products Form
-	include_once("./templates/products.php");
+	include_once("../templates/products.php");
 	 
 	//Register Form
-	include_once("./templates/registerinside.php");
+	include_once("../templates/registerinside.php");
 	 ?>
 
 </body>
