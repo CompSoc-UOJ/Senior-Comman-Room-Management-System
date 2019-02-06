@@ -1,6 +1,24 @@
 $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
 
+	//----------Category-------------
+
+	//Fetch category
+	fetch_category();
+	function fetch_category(){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {getCategory:1},
+			success : function(data){
+				var root = "<option value='0'>Root</option>";
+				var choose = "<option value=''>Choose Category</option>";
+				$("#parent_cat").html(root+data);
+				$("#select_cat").html(choose+data);
+			}
+		})
+	}
+	
 	//Mange Category
 	manageCategory(1);
 	function manageCategory(pn){
@@ -14,11 +32,13 @@ $(document).ready(function(){
 		})
 	}
 
+	//page Number Buttons
 	$("body").delegate(".page-link","click",function(){
 		var pn = $(this).attr("pn");
 		manageCategory(pn);
 	})
 
+	//Delete category
 	$("body").delegate(".del_cat","click",function(){
 		var did = $(this).attr("did");
 		if (confirm("Are you sure ? You want to delete..!")) {
@@ -42,36 +62,6 @@ $(document).ready(function(){
 		}
 	})
 
-	//Fetch category
-	fetch_category();
-	function fetch_category(){
-		$.ajax({
-			url : DOMAIN+"/includes/process.php",
-			method : "POST",
-			data : {getCategory:1},
-			success : function(data){
-				var root = "<option value='0'>Root</option>";
-				var choose = "<option value=''>Choose Category</option>";
-				$("#parent_cat").html(root+data);
-				$("#select_cat").html(choose+data);
-			}
-		})
-	}
-
-	//Fetch Brand
-	fetch_brand();
-	function fetch_brand(){
-		$.ajax({
-			url : DOMAIN+"/includes/process.php",
-			method : "POST",
-			data : {getBrand:1},
-			success : function(data){
-				var choose = "<option value=''>Choose Brand</option>";
-				$("#select_brand").html(choose+data);
-			}
-		})
-	}
-
 	//Update Category
 	$("body").delegate(".edit_cat","click",function(){
 		var eid = $(this).attr("eid");
@@ -89,6 +79,7 @@ $(document).ready(function(){
 		})
 	})
 
+	//Update category after getting data
 	$("#update_category_form").on("submit",function(){
 		if ($("#update_category").val() == "") {
 			$("#update_category").addClass("border-danger");
@@ -106,6 +97,22 @@ $(document).ready(function(){
 	})
 
 	//----------Brand-------------
+
+	//Fetch Brand
+	fetch_brand();
+	function fetch_brand(){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {getBrand:1},
+			success : function(data){
+				var choose = "<option value=''>Choose Brand</option>";
+				$("#select_brand").html(choose+data);
+			}
+		})
+	}
+
+	//Manage Brand
 	manageBrand(1);
 	function manageBrand(pn){
 		$.ajax({
@@ -118,11 +125,13 @@ $(document).ready(function(){
 		})
 	}
 
+	//page Number Buttons
 	$("body").delegate(".page-link","click",function(){
 		var pn = $(this).attr("pn");
 		manageBrand(pn);
 	})
 
+	//Delete brand
 	$("body").delegate(".del_brand","click",function(){
 		var did = $(this).attr("did");
 		if (confirm("Are you sure ? You want to delete..!")) {
@@ -160,6 +169,7 @@ $(document).ready(function(){
 		})
 	})
 
+	//Update brand after getting data
 	$("#update_brand_form").on("submit",function(){
 		if ($("#update_brand").val() == "") {
 			$("#update_brand").addClass("border-danger");
@@ -184,6 +194,8 @@ $(document).ready(function(){
 	})
 
 	//---------------------Products-----------------
+
+	// Manage product
 	manageProduct(1);
 	function manageProduct(pn){
 		$.ajax({
@@ -240,7 +252,7 @@ $(document).ready(function(){
 		})
 	})
 
-	//Update product
+	//Update product after getting data
 	$("#form_update_product").on("submit",function(){
 		// console.log($("#form_update_product").serialize());
 		$.ajax({
@@ -259,6 +271,8 @@ $(document).ready(function(){
 	})
 
 	//---------------------People-----------------
+
+	//Mange people
 	managePeople(1);
 	function managePeople(pn){
 		$.ajax({
@@ -271,12 +285,13 @@ $(document).ready(function(){
 		})
 	}
 	
-	// delete profile
+	//page Number Buttons
 	$("body").delegate(".page-link","click",function(){
 		var pn = $(this).attr("pn");
 		managePeople(pn);
 	})
 
+	// delete profile
 	$("body").delegate(".del_people","click",function(){
 		var did = $(this).attr("did");
 		if (confirm("Are you sure ? You want to delete..!")) {
@@ -339,7 +354,7 @@ $(document).ready(function(){
 	})
 
 
-	//Update people
+	//Update people after getting data
 	$("#update_people_form").on("submit",function(){
 		$.ajax({
 			url : DOMAIN+"/includes/process.php",
@@ -357,6 +372,8 @@ $(document).ready(function(){
 	})
 
 	//---------------------Purchase-----------------
+
+	//Manage purchase
 	managePurchase(1);
 	function managePurchase(pn){
 		$.ajax({
@@ -368,12 +385,14 @@ $(document).ready(function(){
 			}
 		})
 	}
-	// delete purchase
+
+	//page Number Buttons
 	$("body").delegate(".page-link","click",function(){
 		var pn = $(this).attr("pn");
 		managePurchase(pn);
 	})
 
+	// delete purchase
 	$("body").delegate(".del_purchase","click",function(){
 		var did = $(this).attr("did");
 		if (confirm("Are you sure ? You want to delete..!")) {
@@ -400,6 +419,8 @@ $(document).ready(function(){
 	})
 
 	//---------------------Order-----------------
+
+	//Manage order
 	manageOrder(1);
 	function manageOrder(pn){
 		$.ajax({
@@ -411,12 +432,13 @@ $(document).ready(function(){
 			}
 		})
 	}
-	// delete order
+	//page Number Buttons
 	$("body").delegate(".page-link","click",function(){
 		var pn = $(this).attr("pn");
 		manageOrder(pn);
 	})
 
+	// delete order
 	$("body").delegate(".del_order","click",function(){
 		var did = $(this).attr("did");
 		if (confirm("Are you sure ? You want to delete..!")) {
@@ -441,4 +463,6 @@ $(document).ready(function(){
 	$("body").delegate(".edit_order","click",function(){
 		alert("We can`t allow you to do so bro")
 	})
+
+	
 })

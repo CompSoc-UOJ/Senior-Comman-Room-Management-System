@@ -104,7 +104,16 @@ if($_SESSION["usertype"] != "Staff Member") {
 		</div>
 		<br>
 		<div class="row">
-		<div class="col-md-3">
+			<div class="col-md-3">
+				<div class="card" style="border:solid 1px #777">
+						<div class="card-body">
+						<h4 class="card-title">Summary</h4>
+						<p class="card-text">Here you can manage your users billing summaries.</p>
+						<center>
+						<a href="manage_summary.php" class="btn btn-primary btn-block">View</a>
+						</center>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="card" style="border:solid 1px #777">
