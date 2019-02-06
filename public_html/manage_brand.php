@@ -1,6 +1,6 @@
 <?php
 include_once("./database/constants.php");
-if (!isset($_SESSION["userid"])) {
+if($_SESSION["usertype"] != "Staff Member") {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -15,8 +15,8 @@ if (!isset($_SESSION["userid"])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 	<script type="text/javascript" src="./js/manage.js"></script>
-	<script type="text/javascript" src="./js/main.js"></script>
+ 	<script type="text/javascript" src="./js/manage.js" async></script>
+	<script type="text/javascript" src="./js/main.js"> async</script>
  </head>
 <body>
 	<!-- Navbar -->
@@ -28,6 +28,8 @@ if (!isset($_SESSION["userid"])) {
 		      <tr>
 		        <th>#</th>
 		        <th>Supplier Name</th>
+						<th>Contact No</th>
+						<th>Address</th>
 		        <th>Status</th>
 		        <th>Action</th>
 		      </tr>
@@ -47,14 +49,13 @@ if (!isset($_SESSION["userid"])) {
 			<a href="#" data-toggle="modal" data-target="#form_brand" class="btn btn-primary">Add</a>
 	</div>
 
-
 	<?php
 		//update brand form
 		include_once("./templates/update_brand.php");
+		
 		//Brand Form
 		include_once("./templates/brand.php");
 	?>
-	
-	
+		
 </body>
 </html>

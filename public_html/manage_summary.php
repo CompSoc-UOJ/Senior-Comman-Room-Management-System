@@ -16,37 +16,52 @@ if($_SESSION["usertype"] != "Staff Member") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<script type="text/javascript" src="./js/manage.js" async></script>
+	 <script type="text/javascript" src="./js/main.js" async></script>
+
  </head>
 <body>
 	<!-- Navbar -->
 	<?php include_once("./templates/header.php"); ?>
 	<br/><br/>
 	<div class="container-fluid">
+
+		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
+			<div class="card-body">
+				<h3>Select date</h3>
+				<table align="center" style="width:800px;">
+						<thead>
+							<tr>
+								<th style="text-align:center;">Start Date</th>
+								<th style="text-align:center;">End Date</th>
+							</tr>
+						</thead>
+						<tbody id="date select">
+
+						</tbody>
+				</table> <!--Table Ends-->
+			</div> <!--Crad Body Ends-->
+		</div> 
+		<p></p>
 		<table class="table table-hover table-bordered">
 		    <thead>
 		      <tr>
-					<th>#</th>
-		        <th>Item Name</th>
-		        <th>Selling Price</th> 
-		        <th>Sale Quantity</th>
-		        <th>Customer Name</th>
-		        <th>Sale Date</th>
-		        <!-- <th>Sub Total</th>
-						<th>Discount</th>
-						<th>Net Total</th>
-						<th>Paid</th>
-						<th>Due</th> -->
-						<th>Payment Method</th>
-						<th>Invoice ID</th>
+		        <th>#</th>
+		        <th>Full Name</th>
+						<th>Employee ID</th>
+		        <th>Email</th> 
+						<th>Contact-No</th> 
+		        <th>User Type</th>
+		        <th>Register Date</th>
+		        <th>Last Login</th>
 						<th>Status</th>
+		        <th>Notes</th>
 		        <th>Action</th>
 		      </tr>
 		    </thead>
-		    <tbody id="get_order">
+		    <tbody id="get_people">
 					 <!--on manage.js-->
 		    </tbody>
 		  </table>
-			<a href="new_order.php"  class="btn btn-primary">New Sale</a>
-	</div>	
+	</div>
 </body>
 </html>

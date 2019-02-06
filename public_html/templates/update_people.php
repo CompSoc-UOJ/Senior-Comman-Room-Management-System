@@ -22,12 +22,24 @@
             </div>
           </div>
           <div class="form-group">
+            <label>Employee ID</label>
+            <input type="text" class="form-control" id="update_employeeid" name="update_employeeid" placeholder="Edit Employee ID" required/> 
+          </div>
+          <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" id="update_email" name="update_email" placeholder="Edit Email" required/> 
           </div>
           <div class="form-group">
+            <label>Contact-No</label>
+            <input type="text" name="update_contactno" class="form-control" id="update_contactno" placeholder="Edit Contact No (94123456789)"/>
+          </div>
+          <div class="form-group">
             <label>User Type</label>
-            <input type="text" class="form-control" id="update_type" name="update_type" required/> 
+            <select name="update_type" class="form-control" id="update_type">
+		              <option value="">Choose User Type</option>
+		              <option value="Staff Member">Staff Member</option>
+		              <option value="Canteen Staff">Canteen Staff</option>
+		            </select>
           </div>
           <div class="form-group">
             <label>Notes</label>

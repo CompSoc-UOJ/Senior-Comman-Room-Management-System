@@ -1,7 +1,14 @@
 <?php
 include_once("./database/constants.php");
-if (isset($_SESSION["userid"])) {
-	header("location:".DOMAIN."/dashboard.php");
+if (isset($_SESSION["userid"])){ //check if user or password is correct from query
+
+	if($_SESSION["usertype"] == "Staff Member"){ //check usertype
+		header("location:".DOMAIN."/dashboard.php"); 
+	}
+
+	elseif ($_SESSION["usertype"] == "Canteen Staff") {
+		header("location:".DOMAIN."/canteen/dashboard.php"); 
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -16,7 +23,7 @@ if (isset($_SESSION["userid"])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<link rel="stylesheet" type="text/css" href="./includes/style.css">
- 	<script type="text/javascript" rel="stylesheet" src="./js/main.js"></script>
+ 	<script type="text/javascript" rel="stylesheet" src="./js/main.js" async></script>
  </head>
 <body>
 <div class="overlay"><div class="loader"></div></div>

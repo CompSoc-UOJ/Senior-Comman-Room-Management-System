@@ -14,7 +14,17 @@
             <label>Brand Name</label>
             <input type="hidden" name="bid" id="bid" value=""/>
             <input type="text" class="form-control" name="update_brand" id="update_brand" placeholder="Edit Supplier Name"/>
-            <small id= "brand_error" class="form-text text-muted"></small>
+            <small id= "update_brand_error" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+            <label>Contact No</label>
+            <input type="text" class="form-control" name="update_s_contactno" id="update_s_contactno" placeholder="Edit Supplier Contact No"/>
+            <small id= "update_scn_error" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" class="form-control" name="update_address" id="update_address" placeholder="Edit Supplier Address"/>
+            <small id= "update_adr_error" class="form-text text-muted"></small>
           </div>
           <button type="submit" class="btn btn-primary">Update Supplier</button>
       </form>

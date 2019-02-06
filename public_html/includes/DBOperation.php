@@ -1,8 +1,5 @@
 <?php
 
-/**
-* 
-*/
 class DBOperation
 {
 	
@@ -29,11 +26,11 @@ class DBOperation
 
 	}
 
-	public function addBrand($brand_name){
-		$pre_stmt = $this->con->prepare("INSERT INTO `brands`(`brand_name`, `status`)
-		 VALUES (?,?)");
+	public function addBrand($brand_name,$s_contactno,$address){
+		$pre_stmt = $this->con->prepare("INSERT INTO `brands`(`brand_name`, `s_contactno`, `address`,  `status`)
+		 VALUES (?,?,?,?)");
 		$status = 1;
-		$pre_stmt->bind_param("si",$brand_name,$status);
+		$pre_stmt->bind_param("sisi",$brand_name,$s_contactno,$address,$status);
 		$result = $pre_stmt->execute() or die($this->con->error);
 		if ($result) {
 			return "BRAND_ADDED";

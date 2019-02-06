@@ -16,7 +16,6 @@ $(document).ready(function(){
 	}
 
 	addNewRow();
-
 	$("#add").click(function(){
 		addNewRow();
 	})
@@ -51,18 +50,18 @@ $(document).ready(function(){
 			dataType : "json",
 			data : {getPriceAndQty:1,id:pid},
 			success : function(data){
-				tr.find(".tqty").val(data["product_stock"]);
-				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".tpid").val(data["pid"]);
-				tr.find(".qty").val(1);
+				tr.find(".pro_name").val(data["product_name"]);
 				tr.find(".price").val(data["product_price"]);
-				tr.find(".amt").html( tr.find(".qty").val() * tr.find(".price").val() );
+				tr.find(".tqty").val(data["product_stock"]);
+				tr.find(".qty").val(1);
+				tr.find(".amt").val(tr.find(".qty").val() * tr.find(".price").val());
 				calculate(0,0);
 			}
 		})
 	})
 
-	$("#invoice_item").delegate(".qty","keyup",function(){
+	$("#invoice_item").delegate(".qty","change",function(){
 		var qty = $(this);
 		var tr = $(this).parent().parent();
 		if (isNaN(qty.val())) {
@@ -71,9 +70,9 @@ $(document).ready(function(){
 		}else{
 			if ((qty.val() - 0) > (tr.find(".tqty").val()-0)) {
 				alert("Sorry ! This much of quantity is not available");
-				aty.val(1);
+				qty.val(1);
 			}else{
-				tr.find(".amt").html(qty.val() * tr.find(".price").val());
+				tr.find(".amt").val(qty.val() * tr.find(".price").val());
 				calculate(0,0);
 			}
 		}
@@ -86,25 +85,32 @@ $(document).ready(function(){
 		var discount = dis;
 		var paid_amt = paid;
 		var due = 0;
+
 		$(".amt").each(function(){
-			sub_total = sub_total + ($(this).html() * 1);
+			sub_total = sub_total + ($(this).val() * 1);
 		})
+
+		$("#sub_total").val(sub_total);
+
 		// gst = 0.18 * sub_total;
 		// net_total = gst + sub_total;
-		net_total = sub_total - discount;
-		due = paid_amt - net_total;
 		// $("#gst").val(gst);
-		$("#sub_total").val(sub_total);
-		$("#discount").val(discount);
+	
+		// $("#discount").val(discount);
+		
+		net_total = sub_total - discount;
 		$("#net_total").val(net_total);
-		//$("#paid")
-		$("#due").val(due);
 
+		// $("#paid").val(paid_amt)
+
+		due = paid_amt - net_total;
+		$("#due").val(due);
 	}
 
 	$("#discount").keyup(function(){
 		var discount = $(this).val();
-		calculate(discount,0);
+		var paid = $("#paid").val();
+		calculate(discount,paid);
 	})
 
 	$("#paid").keyup(function(){
@@ -113,12 +119,9 @@ $(document).ready(function(){
 		calculate(discount,paid);
 	})
 
-
 	/*Order Accepting*/
-
 	$("#order_form").click(function(){
 		var invoice = $("#get_order_data").serialize();
-		alert(invoice);
 		if ($("#cust_name").val() === "") {
 			alert("Plaese enter customer name");
 		}else if($("#paid").val() === ""){
