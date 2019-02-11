@@ -322,8 +322,8 @@ $(document).ready(function(){
 			data : {updatePeopleStatus:1,id:eid},
 			success : function(data){
 				if (data == "UPDATED") {
-					alert("Profile Updated Successfully..!");
-					window.location.href = "";
+					alert(data );
+					managePeople(1);
 				}else{
 					alert(data);
 				}
@@ -464,5 +464,59 @@ $(document).ready(function(){
 		alert("We can`t allow you to do so bro")
 	})
 
+	//---------------------Manage Summary-----------------
+
+	$("#date_select_form").on("submit",function(){
+		var stdate = $("#start_date").val();
+		var eddate = $("#end_date").val();
+		manageSummary(stdate,eddate,1);
+	})
+
+	function manageSummary(startdate,enddate,pn){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {manageSummary:1,stdate:startdate,eddate:enddate,pageno:pn},
+			success : function(data){
+				$("#get_summary").html(data);
+			}
+		})
+	}
+
+	$("body").delegate(".page-link","click",function(){
+		var pn = $(this).attr("pn");
+		var stdate = $("#start_date").val();
+		var eddate = $("#end_date").val();
+		manageSummary(stdate,eddate,pn);;
+	})
+
+	//---------------------View Summary-----------------
+
+	$("#view_summary_form").on("submit",function(){
+		var stdate = $("#start_date").val();
+		var eddate = $("#end_date").val();
+		var id = $("#userid").val();
+		viewSummary(stdate,eddate,id,1);
+	})
+
+	function viewSummary(startdate,enddate,id,pn){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {viewSummary:1,stdate:startdate,eddate:enddate,userid:id,pageno:pn},
+			success : function(data){
+				$("#get_view_summary").html(data);
+			}
+		})
+	}
+
+	$("body").delegate(".page-link","click",function(){
+		var stdate = $("#start_date").val();
+		var eddate = $("#end_date").val();
+		var id = $("#userid").val();
+		var pn = $(this).attr("pn");
+		viewSummary(stdate,eddate,id,pn);
+	})
+	
 	
 })

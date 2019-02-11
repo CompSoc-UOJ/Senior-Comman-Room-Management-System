@@ -1,6 +1,6 @@
 <?php
 include_once("./database/constants.php");
-if($_SESSION["usertype"] != "Staff Member") {
+if($_SESSION["usertype"] != "admin") {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -107,10 +107,23 @@ if($_SESSION["usertype"] != "Staff Member") {
 			<div class="col-md-3">
 				<div class="card" style="border:solid 1px #777">
 						<div class="card-body">
-						<h4 class="card-title">Summary</h4>
-						<p class="card-text">Here you can manage your users billing summaries.</p>
+						<h4 class="card-title">Sales Summary</h4>
+						<p class="card-text">Here you can view your users billing summaries.</p>
+						<br>
 						<center>
 						<a href="manage_summary.php" class="btn btn-primary btn-block">View</a>
+						</center>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card" style="border:solid 1px #777">
+						<div class="card-body">
+						<h4 class="card-title">My Summary</h4>
+						<p class="card-text">Here you can see your billing summaries.</p>
+						<br>
+						<center>
+						<a href="common/view_summary.php" class="btn btn-primary btn-block">View</a>
 						</center>
 					</div>
 				</div>

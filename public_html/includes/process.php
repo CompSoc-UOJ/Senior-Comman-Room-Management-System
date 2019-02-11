@@ -395,7 +395,7 @@ if (isset($_POST["managePeople"])) {
 							}
 							else if($row["status"] == '0'){
 						?>
-						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-warning pending'>Pending</a>
+						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-danger btn-sm pending'>Pending</a>
 						<?php 
 							}
 						?>
@@ -525,5 +525,73 @@ if (isset($_POST["deletePurchase"])) {
 	$result = $m->deleteRecord("invoice_details","id",$_POST["id"]);
 	echo $result;
 }
+
+//----------------Manage Summary---------------------
+if (isset($_POST["manageSummary"])) {
+	$m = new Manage();
+	$result = $m->manageSummaryWithPagination($_POST["stdate"],$_POST["eddate"],$_POST["pageno"]);
+	$rows = $result["rows"];
+	$pagination = $result["pagination"];
+	if (count($rows) > 0) {
+		$n = (($_POST["pageno"] - 1) * 10)+1;
+		foreach ($rows as $row) {
+			?>
+				<tr>
+			        <td><?php echo $n; ?></td>
+			        <td><?php echo $row["employeeid"]; ?></td>
+					<td><?php echo $row["username"]; ?></td>
+			        <td><?php echo $row["contactno"]; ?></td>
+					<td><?php echo $row["usertype"]; ?></td>
+			        <td><?php echo $row["sub_total"]; ?></td>
+			        <td><?php echo $row["paid"]; ?></td>
+			        <td>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
+			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-info btn-sm edit_people">Edit</a>
+			        </td>
+			      </tr>
+			<?php
+			$n++;
+		}
+		?>
+			<tr><td colspan="5"><?php echo $pagination; ?></td></tr>
+		<?php
+		exit();
+	}
+}
+
+//----------------View Summary---------------------
+
+if (isset($_POST["viewSummary"])) {
+	$m = new Manage();
+	$result = $m->viewSummaryWithPagination($_POST["stdate"],$_POST["eddate"],$_POST["userid"],$_POST["pageno"]);
+	$rows = $result["rows"];
+	$pagination = $result["pagination"];
+	if (count($rows) > 0) {
+		$n = (($_POST["pageno"] - 1) * 10)+1;
+		foreach ($rows as $row) {
+			?>
+				<tr>
+			        <td><?php echo $n; ?></td>
+			        <td><?php echo $row["invoice_no"]; ?></td>
+					<td><?php echo $row["order_date"]; ?></td>
+			        <td><?php echo $row["sub_total"]; ?></td>
+					<td><?php echo $row["discount"]; ?></td>
+			        <td><?php echo $row["paid"]; ?></td>
+			        <td><?php echo $row["payment_type"]; ?></td>
+			        <td>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
+			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-info btn-sm edit_people">Edit</a>
+			        </td>
+			      </tr>
+			<?php
+			$n++;
+		}
+		?>
+			<tr><td colspan="5"><?php echo $pagination; ?></td></tr>
+		<?php
+		exit();
+	}
+}
+
 
 ?>

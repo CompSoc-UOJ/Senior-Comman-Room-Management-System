@@ -1,6 +1,6 @@
 <?php
-include_once("./database/constants.php");
-if($_SESSION["usertype"] != "admin") {
+include_once("../database/constants.php");
+if (!isset($_SESSION["userid"])) {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -19,19 +19,19 @@ if($_SESSION["usertype"] != "admin") {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 	<script type="text/javascript" src="./js/manage.js" async></script>
+ 	<script type="text/javascript" src="../js/manage.js" async></script>
 
  </head>
 <body>
 	<!-- Navbar -->
-	<?php include_once("./templates/header.php"); ?>
+	<?php include_once("../templates/headerInside.php"); ?>
 	<br/><br/>
 	<div class="container-fluid">
 		<center>
 		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 			<div class="card-body container">
 				<h3>Select date</h3>
-				<form id="date_select_form" onsubmit="return false">
+				<form id="view_summary_form" onsubmit="return false">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label><strong>Start Date</strong></label>
@@ -42,6 +42,7 @@ if($_SESSION["usertype"] != "admin") {
 							<input type="date" class="form-control" name="end_date" id="end_date" required/>
 						</div>
 					</div>
+					<input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION["userid"]; ?>"/>
 					<center style="padding:10px;">
 						<button id="search" style="width:150px;" class="btn btn-success">Search</button>
 						<button type ="reset" id="clear" style="width:150px;" class="btn btn-danger">Clear</button>
@@ -54,16 +55,16 @@ if($_SESSION["usertype"] != "admin") {
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Employee ID</th>
-					<th>Full Name</th>
-					<th>Contact-No</th> 
-					<th>User Type</th>
-					<th>Total Cost</th>
-					<th>Total Pay</th>
+					<th>Invoice No</th>
+					<th>Order Date</th>
+					<th>Sub Total</th> 
+					<th>Discount</th>
+					<th>Total Paid</th>
+					<th>Payment Type</th>
 					
 				</tr>
 			</thead>
-			<tbody id="get_summary">
+			<tbody id="get_view_summary">
 					<!--on manage.js-->
 			</tbody>
 		</table>
