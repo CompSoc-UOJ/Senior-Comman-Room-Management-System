@@ -26,7 +26,7 @@ if (isset($_POST["getPeople"])) {
 	$rows = $obj->getAllRecord("user");
 	foreach ($rows as $row) {
 		if($row["status"] == 1){
-			echo "<option value='".$row["id"]."'>".$row["username"]."</option>";
+			echo "<option>".$row["employeeid"]."</option>";
 		}
 	}
 	exit();
@@ -37,7 +37,7 @@ if (isset($_POST["getCategory"])) {
 	$obj = new DBOperation();
 	$rows = $obj->getAllRecord("categories");
 	foreach ($rows as $row) {
-		echo "<option value='".$row["cid"]."'>".$row["category_name"]."</option>";
+		echo "<option>".$row["category_name"]."</option>";
 	}
 	exit();
 }
@@ -390,12 +390,12 @@ if (isset($_POST["managePeople"])) {
 						<?php 
 							if($row["status"] == '1'){		
 						?>
-						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-success active'>Active</a>
+						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-success btn-sm active'>Active</a>
 						<?php 
 							}
 							else if($row["status"] == '0'){
 						?>
-						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-danger btn-sm pending'>Pending</a>
+						<a href='#' eid='<?php echo $row['id'];?>' class='btn btn-warning btn-sm pending'>Pending</a>
 						<?php 
 							}
 						?>
@@ -426,8 +426,9 @@ if (isset($_POST["deletePeople"])) {
 //Update People status
 if (isset($_POST["updatePeopleStatus"])) {
 	$m = new Manage();
+	$st = $_POST["updatePeopleStatus"];
 	$id = $_POST["id"];
-	$result = $m->update_record("user",["id"=>$id],["status"=>1]);
+	$result = $m->update_record("user",["id"=>$id],["status"=>$st]);
 	echo $result;
 }
 

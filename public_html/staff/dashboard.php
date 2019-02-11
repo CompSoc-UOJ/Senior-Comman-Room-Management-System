@@ -76,7 +76,7 @@ if($_SESSION["usertype"] != "Staff Member") {
 						<div class="card-body">
 						<h4 class="card-title">Sales</h4> 
 						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
-						<a href="../new_order.php" class="btn btn-primary">Add</a>
+						<a href="#" class="btn btn-danger">Add</a>
 						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>
@@ -123,7 +123,7 @@ if($_SESSION["usertype"] != "Staff Member") {
 						<p class="card-text">Here you can see your billing summaries.</p>
 						<br>
 						<center>
-						<a href="common/view_summary.php" class="btn btn-primary btn-block">View</a>
+						<a href="../common/view_summary.php" class="btn btn-primary btn-block">View</a>
 						</center>
 					</div>
 				</div>

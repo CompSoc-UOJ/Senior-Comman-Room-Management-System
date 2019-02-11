@@ -123,7 +123,7 @@ if($_SESSION["usertype"] != "Canteen Staff") {
 						<p class="card-text">Here you can see your billing summaries.</p>
 						<br>
 						<center>
-						<a href="common/view_summary.php" class="btn btn-primary btn-block">View</a>
+						<a href="../common/view_summary.php" class="btn btn-primary btn-block">View</a>
 						</center>
 					</div>
 				</div>
