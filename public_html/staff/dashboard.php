@@ -1,6 +1,6 @@
 <?php
 include_once("../database/constants.php");
-if($_SESSION["usertype"] != "Canteen Staff") {
+if($_SESSION["usertype"] != "Staff Member") {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -76,7 +76,7 @@ if($_SESSION["usertype"] != "Canteen Staff") {
 						<div class="card-body">
 						<h4 class="card-title">Sales</h4> 
 						<p class="card-text">Here you can manage your Sales manage your current sales.</p>
-						<a href="../new_order.php" class="btn btn-primary">Add</a>
+						<a href="#" class="btn btn-danger">Add</a>
 						<a href="#" class="btn btn-danger">Manage</a>
 					</div>
 				</div>

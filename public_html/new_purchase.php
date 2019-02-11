@@ -1,6 +1,6 @@
 <?php
 include_once("./database/constants.php");
-if($_SESSION["usertype"] != "Staff Member") {
+if($_SESSION["usertype"] != "admin") {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -49,7 +49,7 @@ if($_SESSION["usertype"] != "Staff Member") {
 				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 				  			<div class="card-body">
 				  				<h3>Make a order list</h3>
-				  				<table align="center" style="width:800px;">
+				  				<table align="center" style="width:100%;">
 										<thead>
 											<tr>
 												<th>#</th>

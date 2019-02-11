@@ -2,12 +2,16 @@
 include_once("./database/constants.php");
 if (isset($_SESSION["userid"])){ //check if user or password is correct from query
 
-	if($_SESSION["usertype"] == "Staff Member"){ //check usertype
+	if($_SESSION["usertype"] == "admin"){ //check usertype
 		header("location:".DOMAIN."/dashboard.php"); 
 	}
 
 	elseif ($_SESSION["usertype"] == "Canteen Staff") {
 		header("location:".DOMAIN."/canteen/dashboard.php"); 
+	}
+
+	elseif ($_SESSION["usertype"] == "Staff Member") {
+		header("location:".DOMAIN."/staff/dashboard.php"); 
 	}
 }
 ?>

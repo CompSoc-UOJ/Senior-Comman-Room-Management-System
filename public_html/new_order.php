@@ -1,6 +1,6 @@
 <?php
 include_once("./database/constants.php");
-if (!isset($_SESSION["userid"])) {
+if($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff" ) {
 	header("location:".DOMAIN."/");
 }
 ?>
@@ -48,7 +48,7 @@ if (!isset($_SESSION["userid"])) {
 				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 				  			<div class="card-body">
 				  				<h3>Make a order list</h3>
-				  				<table align="center" style="width:800px;">
+				  				<table align="center" style="width:100%;">
 		                            <thead>
 		                              <tr>
 		                                <th>#</th>
@@ -86,7 +86,7 @@ if (!isset($_SESSION["userid"])) {
                     <div class="form-group row">
                       <label for="discount" class="col-sm-3 col-form-label" align="right">Discount</label>
                       <div class="col-sm-6">
-                        <input type="text" name="discount" class="form-control form-control-sm" id="discount" required/>
+                        <input type="text" name="discount" class="form-control form-control-sm" id="discount"/>
                       </div>
                     </div>
                     <div class="form-group row">

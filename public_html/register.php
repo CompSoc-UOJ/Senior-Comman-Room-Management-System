@@ -44,7 +44,7 @@
 		          </div>
 		          <div class="form-group">
 		            <label for="password1">Password</label>
-		            <input type="password" name="password1" class="form-control"  id="password1" placeholder="Password"/>
+		            <input type="password" name="password1" class="form-control"  id="password1" placeholder="Password (Minimum 9 Characters)"/>
 		            <small id="p1_error" class="form-text text-muted"></small>
 		          </div>
 		          <div class="form-group">

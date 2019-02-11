@@ -43,6 +43,43 @@ class Manage
 
 	}
 
+	public function manageSummaryWithPagination($stdate,$eddate,$pno){
+		$a = $this->pagination($this->con,"user",$pno,10);
+
+		$sql = "SELECT u.employeeid,u.username,u.contactno,u.usertype,SUM(s_i.sub_total) AS sub_total,SUM(s_i.paid) AS paid 
+		FROM user u,sale_invoice s_i 
+		WHERE u.id = s_i.customer_name AND order_date BETWEEN '$stdate' AND '$eddate' AND s_i.payment_type = 'Cash'
+		GROUP BY u.username ".$a["limit"];
+		
+		$result = $this->con->query($sql) or die($this->con->error);
+		$rows = array();
+		if($result->num_rows > 0){
+			while ($row = $result->fetch_assoc()) {
+				$rows[] = $row;
+			}
+		}
+		return ["rows"=>$rows,"pagination"=>$a["pagination"]];
+
+	}
+
+	public function viewSummaryWithPagination($stdate,$eddate,$id,$pno){
+		$a = $this->pagination($this->con,"sale_invoice",$pno,10);
+
+		$sql = "SELECT *
+		FROM sale_invoice s_i 
+		WHERE s_i.customer_name = '$id' AND order_date BETWEEN '$stdate' AND '$eddate' ".$a["limit"];
+		
+		$result = $this->con->query($sql) or die($this->con->error);
+		$rows = array();
+		if($result->num_rows > 0){
+			while ($row = $result->fetch_assoc()) {
+				$rows[] = $row;
+			}
+		}
+		return ["rows"=>$rows,"pagination"=>$a["pagination"]];
+
+	}
+
 	private function pagination($con,$table,$pno,$n){
 		$query = $con->query("SELECT COUNT(*) as rows FROM ".$table);
 		$row = mysqli_fetch_assoc($query);
