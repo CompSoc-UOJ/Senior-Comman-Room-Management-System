@@ -546,8 +546,7 @@ if (isset($_POST["manageSummary"])) {
 			        <td><?php echo $row["sub_total"]; ?></td>
 			        <td><?php echo $row["paid"]; ?></td>
 			        <td>
-			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
-			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-info btn-sm edit_people">Edit</a>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class="col-md btn btn-danger btn-sm del_people">Delete</a>
 			        </td>
 			      </tr>
 			<?php
@@ -580,8 +579,7 @@ if (isset($_POST["viewSummary"])) {
 			        <td><?php echo $row["paid"]; ?></td>
 			        <td><?php echo $row["payment_type"]; ?></td>
 			        <td>
-			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
-			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-info btn-sm edit_people">Edit</a>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class=" col-md btn btn-danger btn-sm del_people">Delete</a>
 			        </td>
 			      </tr>
 			<?php
