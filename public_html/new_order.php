@@ -39,7 +39,7 @@ if($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff" 
 				  			</div>
 				  		</div>
 				  		<div class="form-group row">
-				  			<label class="col-sm-3 col-form-label" align="right">Customer Name*</label>
+				  			<label class="col-sm-3 col-form-label" align="right">Employee Id*</label>
 				  			<div class="col-sm-6">
 								<select id="cust_name" name="cust_name"class="form-control form-control-sm" required>
 									</select>

@@ -5,9 +5,9 @@ include_once("DBOperation.php");
 include_once("manage.php");
 
 //For Registration Processsing
-if (isset($_POST["username"]) AND isset($_POST["email"])) {
+if (isset($_POST["employeeid"]) AND isset($_POST["email"])) {
 	$user = new User();
-	$result = $user->createUserAccount($_POST["username"],$_POST["employeeid"],$_POST["email"],$_POST["contactno"],$_POST["password1"],$_POST["usertype"],$_POST["status"]);
+	$result = $user->createUserAccount($_POST["title"],$_POST["firstname"],$_POST["lastname"],$_POST["employeeid"],$_POST["email"],$_POST["contactno"],$_POST["password1"],$_POST["usertype"],$_POST["status"]);
 	echo $result;
 	exit();
 }

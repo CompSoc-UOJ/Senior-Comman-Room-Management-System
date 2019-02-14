@@ -50,9 +50,10 @@ class User
 		}
 	}
 
-	public function createUserAccount($username,$employeeid,$email,$contactno,$password,$usertype,$status){
+	public function createUserAccount($title,$firstname,$lastname,$employeeid,$email,$contactno,$password,$usertype,$status){
 		//To protect your application from sql attack you can user 
 		//prepares statment
+		$username = $title .'.'. $firstname.$lastname;
 		if ($this->usernameExists($username)) {
 			return "USERNAME_ALREADY_EXISTS";
 		}
