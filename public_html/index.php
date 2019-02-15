@@ -10,7 +10,7 @@ if (isset($_SESSION["userid"])){ //check if user or password is correct from que
 		header("location:".DOMAIN."/canteen/dashboard.php"); 
 	}
 
-	elseif ($_SESSION["usertype"] == "Staff Member") {
+	elseif ($_SESSION["usertype"] == "SCR Member") {
 		header("location:".DOMAIN."/staff/dashboard.php"); 
 	}
 }

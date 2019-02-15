@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
 
+	$('#myPassword').strength_meter()
+
 	$("#register_form").on("submit",function(){
-		alert($("#register_form").serialize());
 		var count = 0;
 		var title = $("#title");
 		var firstname = $("#firstname");
@@ -120,8 +121,6 @@ $(document).ready(function(){
 			$("#p2_error").html("<span class='text-danger'>Password is not matched</span>");
 		}
 	})
-
-	$('#myPassword').strength_meter()
 
 	//For Login Part
 	$("#form_login").on("submit",function(){

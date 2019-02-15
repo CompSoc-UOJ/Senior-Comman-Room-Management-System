@@ -26,7 +26,7 @@ if (isset($_POST["getPeople"])) {
 	$rows = $obj->getAllRecord("user");
 	foreach ($rows as $row) {
 		if($row["status"] == 1){
-			echo "<option>".$row["employeeid"]."</option>";
+			echo "<option value='".$row["id"]."'>".$row["employeeid"]."</option>";
 		}
 	}
 	exit();
@@ -37,7 +37,7 @@ if (isset($_POST["getCategory"])) {
 	$obj = new DBOperation();
 	$rows = $obj->getAllRecord("categories");
 	foreach ($rows as $row) {
-		echo "<option>".$row["category_name"]."</option>";
+		echo "<option value='".$row["cid"]."'>".$row["category_name"]."</option>";
 	}
 	exit();
 }

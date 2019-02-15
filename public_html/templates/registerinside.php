@@ -29,7 +29,7 @@
 		            <label for="email">Contact Number</label>
 		            <input type="text" name="contactno" class="form-control" id="contactno" aria-describedby="emailHelp" placeholder="Enter Contact No (94123456789)"/>
 		            <small id="e_error" class="form-text text-muted">We'll never share your contact-no with anyone else.</small>
-		          </div>
+							</div>
 		          <div class="form-group">
 		            <label for="password1">Password</label>
 		            <input type="password" name="password1" class="form-control" id="password1" placeholder="Password"/>
@@ -44,8 +44,8 @@
 		            <label for="usertype">Usertype</label>
 		            <select name="usertype" class="form-control" id="usertype">
 		              <option value="">Choose User Type</option>
-		              <option value="Staff Member">Staff Member</option>
 		              <option value="Canteen Staff">Canteen Staff</option>
+		              <option value="SCR Member">SCR Member</option>
 		            </select>
 		            <small id="t_error" class="form-text text-muted"></small>
 		          </div>

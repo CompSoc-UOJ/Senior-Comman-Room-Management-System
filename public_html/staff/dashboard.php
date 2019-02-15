@@ -1,6 +1,6 @@
 <?php
 include_once("../database/constants.php");
-if($_SESSION["usertype"] != "Staff Member") {
+if($_SESSION["usertype"] != "SCR Member") {
 	header("location:".DOMAIN."/");
 }
 ?>

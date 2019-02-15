@@ -91,8 +91,8 @@
 		            <label for="usertype">Usertype</label>
 		            <select name="usertype" class="form-control" id="usertype">
 		              <option value="">Choose User Type</option>
-		              <option value="Staff Member">Staff Member</option>
-		              <option value="Canteen Staff">Canteen Staff</option>
+									<option value="Canteen Staff">Canteen Staff</option>
+		              <option value="SCR Member">SCR Member</option>
 		            </select>
 		            <small id="t_error" class="form-text text-muted"></small>
 		          </div>

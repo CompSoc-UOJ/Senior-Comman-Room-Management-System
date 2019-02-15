@@ -90,7 +90,7 @@ if($_SESSION["usertype"] != "admin") {
                     <div class="form-group row">
                       <label for="discount" class="col-sm-3 col-form-label" align="right">Discount</label>
                       <div class="col-sm-6">
-                        <input type="text" name="discount" class="form-control form-control-sm" id="discount" required/>
+                        <input type="text" name="discount" class="form-control form-control-sm" id="discount"/>
                       </div>
                     </div>
                     <div class="form-group row">
