@@ -37,7 +37,7 @@
             <label>User Type</label>
             <select name="update_type" class="form-control" id="update_type">
 		              <option value="">Choose User Type</option>
-		              <option value="Staff Member">Staff Member</option>
+		              <option value="SCR Member">SCR Member</option>
 		              <option value="Canteen Staff">Canteen Staff</option>
 		            </select>
           </div>

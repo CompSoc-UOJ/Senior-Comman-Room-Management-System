@@ -122,6 +122,7 @@ if($_SESSION["usertype"] != "admin") {
                         </select>
                       </div>
                     </div>
+										<input name="cashier" type="hidden" value="<?php echo $_SESSION["userid"]; ?>" class="form-control form-control-sm cashier">
 										<input name="typ" type="hidden" value="purchase" class="form-control form-control-sm typ">
 
 										<center>

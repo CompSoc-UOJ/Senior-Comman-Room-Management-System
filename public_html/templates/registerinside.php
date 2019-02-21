@@ -10,11 +10,35 @@
       </div>
       	<div class="modal-body">
 		        <form id="register_form" onsubmit="return false" autocomplete="off">
-		          <div class="form-group">
-		            <label for="username">Full Name</label>
-		            <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username (Nayananga Muhandiram)"/>
-		            <small id="u_error" class="form-text text-muted"></small>
-		          </div>
+						<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="username">Title</label>
+										<select name="title" class="form-control" id="title">
+											<option value="">Title</option>
+		              		<option>Mr</option>
+		              		<option>Mrs</option>
+											<option>Miss</option>
+											<option>Dr</option>
+		           			</select>
+										 <small id="title_error" class="form-text text-muted"></small>
+									</div>
+								</div><!-- /.col -->
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="username">First Name</label>
+		            		<input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name"/>
+										<small id="fname_error" class="form-text text-muted"></small>
+									</div>
+								</div><!-- /.col -->
+								<div class="col-md-5">
+									<div class="form-group">
+										<label for="username">Last Name</label>
+		            		<input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last Name"/>
+										<small id="lname_error" class="form-text text-muted"></small>
+									</div>
+								</div><!-- /.col -->
+							</div><!-- /.row -->
 							<div class="form-group">
 		            <label for="employeeid">Employee ID</label>
 		            <input type="text" name="employeeid" class="form-control" id="employeeid" placeholder="Enter Employee ID"/>
@@ -30,11 +54,15 @@
 		            <input type="text" name="contactno" class="form-control" id="contactno" aria-describedby="emailHelp" placeholder="Enter Contact No (94123456789)"/>
 		            <small id="e_error" class="form-text text-muted">We'll never share your contact-no with anyone else.</small>
 							</div>
-		          <div class="form-group">
+							<div class="form-group" >
+								<div id="myPassword"></div>
+								<small id="p1_error" class="form-text text-muted"></small>
+							</div>
+		          <!-- <div class="form-group">
 		            <label for="password1">Password</label>
 		            <input type="password" name="password1" class="form-control" id="password1" placeholder="Password"/>
 		            <small id="p1_error" class="form-text text-muted"></small>
-		          </div>
+		          </div> -->
 		          <div class="form-group">
 		            <label for="password2">Re-enter Password</label>
 		            <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm Password"/>

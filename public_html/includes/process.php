@@ -360,9 +360,10 @@ if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 	$paid = $_POST["paid"];
 	// $due = $_POST["due"];
 	$payment_type = $_POST["payment_type"];
+	$cashier = $_POST["cashier"];
 	$typ = $_POST["typ"];
 	$m = new Manage();
-	echo $result = $m->storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$typ);
+	echo $result = $m->storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$cashier,$typ);
 
 }
 
@@ -578,6 +579,7 @@ if (isset($_POST["viewSummary"])) {
 					<td><?php echo $row["discount"]; ?></td>
 			        <td><?php echo $row["paid"]; ?></td>
 			        <td><?php echo $row["payment_type"]; ?></td>
+					<td><?php echo $row["employeeid"]; ?></td>
 			        <td>
 			        	<a href="#" did="<?php echo $row['id']; ?>" class=" col-md btn btn-danger btn-sm del_people">Delete</a>
 			        </td>

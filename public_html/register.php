@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="card mx-auto" style="width: 30rem;">
 	        <center class="card-header">Register</center>
-		      <dihv class="card-body">
+		      <div class="card-body">
 		        <form id="register_form" onsubmit="return false;" autocomplete="off">
 
 							<div class="row">

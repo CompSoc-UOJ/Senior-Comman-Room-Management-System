@@ -61,6 +61,7 @@ if (!isset($_SESSION["userid"])) {
 					<th>Discount</th>
 					<th>Total Paid</th>
 					<th>Payment Type</th>
+					<th>Cashier</th>
 					
 				</tr>
 			</thead>

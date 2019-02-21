@@ -68,9 +68,9 @@ class Manage
 	public function viewSummaryWithPagination($stdate,$eddate,$id,$pno){
 		$a = $this->pagination($this->con,"sale_invoice",$pno,10);
 
-		$sql = "SELECT *
-		FROM sale_invoice s_i 
-		WHERE s_i.customer_name = '$id' AND order_date BETWEEN '$stdate' AND '$eddate' ORDER BY s_i.invoice_no DESC ".$a["limit"];
+		$sql = "SELECT s_i.invoice_no,s_i.order_date,s_i.sub_total,s_i.discount,s_i.paid,s_i.payment_type,u.employeeid
+		FROM user u,sale_invoice s_i 
+		WHERE s_i.customer_name = '$id' AND u.id = s_i.customer_name AND order_date BETWEEN '$stdate' AND '$eddate'  ORDER BY s_i.invoice_no DESC ".$a["limit"];
 		
 		$result = $this->con->query($sql) or die($this->con->error);
 		$rows = array();
@@ -183,13 +183,13 @@ class Manage
 	}
 
 
-	public function storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$typ){
+	public function storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$cashier,$typ){
 		
 		if($typ == "purchase"){
 			$pre_stmt = $this->con->prepare("INSERT INTO 
 			`invoice`(`customer_name`, `order_date`, `sub_total`,
-			 `discount`, `paid`, `payment_type`) VALUES (?,?,?,?,?,?)");
-			$pre_stmt->bind_param("ssddds",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type);
+			 `discount`, `paid`, `payment_type`,`cashier`) VALUES (?,?,?,?,?,?,?)");
+			$pre_stmt->bind_param("ssdddss",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type,$cashier);
 			$pre_stmt->execute() or die($this->con->error);
 			$invoice_no = $pre_stmt->insert_id;
 			if ($invoice_no != null) {
@@ -218,8 +218,8 @@ class Manage
 		else if($typ == "sale"){
 			$pre_stmt = $this->con->prepare("INSERT INTO 
 			`sale_invoice`(`customer_name`, `order_date`, `sub_total`,
-			 `discount`, `paid`, `payment_type`) VALUES (?,?,?,?,?,?)");
-			$pre_stmt->bind_param("ssddds",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type);
+			 `discount`, `paid`, `payment_type`,`cashier`) VALUES (?,?,?,?,?,?,?)");
+			$pre_stmt->bind_param("ssdddss",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type,$cashier);
 			$pre_stmt->execute() or die($this->con->error);
 			$invoice_no = $pre_stmt->insert_id;
 			if ($invoice_no != null) {
