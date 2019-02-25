@@ -13,7 +13,7 @@ if ($_GET["order_date"] && $_GET["invoice_no"]) {
 	$pdf->Cell(50,10,"Date",0,0);
 	$pdf->Cell(50,10,": ".$_GET["order_date"],0,1);
 	$pdf->Cell(50,10,"Customer Name",0,0);
-	$pdf->Cell(50,10,": ".$_GET["cust_name"],0,1);
+	$pdf->Cell(50,10,": ".$_GET["name"],0,1);
 
 	$pdf->Cell(50,10,"",0,1);
 

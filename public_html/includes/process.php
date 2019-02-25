@@ -5,9 +5,9 @@ include_once("DBOperation.php");
 include_once("manage.php");
 
 //For Registration Processsing
-if (isset($_POST["username"]) AND isset($_POST["email"])) {
+if (isset($_POST["employeeid"]) AND isset($_POST["email"])) {
 	$user = new User();
-	$result = $user->createUserAccount($_POST["username"],$_POST["employeeid"],$_POST["email"],$_POST["contactno"],$_POST["password1"],$_POST["usertype"],$_POST["status"]);
+	$result = $user->createUserAccount($_POST["title"],$_POST["firstname"],$_POST["lastname"],$_POST["employeeid"],$_POST["email"],$_POST["contactno"],$_POST["password1"],$_POST["usertype"],$_POST["status"]);
 	echo $result;
 	exit();
 }
@@ -26,7 +26,7 @@ if (isset($_POST["getPeople"])) {
 	$rows = $obj->getAllRecord("user");
 	foreach ($rows as $row) {
 		if($row["status"] == 1){
-			echo "<option>".$row["employeeid"]."</option>";
+			echo "<option value='".$row["id"]."'>".$row["employeeid"]."</option>";
 		}
 	}
 	exit();
@@ -37,7 +37,7 @@ if (isset($_POST["getCategory"])) {
 	$obj = new DBOperation();
 	$rows = $obj->getAllRecord("categories");
 	foreach ($rows as $row) {
-		echo "<option>".$row["category_name"]."</option>";
+		echo "<option value='".$row["cid"]."'>".$row["category_name"]."</option>";
 	}
 	exit();
 }
@@ -360,9 +360,10 @@ if (isset($_POST["order_date"]) AND isset($_POST["cust_name"])) {
 	$paid = $_POST["paid"];
 	// $due = $_POST["due"];
 	$payment_type = $_POST["payment_type"];
+	$cashier = $_POST["cashier"];
 	$typ = $_POST["typ"];
 	$m = new Manage();
-	echo $result = $m->storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$typ);
+	echo $result = $m->storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$cashier,$typ);
 
 }
 
@@ -457,9 +458,10 @@ if (isset($_POST["update_name"])) {
 
 //----------------Purchase---------------------
 
-if (isset($_POST["getNewPurchaseItem"])) {
+if (isset($_POST["getNewPurchaseItem"]) AND isset($_POST["supplierID"])) {
+	$supplierID = $_POST["supplierID"];
 	$obj = new DBOperation();
-	$rows = $obj->getAllRecord("products");
+	$rows = $obj->getAllItemsOfSupplier($supplierID);
 	?>
 		<tr>
 		    <td><b class="number">1</b></td>
@@ -546,8 +548,7 @@ if (isset($_POST["manageSummary"])) {
 			        <td><?php echo $row["sub_total"]; ?></td>
 			        <td><?php echo $row["paid"]; ?></td>
 			        <td>
-			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
-			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-info btn-sm edit_people">Edit</a>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class="col-md btn btn-danger btn-sm del_people">Delete</a>
 			        </td>
 			      </tr>
 			<?php
@@ -579,9 +580,9 @@ if (isset($_POST["viewSummary"])) {
 					<td><?php echo $row["discount"]; ?></td>
 			        <td><?php echo $row["paid"]; ?></td>
 			        <td><?php echo $row["payment_type"]; ?></td>
+					<td><?php echo $row["employeeid"]; ?></td>
 			        <td>
-			        	<a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
-			        	<a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people" class="btn btn-info btn-sm edit_people">Edit</a>
+			        	<a href="#" did="<?php echo $row['id']; ?>" class=" col-md btn btn-danger btn-sm del_people">Delete</a>
 			        </td>
 			      </tr>
 			<?php

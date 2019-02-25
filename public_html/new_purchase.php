@@ -24,7 +24,7 @@ if($_SESSION["usertype"] != "admin") {
 	<?php include_once("./templates/header.php"); ?>
 	<br/><br/>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-10 mx-auto">
 				<center class="card" style="box-shadow:0 0 25px 0 lightgrey;">
@@ -54,6 +54,7 @@ if($_SESSION["usertype"] != "admin") {
 											<tr>
 												<th>#</th>
 												<th style="text-align:center;">Item Name</th>
+												<!-- <th style="text-align:center;">Supplier Name</th> -->
 												<th style="text-align:center;">Available Quantity</th>
 												<th style="text-align:center;">Buying Quantity</th>
 												<th style="text-align:center;">Price Per Item</th>
@@ -90,7 +91,7 @@ if($_SESSION["usertype"] != "admin") {
                     <div class="form-group row">
                       <label for="discount" class="col-sm-3 col-form-label" align="right">Discount</label>
                       <div class="col-sm-6">
-                        <input type="text" name="discount" class="form-control form-control-sm" id="discount" required/>
+                        <input type="text" name="discount" class="form-control form-control-sm" id="discount"/>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -122,6 +123,7 @@ if($_SESSION["usertype"] != "admin") {
                         </select>
                       </div>
                     </div>
+										<input name="cashier" type="hidden" value="<?php echo $_SESSION["userid"]; ?>" class="form-control form-control-sm cashier">
 										<input name="typ" type="hidden" value="purchase" class="form-control form-control-sm typ">
 
 										<center>

@@ -1,8 +1,13 @@
 $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
+
+	$('#myPassword').strength_meter()
+
 	$("#register_form").on("submit",function(){
 		var count = 0;
-		var name = $("#username");
+		var title = $("#title");
+		var firstname = $("#firstname");
+		var lastname = $("#lastname");
 		var employeeid = $("#employeeid");
 		var email = $("#email");
 		var contactno = $("#contactno");
@@ -12,12 +17,28 @@ $(document).ready(function(){
 		// var status = $("#status"); wont check from here
 		
 		var e_patt = new RegExp(/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,4})$/);
-		if(name.val() == "" || name.val().length < 6){
-			name.addClass("border-danger");
-			$("#u_error").html("<span class='text-danger'>Please Enter Name and Name should be more than 6 char</span>");
+		if(title.val() === "" ){
+			title.addClass("border-danger");
+			// $("#title_error").html("<span class='text-danger'>Enter First Name</span>");
 		}else{
-			name.removeClass("border-danger");
-			$("#u_error").html("");
+			title.removeClass("border-danger");
+			$("#title_error").html("");
+			count++;
+		}
+		if(firstname.val() == ""){
+			firstname.addClass("border-danger");
+			$("#fname_error").html("<span class='text-danger'>Enter First Name</span>");
+		}else{
+			firstname.removeClass("border-danger");
+			$("#fname_error").html("");
+			count++;
+		}
+		if(lastname.val() == ""){
+			lastname.addClass("border-danger");
+			$("#lname_error").html("<span class='text-danger'>Enter Last Name</span>");
+		}else{
+			lastname.removeClass("border-danger");
+			$("#lname_error").html("");
 			count++;
 		}
 		if(employeeid.val() == "" || employeeid.val().length < 6){
@@ -44,9 +65,9 @@ $(document).ready(function(){
 			$("#cn_error").html("");
 			count++;
 		}
-		if(pass1.val() == "" || pass1.val().length < 9){
+		if(!pass1.val().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/)) {
 			pass1.addClass("border-danger");
-			$("#p1_error").html("<span class='text-danger'>Please Enter more than 9 digit password</span>");
+			$("#p1_error").html("<span class='text-danger'>Please Enter more strong password</span>");
 		}else{
 			pass1.removeClass("border-danger");
 			$("#p1_error").html("");
@@ -68,7 +89,7 @@ $(document).ready(function(){
 			$("#t_error").html("");
 			count++;
 		}
-		if ((pass1.val() == pass2.val()) && count == 7 ) {
+		if ((pass1.val() == pass2.val()) && count == 9 ) {
 			$(".overlay").show();
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",

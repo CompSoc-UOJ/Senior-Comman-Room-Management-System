@@ -15,22 +15,25 @@ class Manage
 	public function manageRecordWithPagination($table,$pno){
 		$a = $this->pagination($this->con,$table,$pno,10);
 		if ($table == "categories") {
-			$sql = "SELECT p.cid,p.category_name as category, c.category_name as parent, p.status FROM categories p LEFT JOIN categories c ON p.parent_cat=c.cid ".$a["limit"];
+			$sql = "SELECT p.cid,p.category_name as category, c.category_name as parent, p.status FROM categories p LEFT JOIN categories c ON p.parent_cat=c.cid ORDER BY c.cid DESC ".$a["limit"];
 		}else if($table == "products"){
-			$sql = "SELECT p.pid,p.product_name,c.category_name,b.brand_name,p.product_price,p.product_stock,p.added_date,p.p_status FROM products p,brands b,categories c WHERE p.bid = b.bid AND p.cid = c.cid ".$a["limit"];
+			$sql = "SELECT p.pid,p.product_name,c.category_name,b.brand_name,p.product_price,p.product_stock,p.added_date,p.p_status FROM products p,brands b,categories c WHERE p.bid = b.bid AND p.cid = c.cid ORDER BY p.pid DESC ".$a["limit"];
 		}
 		else if($table == "invoice_details"){
 			$sql = "SELECT p.product_name,i_d.price,i_d.qty,b.brand_name,i.order_date,i.sub_total,i.payment_type,i_d.invoice_no
 			FROM invoice_details i_d,invoice i,products p,brands b 
-			WHERE i_d.invoice_no = i.invoice_no AND i_d.product_name = p.pid AND i.customer_name = b.bid ".$a["limit"];
+			WHERE i_d.invoice_no = i.invoice_no AND i_d.product_name = p.pid AND i.customer_name = b.bid ORDER BY i_d.id DESC ".$a["limit"];
 		}
 		else if($table == "sale_details"){
 			$sql = "SELECT s_d.id,p.product_name,s_d.price,s_d.qty,u.username,s_i.order_date,s_i.sub_total,s_i.discount,(s_i.sub_total-s_i.discount) AS net_total,s_i.paid,((s_i.sub_total-s_i.discount)-s_i.paid) AS due,s_i.payment_type,s_d.invoice_no
 			FROM sale_details s_d,sale_invoice s_i,products p,user u
-			WHERE s_d.invoice_no = s_i.invoice_no AND s_d.product_name = p.pid AND s_i.customer_name = u.id ".$a["limit"];
+			WHERE s_d.invoice_no = s_i.invoice_no AND s_d.product_name = p.pid AND s_i.customer_name = u.id ORDER BY s_d.id DESC ".$a["limit"];
 		}
-		else{
-			$sql = "SELECT * FROM ".$table." ".$a["limit"];
+		else if($table == "user"){
+			$sql = "SELECT * FROM ".$table." ORDER BY id DESC ".$a["limit"];
+		}
+		else if($table == "brands"){
+			$sql = "SELECT * FROM ".$table." ORDER BY bid DESC ".$a["limit"];
 		}
 		$result = $this->con->query($sql) or die($this->con->error);
 		$rows = array();
@@ -65,9 +68,9 @@ class Manage
 	public function viewSummaryWithPagination($stdate,$eddate,$id,$pno){
 		$a = $this->pagination($this->con,"sale_invoice",$pno,10);
 
-		$sql = "SELECT *
-		FROM sale_invoice s_i 
-		WHERE s_i.customer_name = '$id' AND order_date BETWEEN '$stdate' AND '$eddate' ".$a["limit"];
+		$sql = "SELECT s_i.invoice_no,s_i.order_date,s_i.sub_total,s_i.discount,s_i.paid,s_i.payment_type,u.employeeid
+		FROM user u,sale_invoice s_i 
+		WHERE s_i.customer_name = '$id' AND u.id = s_i.customer_name AND order_date BETWEEN '$stdate' AND '$eddate'  ORDER BY s_i.invoice_no DESC ".$a["limit"];
 		
 		$result = $this->con->query($sql) or die($this->con->error);
 		$rows = array();
@@ -180,13 +183,13 @@ class Manage
 	}
 
 
-	public function storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$typ){
+	public function storeCustomerOrderInvoice($orderdate,$cust_name,$ar_tqty,$ar_qty,$ar_price,$ar_tpid,$sub_total,$discount,$paid,$payment_type,$cashier,$typ){
 		
 		if($typ == "purchase"){
 			$pre_stmt = $this->con->prepare("INSERT INTO 
 			`invoice`(`customer_name`, `order_date`, `sub_total`,
-			 `discount`, `paid`, `payment_type`) VALUES (?,?,?,?,?,?)");
-			$pre_stmt->bind_param("ssddds",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type);
+			 `discount`, `paid`, `payment_type`,`cashier`) VALUES (?,?,?,?,?,?,?)");
+			$pre_stmt->bind_param("ssdddss",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type,$cashier);
 			$pre_stmt->execute() or die($this->con->error);
 			$invoice_no = $pre_stmt->insert_id;
 			if ($invoice_no != null) {
@@ -215,8 +218,8 @@ class Manage
 		else if($typ == "sale"){
 			$pre_stmt = $this->con->prepare("INSERT INTO 
 			`sale_invoice`(`customer_name`, `order_date`, `sub_total`,
-			 `discount`, `paid`, `payment_type`) VALUES (?,?,?,?,?,?)");
-			$pre_stmt->bind_param("ssddds",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type);
+			 `discount`, `paid`, `payment_type`,`cashier`) VALUES (?,?,?,?,?,?,?)");
+			$pre_stmt->bind_param("ssdddss",$cust_name,$orderdate,$sub_total,$discount,$paid,$payment_type,$cashier);
 			$pre_stmt->execute() or die($this->con->error);
 			$invoice_no = $pre_stmt->insert_id;
 			if ($invoice_no != null) {

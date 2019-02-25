@@ -23,7 +23,7 @@ if($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff" 
 	<?php include_once("./templates/header.php"); ?>
 	<br/><br/>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-10 mx-auto">
 				<center class="card" style="box-shadow:0 0 25px 0 lightgrey;">
@@ -39,9 +39,9 @@ if($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff" 
 				  			</div>
 				  		</div>
 				  		<div class="form-group row">
-				  			<label class="col-sm-3 col-form-label" align="right">Customer Name*</label>
+				  			<label class="col-sm-3 col-form-label" align="right">Employee Id*</label>
 				  			<div class="col-sm-6">
-								<select id="cust_name" name="cust_name"class="form-control form-control-sm" required>
+								<select id="cust_name" name="cust_name" class="form-control form-control-sm" required>
 									</select>
 				  			</div>
 				  		</div>
@@ -116,7 +116,9 @@ if($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff" 
                         </select>
                       </div>
                     </div>
+										<input name="cashier" type="hidden" value="<?php echo $_SESSION["userid"]; ?>" class="form-control form-control-sm cashier">
 										<input name="typ" type="hidden" value="sale" class="form-control form-control-sm typ">
+
 
                     <center>
                       <input type="submit" id="order_form" style="width:150px;" class="btn btn-info" value="Order">

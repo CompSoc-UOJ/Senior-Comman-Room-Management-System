@@ -17,6 +17,10 @@ if($_SESSION["usertype"] != "admin") {
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<script type="text/javascript" src="./js/manage.js" async></script>
 	 <script type="text/javascript" src="./js/main.js" async></script>
+	 
+	 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="./Password-Strength/password_strength/password_strength_lightweight.js"></script>
+	<link rel="stylesheet" href="./Password-Strength/password_strength/password_strength.css">
 
  </head>
 <body>
