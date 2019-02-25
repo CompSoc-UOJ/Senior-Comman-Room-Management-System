@@ -15,25 +15,34 @@ $(document).ready(function(){
 		})
 	}
 
-	addNewRow();
-	$("#add").click(function(){
-		addNewRow();
-	})
 
-	function addNewRow(){
-		$.ajax({
-			url : DOMAIN+"/includes/process.php",
-			method : "POST",
-			data : {getNewPurchaseItem:1},
-			success : function(data){
-				$("#invoice_item").append(data);
-				var n = 0;
-				$(".number").each(function(){
-					$(this).html(++n);
-				})
-			}
+	$("#cust_name").change(function(){
+		
+		var supplier = $('#cust_name').val(); 
+		// $("#cust_name").attr("readonly", true); 
+		$("#cust_name").prop('disabled', true);
+		addNewRow();
+		
+		$("#add").click(function(){
+			addNewRow();
 		})
-	}
+
+		function addNewRow(){
+			$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : {getNewPurchaseItem:1,supplierID:supplier},
+				success : function(data){
+					$("#invoice_item").append(data);
+					var n = 0;
+					$(".number").each(function(){
+						$(this).html(++n);
+					})
+				}
+			})
+		}
+
+	})
 
 	$("#remove").click(function(){
 		$("#invoice_item").children("tr:last").remove();

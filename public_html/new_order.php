@@ -23,7 +23,7 @@ if($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff" 
 	<?php include_once("./templates/header.php"); ?>
 	<br/><br/>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-10 mx-auto">
 				<center class="card" style="box-shadow:0 0 25px 0 lightgrey;">

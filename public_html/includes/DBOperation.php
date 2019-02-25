@@ -69,6 +69,21 @@ class DBOperation
 		}
 		return "NO_DATA";
 	}
+
+	public function getAllItemsOfSupplier($supplierID){
+		$pre_stmt = $this->con->prepare("SELECT * FROM products WHERE bid = ?");
+		$pre_stmt->bind_param("i",$supplierID);
+		$pre_stmt->execute() or die($this->con->error);
+		$result = $pre_stmt->get_result();
+		$rows = array();
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()){
+				$rows[] = $row;
+			}
+			return $rows;
+		}
+		return "NO_DATA";
+	}
 }
 
 //$opr = new DBOperation();

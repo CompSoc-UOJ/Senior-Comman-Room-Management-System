@@ -458,9 +458,10 @@ if (isset($_POST["update_name"])) {
 
 //----------------Purchase---------------------
 
-if (isset($_POST["getNewPurchaseItem"])) {
+if (isset($_POST["getNewPurchaseItem"]) AND isset($_POST["supplierID"])) {
+	$supplierID = $_POST["supplierID"];
 	$obj = new DBOperation();
-	$rows = $obj->getAllRecord("products");
+	$rows = $obj->getAllItemsOfSupplier($supplierID);
 	?>
 		<tr>
 		    <td><b class="number">1</b></td>
