@@ -70,7 +70,7 @@ class Manage
 
 		$sql = "SELECT s_i.invoice_no,s_i.order_date,s_i.sub_total,s_i.discount,s_i.paid,s_i.payment_type,u.employeeid
 		FROM user u,sale_invoice s_i 
-		WHERE s_i.customer_name = '$id' AND u.id = s_i.customer_name AND order_date BETWEEN '$stdate' AND '$eddate'  ORDER BY s_i.invoice_no DESC ".$a["limit"];
+		WHERE s_i.customer_name = '$id' AND u.id = s_i.cashier AND order_date BETWEEN '$stdate' AND '$eddate'  ORDER BY s_i.invoice_no DESC ".$a["limit"];
 		
 		$result = $this->con->query($sql) or die($this->con->error);
 		$rows = array();

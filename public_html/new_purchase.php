@@ -45,6 +45,9 @@ if($_SESSION["usertype"] != "admin") {
 				  				<select id="cust_name" name="cust_name"class="form-control form-control-sm" required>
 									</select>
 				  			</div>
+								<button onclick="location.reload(true);" class="btn btn-default btn-sm">
+									<span class="glyphicon glyphicon-refresh"></span> Refresh
+								</button>
 				  		</div>
 				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 				  			<div class="card-body">

@@ -581,9 +581,6 @@ if (isset($_POST["viewSummary"])) {
 			        <td><?php echo $row["paid"]; ?></td>
 			        <td><?php echo $row["payment_type"]; ?></td>
 					<td><?php echo $row["employeeid"]; ?></td>
-			        <td>
-			        	<a href="#" did="<?php echo $row['id']; ?>" class=" col-md btn btn-danger btn-sm del_people">Delete</a>
-			        </td>
 			      </tr>
 			<?php
 			$n++;

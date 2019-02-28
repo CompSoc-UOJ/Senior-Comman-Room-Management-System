@@ -315,26 +315,38 @@ $(document).ready(function(){
 	//People status
 	$("body").delegate(".pending","click",function(){
 		var eid = $(this).attr("eid");
+		window.location.href = "";
 		$.ajax({
 			url : DOMAIN+"/includes/process.php",
 			method : "POST",
 			dataType : "json",
 			data : {updatePeopleStatus:1,id:eid},
 			success : function(data){
-				alert(data);
+				if (data == "UPDATED") {
+					alert("Product Updated Successfully..!");
+					window.location.href = "";
+				}else{
+					alert(data);
+				}
 			}
 		})
 	})
 
 	$("body").delegate(".active","click",function(){
 		var eid = $(this).attr("eid");
+		window.location.href = "";
 		$.ajax({
 			url : DOMAIN+"/includes/process.php",
 			method : "POST",
 			dataType : "json",
 			data : {updatePeopleStatus:0,id:eid},
 			success : function(data){
-				alert(data);
+				if (data == "UPDATED") {
+					alert("Product Updated Successfully..!");
+					window.location.href = "";
+				}else{
+					alert(data);
+				}
 			}
 		})
 	})
