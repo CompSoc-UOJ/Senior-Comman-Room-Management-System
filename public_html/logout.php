@@ -2,8 +2,7 @@
 
 include_once("./database/constants.php");
 if (isset($_SESSION["userid"])) {
-	session_destroy();
+    session_destroy();
 }
-header("location:".DOMAIN."/");
+header("location:" . DOMAIN . "/");
 
-?>

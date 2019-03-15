@@ -1,34 +1,37 @@
 /* -------------  CSS Loader  ----------- */
 
-.overlay{
-	display: none;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	z-index: 10;
-	opacity: 0.7;
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 10;
+    opacity: 0.7;
 }
-.loader{
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-	border:10px solid #333;
-	position: relative;
-	margin: 0 auto;
-	top:30%;
-	animation:loader 2s linear infinite;
+
+.loader {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 10px solid #333;
+    position: relative;
+    margin: 0 auto;
+    top: 30%;
+    animation: loader 2s linear infinite;
 }
-@keyframes loader{
-	50% {
-		opacity: 0.5;
-	}
-	100% {
-		transform:rotate(360deg);
-	}
+
+@keyframes loader {
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
-.loader:after{
-	content: "";
+
+.loader:after {
+    content: "";
     width: 35px;
     height: 35px;
     background: #333;
@@ -37,8 +40,9 @@
     top: -20px;
     left: 55px;
 }
-.loader:before{
-	content: "";
+
+.loader:before {
+    content: "";
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
