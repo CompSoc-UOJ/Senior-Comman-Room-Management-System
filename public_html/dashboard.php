@@ -45,7 +45,7 @@ if ($_SESSION["usertype"] != "admin") {
                     <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $_SESSION["usertype"]; ?></p>
                     <p class="card-text">Last Login : <?php echo $_SESSION["last_login"]; ?></p>
                     <a href="#" eid="<?php echo $_SESSION["userid"]; ?>" data-toggle="modal"
-                       data-target="#form_update_people" class="btn btn-primary edit_people"><i class="fa fa-edit">&nbsp;</i>Edit
+                       data-target="#form_update_me" class="btn btn-primary edit_people"><i class="fa fa-edit">&nbsp;</i>Edit
                         Profile</a>
                 </div>
             </div>
@@ -178,7 +178,7 @@ if ($_SESSION["usertype"] != "admin") {
 
 <?php
 //Update Register Form
-include_once("./templates/update_people.php");
+include_once("./templates/update_me.php");
 
 //Categpry Form
 include_once("./templates/category.php");

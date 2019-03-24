@@ -477,6 +477,115 @@ $(document).ready(function () {
         }
     });
 
+    //Update me after getting data
+    $("#update_me_form").on("submit", function () {
+        let count = 0;
+        const update_name = $("#update_name");
+        const update_employeeid = $("#update_employeeid");
+        const update_email = $("#update_email");
+        const update_contactno = $("#update_contactno");
+        const oldPassword = $("#oldPassword");
+        const update_pass1 = $("#password1");
+        const update_pass2 = $("#update_password2");
+
+        const e_patt = new RegExp(/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,4})$/);
+        const phoneNoRegex = /^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\d)\d{6}$/;
+
+
+        if (update_name.val() === "") {
+            update_name.addClass("border-danger");
+            $("#uname_error").html("<span class='text-danger'>Enter Correct User Name</span>");
+        } else {
+            update_name.removeClass("border-danger");
+            $("#uname_error").html("");
+            count++;
+        }
+        if (update_employeeid.val() === "" || update_employeeid.val().length < 6) {
+            update_employeeid.addClass("border-danger");
+            $("#eid_error").html("<span class='text-danger'>Please Enter Employee ID and Employee ID should be more than 6 char</span>");
+        } else {
+            update_employeeid.removeClass("border-danger");
+            $("#eid_error").html("");
+            count++;
+        }
+        if (!e_patt.test(update_email.val())) {
+            update_email.addClass("border-danger");
+            $("#e_error").html("<span class='text-danger'>Please Enter Valid Email Address</span>");
+        } else {
+            update_email.removeClass("border-danger");
+            $("#e_error").html("");
+            count++;
+        }
+        if (!phoneNoRegex.test(update_contactno.val())) {
+            update_contactno.addClass("border-danger");
+            $("#cn_error").html("<span class='text-danger'>Please Enter Contact-No and Contact-No should be more than 9 numbers</span>");
+        } else {
+            update_contactno.removeClass("border-danger");
+            $("#cn_error").html("");
+            count++;
+        }
+        if (oldPassword.val() === "") {
+            oldPassword.addClass("border-danger");
+            $("#op_error").html("<span class='text-danger'>Please enter old password</span>");
+        } else {
+            update_pass2.removeClass("border-danger");
+            $("#p2_error").html("");
+            count++;
+        }
+        if (!update_pass1.val().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/)) {
+            update_pass1.addClass("border-danger");
+            $("#p1_error").html("<span class='text-danger'>Please Enter more strong password</span>");
+        } else {
+            update_pass1.removeClass("border-danger");
+            $("#p1_error").html("");
+            count++;
+        }
+        if (update_pass2.val() === "") {
+            update_pass2.addClass("border-danger");
+            $("#p2_error").html("<span class='text-danger'>Please Confirm password</span>");
+        } else {
+            update_pass2.removeClass("border-danger");
+            $("#p2_error").html("");
+            count++;
+        }
+
+        if ((update_pass1.val() === update_pass2.val()) && count === 6) {
+            $(".overlay").show();
+            $.ajax({
+                url: DOMAIN + "/includes/process.php",
+                method: "POST",
+                data: $("#register_form").serialize(),
+                success: function (data) {
+                    if (data === "USERNAME_ALREADY_EXISTS") {
+                        $(".overlay").hide();
+                        alert("It seems like you user name is already used");
+                    } else if (data === "EMPLOYEEID_ALREADY_EXISTS") {
+                        $(".overlay").hide();
+                        alert("It seems like you employee id is already used");
+                    } else if (data === "EMAIL_ALREADY_EXISTS") {
+                        $(".overlay").hide();
+                        alert("It seems like you email is already used");
+                    }
+                    else if (data === "OLD PASSWORD DOES NOT MATCH") {
+                        $(".overlay").hide();
+                        alert("It seems like your old password does not match");
+                    }else if (data === "SOME_ERROR") {
+                        $(".overlay").hide();
+                        alert("Something Wrong");
+                    } else {
+                        alert("Account Updated Successfully");
+                        window.location.href = "";
+                        // window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
+                    }
+                }
+            })
+        } else {
+            update_pass2.addClass("border-danger");
+            $("#p2_error").html("<span class='text-danger'>Password is not matched</span>");
+        }
+    });
+
+
     //---------------------Purchase-----------------
 
     //Manage purchase

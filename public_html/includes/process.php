@@ -467,7 +467,7 @@ if (isset($_POST["updatePeople"])) {
 }
 
 //Update Record after getting data
-if (isset($_POST["update_name"])) {
+if (isset($_POST["update_name"]) AND isset($_POST["update_usertype"])) {
     $m = new User();
     $id = $_POST["id"];
     $name = $_POST["update_name"];
@@ -479,7 +479,25 @@ if (isset($_POST["update_name"])) {
     $qty = $_POST["update_notes"];
     $status = $_POST["update_status"];
     $date = $_POST["added_date"];
-    $result = $m->updateUserAccount($id, $name, $employeeid, $cat, $contactno, $password, $price, $qty, $status, $date);
+    $result = $m->updateUserAccount($id, $name, $employeeid, $cat, $contactno, 0, $password, $price, $qty, $status, $date);
+    echo $result;
+}
+
+//Update Me after getting data
+if (isset($_POST["update_name"]) AND isset($_POST["oldPassword"])) {
+    $m = new User();
+    $id = $_POST["id"];
+    $name = $_POST["update_name"];
+    $employeeid = $_POST["update_employeeid"];
+    $cat = $_POST["update_email"];
+    $contactno = $_POST["update_contactno"];
+    $oldpassword = $_POST["oldPassword"];
+    $password = $_POST["update_pass1"];
+    $price = $_POST["update_type"];
+    $qty = $_POST["update_notes"];
+    $status = $_POST["update_status"];
+    $date = $_POST["added_date"];
+    $result = $m->updateUserAccount($id, $name, $employeeid, $cat, $contactno, $oldpassword, $password, $price, $qty, $status, $date);
     echo $result;
 }
 
