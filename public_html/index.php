@@ -28,11 +28,10 @@ if (isset($_SESSION["userid"])) { //check if user or password is correct from qu
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./includes/style.css">
-    <script type="text/javascript" rel="stylesheet" src="./js/main.js" async></script>
-
-    <script src="//code.jquery.com/jquery-1.11.2.min.js" async></script>
-    <script src="./Password-Strength/password_strength/password_strength_lightweight.js" async></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" rel="stylesheet" src="./js/main.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js" ></script>
+    <script src="./Password-Strength/password_strength/password_strength_lightweight.js"></script>
 
 </head>
 <body>

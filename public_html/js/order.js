@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const DOMAIN = "http://localhost/inv_project/public_html";
-    let $invoice_item = $("#invoice_item");
+    let invoice_item = $("#invoice_item");
     //Fetch People
     fetch_people();
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
         calculate(0, 0);
     });
 
-    $invoice_item.delegate(".pid", "change", function () {
+    invoice_item.delegate(".pid", "change", function () {
         const pid = $(this).val();
         const tr = $(this).parent().parent();
         $(".overlay").show();
@@ -62,7 +62,7 @@ $(document).ready(function () {
         })
     });
 
-    $invoice_item.delegate(".qty", "change", function () {
+    invoice_item.delegate(".qty", "change", function () {
         const qty = $(this);
         const tr = $(this).parent().parent();
         if (isNaN(qty.val())) {

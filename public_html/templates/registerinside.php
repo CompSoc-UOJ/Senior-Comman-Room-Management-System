@@ -57,7 +57,7 @@
                         </small>
                     </div>
                     <div class="form-group">
-                        <label for="email">Contact Number</label>
+                        <label for="contactno">Contact Number</label>
                         <input type="text" name="contactno" class="form-control" id="contactno"
                                aria-describedby="emailHelp" placeholder="Enter Contact No (94123456789)"/>
                         <small id="e_error" class="form-text text-muted">We'll never share your contact-no with anyone

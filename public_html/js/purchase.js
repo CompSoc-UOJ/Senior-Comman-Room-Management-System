@@ -1,7 +1,7 @@
 $(document).ready(function () {
     const DOMAIN = "http://localhost/inv_project/public_html";
-    let $invoice_item = $("#invoice_item");
-    let $cust_name = $("#cust_name");
+    let invoice_item = $("#invoice_item");
+    let cust_name = $("#cust_name");
 
     //Fetch Brand
     fetch_brand();
@@ -13,17 +13,17 @@ $(document).ready(function () {
             data: {getBrand: 1},
             success: function (data) {
                 const choose = "<option value=''>Choose Supplier</option>";
-                $cust_name.html(choose + data);
+                cust_name.html(choose + data);
             }
         })
     }
 
 
-    $cust_name.change(function () {
+    cust_name.change(function () {
 
-        const supplier = $cust_name.val();
+        const supplier = cust_name.val();
         // $("#cust_name").attr("readonly", true);
-        $cust_name.prop('disabled', true);
+        cust_name.prop('disabled', true);
         addNewRow();
 
         $("#add").click(function () {
@@ -52,7 +52,7 @@ $(document).ready(function () {
         calculate(0, 0);
     });
 
-    $invoice_item.delegate(".pid", "change", function () {
+    invoice_item.delegate(".pid", "change", function () {
         const pid = $(this).val();
         const tr = $(this).parent().parent();
         $(".overlay").show();
@@ -73,7 +73,7 @@ $(document).ready(function () {
         })
     });
 
-    $invoice_item.delegate(".qty", "change", function () {
+    invoice_item.delegate(".qty", "change", function () {
         const qty = $(this);
         const tr = $(this).parent().parent();
         if (isNaN(qty.val())) {
@@ -86,7 +86,7 @@ $(document).ready(function () {
         }
     });
 
-    $invoice_item.delegate(".price", "keyup", function () {
+    invoice_item.delegate(".price", "keyup", function () {
         const price = $(this);
         const tr = $(this).parent().parent();
         if (isNaN(price.val())) {

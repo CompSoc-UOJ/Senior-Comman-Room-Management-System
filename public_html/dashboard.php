@@ -100,7 +100,7 @@ if ($_SESSION["usertype"] != "admin") {
             <div class="card" style="border:solid 1px #777">
                 <div class="card-body">
                     <h4 class="card-title">Sales</h4>
-                    <p class="card-text">Here you can manage your Sales manage your current sales.</p>
+                    <p class="card-text">Here you can manage your Sales and you can add new Sales.</p>
                     <a href="new_order.php" class="btn btn-primary">Add</a>
                     <a href="manage_sale.php" class="btn btn-primary">Manage</a>
                 </div>

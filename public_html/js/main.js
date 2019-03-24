@@ -17,9 +17,11 @@ $(document).ready(function () {
         // var status = $("#status"); wont check from here
 
         const e_patt = new RegExp(/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,4})$/);
+        const phoneNoRegex = /^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\d)\d{6}$/;
+
         if (title.val() === "") {
             title.addClass("border-danger");
-            // $("#title_error").html("<span class='text-danger'>Enter First Name</span>");
+            $("#title_error").html("<span class='text-danger'>Please Select a Title</span>");
         } else {
             title.removeClass("border-danger");
             $("#title_error").html("");
@@ -57,7 +59,7 @@ $(document).ready(function () {
             $("#e_error").html("");
             count++;
         }
-        if (contactno.val() === "" || contactno.val().length < 9) {
+        if (!phoneNoRegex.test(contactno.val())) {
             contactno.addClass("border-danger");
             $("#cn_error").html("<span class='text-danger'>Please Enter Contact-No and Contact-No should be more than 9 numbers</span>");
         } else {

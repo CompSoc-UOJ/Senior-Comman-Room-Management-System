@@ -84,6 +84,36 @@ class User
 
     }
 
+    public function updateUserAccount($id, $username, $employeeid, $email, $contactno, $password, $usertype, $notes, $status, $date)
+    {
+        //To protect your application from sql attack you can user
+        //prepares statment
+        if ($this->usernameExists($username)) {
+            return "USERNAME_ALREADY_EXISTS";
+        } else if ($this->emailExists($email)) {
+            return "EMAIL_ALREADY_EXISTS";
+        } else if ($this->employeeidExists($employeeid)) {
+            return "EMPLOYEEID_ALREADY_EXISTS";
+        } else {
+            $pass_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
+            $sql = "UPDATE user SET username=?, employeeid=?, email=?, contactno=?, password=?, usertype=?, register_date=?, status=?, notes=? WHERE user.id=?";
+
+            $stmt = $this->con->prepare($sql);
+
+            // This assumes the date and account_id parameters are integers `d` and the rest are strings `s`
+            // So that's 5 consecutive string params and then 4 integer params
+
+            $stmt->bind_param('sssssdddd', $username, $employeeid, $email, $contactno, $pass_hash, $usertype, $date, $status, $notes, $id);
+            $result = $stmt->execute() or die($this->con->error);
+            if ($result) {
+                return "UPDATED";
+            } else {
+                return "SOME_ERROR";
+            }
+        }
+
+    }
+
     public function userLogin($email, $password)
     {
         $pre_stmt = $this->con->prepare("SELECT id,username,password,usertype,last_login FROM user WHERE email = ?");

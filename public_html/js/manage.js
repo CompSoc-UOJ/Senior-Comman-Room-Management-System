@@ -1,6 +1,8 @@
 $(document).ready(function () {
     const DOMAIN = "http://localhost/inv_project/public_html";
-    let $body = $("body");
+    let body = $("body");
+
+    $('#myPassword1').strength_meter();
     //----------Category-------------
 
     //Fetch category
@@ -35,13 +37,13 @@ $(document).ready(function () {
     }
 
     //page Number Buttons
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const pn = $(this).attr("pn");
         manageCategory(pn);
     });
 
     //Delete category
-    $body.delegate(".del_cat", "click", function () {
+    body.delegate(".del_cat", "click", function () {
         const did = $(this).attr("did");
         if (confirm("Are you sure ? You want to delete..!")) {
             $.ajax({
@@ -65,7 +67,7 @@ $(document).ready(function () {
     });
 
     //Update Category
-    $body.delegate(".edit_cat", "click", function () {
+    body.delegate(".edit_cat", "click", function () {
         const eid = $(this).attr("eid");
         $.ajax({
             url: DOMAIN + "/includes/process.php",
@@ -130,13 +132,13 @@ $(document).ready(function () {
     }
 
     //page Number Buttons
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const pn = $(this).attr("pn");
         manageBrand(pn);
     });
 
     //Delete brand
-    $body.delegate(".del_brand", "click", function () {
+    body.delegate(".del_brand", "click", function () {
         const did = $(this).attr("did");
         if (confirm("Are you sure ? You want to delete..!")) {
             $.ajax({
@@ -157,7 +159,7 @@ $(document).ready(function () {
     });
 
     //Update Brand
-    $body.delegate(".edit_brand", "click", function () {
+    body.delegate(".edit_brand", "click", function () {
         const eid = $(this).attr("eid");
         $.ajax({
             url: DOMAIN + "/includes/process.php",
@@ -214,13 +216,13 @@ $(document).ready(function () {
     }
 
     //page Number Buttons
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const pn = $(this).attr("pn");
         manageProduct(pn);
     });
 
     //delete product
-    $body.delegate(".del_product", "click", function () {
+    body.delegate(".del_product", "click", function () {
         const did = $(this).attr("did");
         if (confirm("Are you sure ? You want to delete..!")) {
             $.ajax({
@@ -240,7 +242,7 @@ $(document).ready(function () {
     });
 
     //Update product
-    $body.delegate(".edit_product", "click", function () {
+    body.delegate(".edit_product", "click", function () {
         const eid = $(this).attr("eid");
         $.ajax({
             url: DOMAIN + "/includes/process.php",
@@ -293,13 +295,13 @@ $(document).ready(function () {
     }
 
     //page Number Buttons
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const pn = $(this).attr("pn");
         managePeople(pn);
     });
 
     // delete profile
-    $body.delegate(".del_people", "click", function () {
+    body.delegate(".del_people", "click", function () {
         const did = $(this).attr("did");
         if (confirm("Are you sure ? You want to delete..!")) {
             $.ajax({
@@ -320,7 +322,7 @@ $(document).ready(function () {
     });
 
     //People status
-    $body.delegate(".pending", "click", function () {
+    body.delegate(".pending", "click", function () {
         const eid = $(this).attr("eid");
         window.location.href = "";
         $.ajax({
@@ -339,7 +341,7 @@ $(document).ready(function () {
         })
     });
 
-    $body.delegate(".active", "click", function () {
+    body.delegate(".active", "click", function () {
         const eid = $(this).attr("eid");
         window.location.href = "";
         $.ajax({
@@ -360,7 +362,7 @@ $(document).ready(function () {
 
 
     //Update people
-    $body.delegate(".edit_people", "click", function () {
+    body.delegate(".edit_people", "click", function () {
         const eid = $(this).attr("eid");
         $.ajax({
             url: DOMAIN + "/includes/process.php",
@@ -382,19 +384,97 @@ $(document).ready(function () {
 
     //Update people after getting data
     $("#update_people_form").on("submit", function () {
-        $.ajax({
-            url: DOMAIN + "/includes/process.php",
-            method: "POST",
-            data: $("#update_people_form").serialize(),
-            success: function (data) {
-                if (data === "UPDATED") {
-                    alert("Profile Updated Successfully..!");
-                    window.location.href = "";
-                } else {
-                    alert(data);
+        let count = 0;
+        const update_name = $("#update_name");
+        const update_employeeid = $("#update_employeeid");
+        const update_email = $("#update_email");
+        const update_contactno = $("#update_contactno");
+        const update_pass1 = $("#password1");
+        const update_pass2 = $("#update_password2");
+
+        const e_patt = new RegExp(/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,4})$/);
+        const phoneNoRegex = /^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\d)\d{6}$/;
+
+
+        if (update_name.val() === "") {
+            update_name.addClass("border-danger");
+            $("#uname_error").html("<span class='text-danger'>Enter Correct User Name</span>");
+        } else {
+            update_name.removeClass("border-danger");
+            $("#uname_error").html("");
+            count++;
+        }
+        if (update_employeeid.val() === "" || update_employeeid.val().length < 6) {
+            update_employeeid.addClass("border-danger");
+            $("#eid_error").html("<span class='text-danger'>Please Enter Employee ID and Employee ID should be more than 6 char</span>");
+        } else {
+            update_employeeid.removeClass("border-danger");
+            $("#eid_error").html("");
+            count++;
+        }
+        if (!e_patt.test(update_email.val())) {
+            update_email.addClass("border-danger");
+            $("#e_error").html("<span class='text-danger'>Please Enter Valid Email Address</span>");
+        } else {
+            update_email.removeClass("border-danger");
+            $("#e_error").html("");
+            count++;
+        }
+        if (!phoneNoRegex.test(update_contactno.val())) {
+            update_contactno.addClass("border-danger");
+            $("#cn_error").html("<span class='text-danger'>Please Enter Contact-No and Contact-No should be more than 9 numbers</span>");
+        } else {
+            update_contactno.removeClass("border-danger");
+            $("#cn_error").html("");
+            count++;
+        }
+        if (!update_pass1.val().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/)) {
+            update_pass1.addClass("border-danger");
+            $("#p1_error").html("<span class='text-danger'>Please Enter more strong password</span>");
+        } else {
+            update_pass1.removeClass("border-danger");
+            $("#p1_error").html("");
+            count++;
+        }
+        if (update_pass2.val() === "") {
+            update_pass2.addClass("border-danger");
+            $("#p2_error").html("<span class='text-danger'>Please Confirm password</span>");
+        } else {
+            update_pass2.removeClass("border-danger");
+            $("#p2_error").html("");
+            count++;
+        }
+
+        if ((update_pass1.val() === update_pass2.val()) && count === 6) {
+            $(".overlay").show();
+            $.ajax({
+                url: DOMAIN + "/includes/process.php",
+                method: "POST",
+                data: $("#register_form").serialize(),
+                success: function (data) {
+                    if (data === "USERNAME_ALREADY_EXISTS") {
+                        $(".overlay").hide();
+                        alert("It seems like you user name is already used");
+                    } else if (data === "EMPLOYEEID_ALREADY_EXISTS") {
+                        $(".overlay").hide();
+                        alert("It seems like you employee id is already used");
+                    } else if (data === "EMAIL_ALREADY_EXISTS") {
+                        $(".overlay").hide();
+                        alert("It seems like you email is already used");
+                    } else if (data === "SOME_ERROR") {
+                        $(".overlay").hide();
+                        alert("Something Wrong");
+                    } else {
+                        alert("Account Updated Successfully");
+                        window.location.href = "";
+                        // window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            update_pass2.addClass("border-danger");
+            $("#p2_error").html("<span class='text-danger'>Password is not matched</span>");
+        }
     });
 
     //---------------------Purchase-----------------
@@ -414,13 +494,13 @@ $(document).ready(function () {
     }
 
     //page Number Buttons
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const pn = $(this).attr("pn");
         managePurchase(pn);
     });
 
     // delete purchase
-    $body.delegate(".del_purchase", "click", function () {
+    body.delegate(".del_purchase", "click", function () {
         const did = $(this).attr("did");
         if (confirm("Are you sure ? You want to delete..!")) {
             $.ajax({
@@ -441,7 +521,7 @@ $(document).ready(function () {
     });
 
     //Update Purchase
-    $body.delegate(".edit_purchase", "click", function () {
+    body.delegate(".edit_purchase", "click", function () {
         alert("We can`t allow you to do so bro")
     });
 
@@ -462,13 +542,13 @@ $(document).ready(function () {
     }
 
     //page Number Buttons
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const pn = $(this).attr("pn");
         manageOrder(pn);
     });
 
     // delete order
-    $body.delegate(".del_order", "click", function () {
+    body.delegate(".del_order", "click", function () {
         const did = $(this).attr("did");
         if (confirm("Are you sure ? You want to delete..!")) {
             $.ajax({
@@ -489,7 +569,7 @@ $(document).ready(function () {
     });
 
     // //Update Order
-    $body.delegate(".edit_order", "click", function () {
+    body.delegate(".edit_order", "click", function () {
         alert("We can`t allow you to do so bro")
     });
 
@@ -512,7 +592,7 @@ $(document).ready(function () {
         })
     }
 
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const pn = $(this).attr("pn");
         const stdate = $("#start_date").val();
         const eddate = $("#end_date").val();
@@ -539,7 +619,7 @@ $(document).ready(function () {
         })
     }
 
-    $body.delegate(".page-link", "click", function () {
+    body.delegate(".page-link", "click", function () {
         const stdate = $("#start_date").val();
         const eddate = $("#end_date").val();
         const id = $("#userid").val();

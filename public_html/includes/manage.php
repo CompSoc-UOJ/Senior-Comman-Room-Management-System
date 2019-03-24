@@ -33,9 +33,9 @@ class Manage
 			FROM sale_details s_d,sale_invoice s_i,products p,user u
 			WHERE s_d.invoice_no = s_i.invoice_no AND s_d.product_name = p.pid AND s_i.customer_name = u.id ORDER BY s_d.id DESC " . $a["limit"];
         } else if ($table == "user") {
-            $sql = "SELECT * FROM " . $table . "  DESC " . $a["limit"];
+            $sql = "SELECT * FROM " . $table . " ORDER BY id DESC " . $a["limit"];
         } else if ($table == "brands") {
-            $sql = "SELECT * FROM " . $table . " DESC " . $a["limit"];
+            $sql = "SELECT * FROM " . $table . " ORDER BY bid DESC " . $a["limit"];
         }
         $result = $this->con->query($sql) or die($this->con->error);
         $rows = array();

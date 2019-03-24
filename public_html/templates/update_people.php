@@ -11,49 +11,65 @@
             </div>
             <div class="modal-body">
                 <form id="update_people_form" onsubmit="return false">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input type="hidden" name="id" id="id" value=""/>
-                            <label>Date</label>
-                            <label for="added_date"></label><input type="text" class="form-control" name="added_date"
-                                                                   id="added_date" value="<?php echo date("Y-m-d"); ?>"
-                                                                   readonly/>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Full Name</label>
-                            <input type="text" class="form-control" name="update_name" id="update_name"
-                                   placeholder="Edit Full Name" required/>
-                        </div>
+                    <div class="form-group">
+                        <label for="update_name">User Name</label>
+                        <input type="text" name="update_name" class="form-control" id="update_name"
+                               placeholder="User Name"/>
+                        <small id="uname_error" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group">
-                        <label>Employee ID</label>
-                        <input type="text" class="form-control" id="update_employeeid" name="update_employeeid"
-                               placeholder="Edit Employee ID" required/>
+                        <label for="update_employeeid">Employee ID</label>
+                        <input type="text" name="update_employeeid" class="form-control" id="update_employeeid"
+                               placeholder="Enter Employee ID"/>
+                        <small id="u_error" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" class="form-control" id="update_email" name="update_email"
-                               placeholder="Edit Email" required/>
+                        <label for="update_email">Email address</label>
+                        <input type="email" name="update_email" class="form-control" id="update_email"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter email (example@example.com)"/>
+                        <small id="e_error" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label>Contact-No</label>
+                        <label for="update_contactno">Contact Number</label>
                         <input type="text" name="update_contactno" class="form-control" id="update_contactno"
-                               placeholder="Edit Contact No (94123456789)"/>
+                               aria-describedby="emailHelp" placeholder="Enter Contact No (94123456789)"/>
+                        <small id="e_error" class="form-text text-muted">We'll never share your contact-no with anyone
+                            else.
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label>User Type</label>
-                        <label for="update_type"></label><select name="update_type" class="form-control"
-                                                                 id="update_type">
+                        <div id="myPassword1"></div>
+                        <small id="p1_error" class="form-text text-muted"></small>
+                    </div>
+                    <!-- <div class="form-group">
+                      <label for="password1">Password</label>
+                      <input type="password" name="password1" class="form-control" id="password1" placeholder="Password"/>
+                      <small id="p1_error" class="form-text text-muted"></small>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="update_password2">Re-enter Password</label>
+                        <input type="password" name="update_password2" class="form-control" id="update_password2"
+                               placeholder="Confirm Password"/>
+                        <small id="p2_error" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="update_usertype">Usertype</label>
+                        <select name="update_usertype" class="form-control" id="update_usertype">
                             <option value="">Choose User Type</option>
-                            <option value="SCR Member">SCR Member</option>
                             <option value="Canteen Staff">Canteen Staff</option>
+                            <option value="SCR Member">SCR Member</option>
                         </select>
+                        <small id="t_error" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group">
                         <label>Notes</label>
                         <input type="text" class="form-control" id="update_notes" name="update_notes"
-                               placeholder="Enter any notes here"/>
+                               placeholder="Enter any notes here (256 characters)"/>
                     </div>
+                    <input type="hidden" name="update_status" id="update_status" value="0"/>
                     <button type="submit" class="btn btn-success">Edit Profile</button>
                 </form>
             </div>
