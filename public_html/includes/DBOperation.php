@@ -90,4 +90,3 @@ class DBOperation
 //echo $opr->addCategory(1,"Mobiles");
 //echo "<pre>";
 //print_r($opr->getAllRecord("categories"));
-?>
