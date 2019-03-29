@@ -10,6 +10,7 @@ if ($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff"
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SCR Management System @ University of Jaffna</title>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
             integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
@@ -21,6 +22,7 @@ if ($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script type="text/javascript" src="./js/order.js" async></script>
 </head>
 <body>
@@ -41,18 +43,18 @@ if ($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff"
                 <div class="card-body" style="text-align: center;">
                     <form id="get_order_data" onsubmit="return false">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Order Date</label>
+                            <label for="order_date" class="col-sm-3 col-form-label">Order Date</label>
                             <div class="col-sm-6">
-                                <label for="order_date"></label><input type="text" id="order_date" name="order_date"
-                                                                       class="form-control form-control-sm"
-                                                                       value="<?php echo date("Y-m-d"); ?>" readonly/>
+                                <input type="text" id="order_date" name="order_date"
+                                       class="form-control form-control-sm"
+                                            value="<?php echo date("Y-m-d"); ?>" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Employee Id*</label>
+                            <label for="cust_name" class="col-sm-3 col-form-label">Employee Id*</label>
                             <div class="col-sm-6">
-                                <label for="cust_name"></label><select id="cust_name" name="cust_name"
-                                                                       class="form-control form-control-sm" required>
+                                <select id="cust_name" name="cust_name"
+                                        class="form-control form-control-sm" required>
                                 </select>
                             </div>
                         </div>
@@ -125,15 +127,16 @@ if ($_SESSION["usertype"] != "admin" && $_SESSION["usertype"] != "Canteen Staff"
                             <label for="payment_type" class="col-sm-3 col-form-label">Payment Method</label>
                             <div class="col-sm-6">
                                 <select name="payment_type" class="form-control form-control-sm" id="payment_type"
-                                        required></select>
+                                        required>
                                 <option>Cash</option>
                                 <option>Account</option>
+                                </select>
                             </div>
                         </div>
+
                         <input name="cashier" type="hidden" value="<?php echo $_SESSION["userid"]; ?>"
                                class="form-control form-control-sm cashier">
                         <input name="typ" type="hidden" value="sale" class="form-control form-control-sm typ">
-
 
                         <div style="text-align: center;">
                             <input type="submit" id="order_form" style="width:150px;" class="btn btn-info"

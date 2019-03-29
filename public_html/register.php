@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SCR Management System @ University of Jaffna</title>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
             integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
@@ -16,11 +17,10 @@
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="./js/main.js" async></script>
 
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="./Password-Strength/password_strength/password_strength_lightweight.js"></script>
     <link rel="stylesheet" href="./Password-Strength/password_strength/password_strength.css">
+    <script type="text/javascript" src="./js/main.js" async></script>
 
 </head>
 <body>

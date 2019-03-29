@@ -12,8 +12,9 @@
             <div class="modal-body">
                 <form id="update_me_form" onsubmit="return false">
                     <div class="form-group">
+                        <input type="hidden" name="id" id="id" value=""/>
                         <label for="update_name">User Name</label>
-                        <input type="text" name="update_name" class="form-control" id="update_name"
+                        <input type="text" name="update_name_me" class="form-control" id="update_name_me"
                                placeholder="User Name"/>
                         <small id="uname_error" class="form-text text-muted"></small>
                     </div>
@@ -60,7 +61,6 @@
                         <input type="text" class="form-control" id="update_notes" name="update_notes"
                                placeholder="Enter any notes here (256 characters)"/>
                     </div>
-                    <input type="hidden" name="update_type" id="update_type"/>
                     <input type="hidden" name="update_status" id="update_status" value="0"/>
                     <button type="submit" class="btn btn-success">Edit Profile</button>
                 </form>

@@ -111,9 +111,9 @@ $(document).ready(function () {
                         $(".overlay").hide();
                         alert("Something Wrong");
                     } else {
-                        $(".overlay").hide();
                         alert("You are registered Now you can login");
-                        window.location.href = "";
+                        $(".overlay").hide();
+                        window.location.href = "/manage_people.php";
                         // window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
                     }
                 }
