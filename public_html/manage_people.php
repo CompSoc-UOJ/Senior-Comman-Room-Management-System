@@ -1,8 +1,10 @@
 <?php
 include_once("./database/constants.php");
-if ($_SESSION["usertype"] != "admin") {
-    header("location:" . DOMAIN . "/");
-}
+if (isset($_SESSION["userid"])) {
+    if ($_SESSION["usertype"] != "admin") {
+        header("location:" . DOMAIN . "/");
+    }
+} else header("location:" . DOMAIN . "/");
 ?>
 <!DOCTYPE html>
 <html lang="">
@@ -54,7 +56,7 @@ if ($_SESSION["usertype"] != "admin") {
         <!--on manage.js-->
         </tbody>
     </table>
-    <a href="#" data-toggle="modal" data-target="#register_form" class="btn btn-primary">Register</a>
+    <a href="#" data-toggle="modal" data-target="#register_inside_form" class="btn btn-primary">Register</a>
 </div>
 
 

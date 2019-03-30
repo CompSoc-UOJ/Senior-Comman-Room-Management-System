@@ -120,7 +120,7 @@ if ($_SESSION["usertype"] != "admin") {
                 <div class="card-body">
                     <h4 class="card-title">People</h4>
                     <p class="card-text">Here you can manage your users and you can add new users.</p>
-                    <a href="#" data-toggle="modal" data-target="#register_form" class="btn btn-primary">Register</a>
+                    <a href="#" data-toggle="modal" data-target="#register_inside_form" class="btn btn-primary">Register</a>
                     <a href="manage_people.php" class="btn btn-primary">Manage</a>
                 </div>
             </div>
