@@ -1,8 +1,10 @@
 <?php
 include_once("./database/constants.php");
-if ($_SESSION["usertype"] != "admin") {
-    header("location:" . DOMAIN . "/");
-}
+if (isset($_SESSION["userid"])) {
+    if ($_SESSION["usertype"] != "admin") {
+        header("location:" . DOMAIN . "/");
+    }
+} else header("location:" . DOMAIN . "/");
 ?>
 <!DOCTYPE html>
 <html lang="">
@@ -10,6 +12,7 @@ if ($_SESSION["usertype"] != "admin") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SCR Management System @ University of Jaffna</title>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
             integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
@@ -21,12 +24,11 @@ if ($_SESSION["usertype"] != "admin") {
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="./js/manage.js" async></script>
-    <script type="text/javascript" src="./js/main.js" async></script>
 
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="./Password-Strength/password_strength/password_strength_lightweight.js"></script>
+    <script src="./Password-Strength/password_strength/password_strength_lightweight.js" async></script>
     <link rel="stylesheet" href="./Password-Strength/password_strength/password_strength.css">
+    <script type="text/javascript" src="./js/main.js" async></script>
+    <script type="text/javascript" src="./js/manage.js" async></script>
 
 </head>
 <body>
@@ -54,7 +56,7 @@ if ($_SESSION["usertype"] != "admin") {
         <!--on manage.js-->
         </tbody>
     </table>
-    <a href="#" data-toggle="modal" data-target="#register_form" class="btn btn-primary">Register</a>
+    <a href="#" data-toggle="modal" data-target="#register_inside_form" class="btn btn-primary">Register</a>
 </div>
 
 

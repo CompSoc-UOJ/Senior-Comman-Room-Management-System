@@ -49,17 +49,17 @@ class User
         $pre_stmt->execute() or die($this->con->error);
         $result = $pre_stmt->get_result();
         if ($result->num_rows > 0) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     }
 
-    private function passwordCheck($password)
+    public function passwordCheck($id,$password)
     {
-        $pass_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
+        $pass_hash = $this->passwordEncrypt($password);
         $pre_stmt = $this->con->prepare("SELECT password FROM user WHERE user.id = ? ");
-        $pre_stmt->bind_param("s", $password);
+        $pre_stmt->bind_param("s", $id);
         $pre_stmt->execute() or die($this->con->error);
         $result = $pre_stmt->get_result();
         if ($result == $pass_hash) {
@@ -67,6 +67,11 @@ class User
         } else {
             return 0;
         }
+    }
+
+    public function passwordEncrypt($password){
+        $pass_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
+        return $pass_hash;
     }
 
     public function createUserAccount($title, $firstname, $lastname, $employeeid, $email, $contactno, $password, $usertype, $status)
@@ -81,7 +86,7 @@ class User
         } else if ($this->employeeidExists($employeeid)) {
             return "EMPLOYEEID_ALREADY_EXISTS";
         } else {
-            $pass_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
+            $pass_hash = $this->passwordEncrypt($password);
             $reg_date = date("Y-m-d");
             $last_log = date("Y-m-d h:m:s");
             $notes = "";
@@ -91,38 +96,6 @@ class User
             $result = $pre_stmt->execute() or die($this->con->error);
             if ($result) {
                 return $this->con->insert_id;
-            } else {
-                return "SOME_ERROR";
-            }
-        }
-
-    }
-
-    public function updateUserAccount($id, $username, $employeeid, $email, $contactno, $oldpassword, $password, $usertype, $notes, $status, $date)
-    {
-        //To protect your application from sql attack you can user
-        //prepares statment
-        if ($this->usernameExists($username)) {
-            return "USERNAME_ALREADY_EXISTS";
-        } else if ($this->emailExists($email)) {
-            return "EMAIL_ALREADY_EXISTS";
-        } else if ($this->employeeidExists($employeeid)) {
-            return "EMPLOYEEID_ALREADY_EXISTS";
-        }else if (!($this->passwordCheck($oldpassword))) {
-            return "OLD PASSWORD DOES NOT MATCH";
-        } else {
-            $pass_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
-            $sql = "UPDATE user SET username=?, employeeid=?, email=?, contactno=?, password=?, usertype=?, register_date=?, status=?, notes=? WHERE user.id=?";
-
-            $stmt = $this->con->prepare($sql);
-
-            // This assumes the date and account_id parameters are integers `d` and the rest are strings `s`
-            // So that's 5 consecutive string params and then 4 integer params
-
-            $stmt->bind_param('sssssddddd', $username, $employeeid, $email, $contactno, $pass_hash, $usertype, $date, $status, $notes, $id);
-            $result = $stmt->execute() or die($this->con->error);
-            if ($result) {
-                return "UPDATED";
             } else {
                 return "SOME_ERROR";
             }

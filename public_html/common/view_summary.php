@@ -10,6 +10,7 @@ if (!isset($_SESSION["userid"])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SCR Management System @ University of Jaffna</title>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -25,6 +26,8 @@ if (!isset($_SESSION["userid"])) {
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="../Password-Strength/password_strength/password_strength_lightweight.js" async></script>
     <script type="text/javascript" src="../js/manage.js" async></script>
 
 </head>

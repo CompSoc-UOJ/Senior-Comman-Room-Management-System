@@ -280,32 +280,30 @@ if (isset($_POST["getNewOrderItem"])) {
     <tr>
         <td><b class="number">1</b></td>
         <td>
-            <label>
-                <select name="pid[]" class="form-control form-control-sm pid" required>
-                    <option value="">Choose Item</option>
-                    <?php
-                    foreach ($rows as $row) {
-                        ?>
-                        <option value="<?php echo $row['pid']; ?>"><?php echo $row["product_name"]; ?></option><?php
-                    }
+            <select class="form-control form-control-sm pid" name="pid[]" required>
+                <option value="">Choose Item</option>
+                <?php
+                foreach ($rows as $row) {
                     ?>
-                </select>
-            </label>
+                    <option value="<?php echo $row['pid']; ?>"><?php echo $row["product_name"]; ?></option><?php
+                }
+                ?>
+            </select>
         </td>
-        <td><label>
-                <input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty">
-            </label></td>
-        <td><label>
-                <input name="qty[]" type="number" class="form-control form-control-sm qty" required>
-            </label></td>
-        <td><label>
-                <input name="price[]" type="text" class="form-control form-control-sm price" readonly>
-            </label></td>
-        <td><label>
-                <input name="amt[]" readonly type="text" class="form-control form-control-sm amt">
-            </label></td>
-        <td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>
-        <td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
+        <td>
+            <input class="form-control form-control-sm tqty" name="tqty[]" readonly type="text">
+        </td>
+        <td>
+            <input class="form-control form-control-sm qty" name="qty[]" required type="number">
+        </td>
+        <td>
+            <input class="form-control form-control-sm price" name="price[]" readonly type="text">
+        </td>
+        <td>
+            <input class="form-control form-control-sm amt" name="amt[]" readonly type="text">
+        </td>
+        <td><input class="form-control form-control-sm tpid" name="tpid[]" type="hidden"></td>
+        <td><input class="form-control form-control-sm pro_name" name="pro_name[]" type="hidden"></td>
     </tr>
     <?php
     exit();
@@ -442,7 +440,7 @@ if (isset($_POST["managePeople"])) {
     }
 }
 
-//Delete 
+//Delete People
 if (isset($_POST["deletePeople"])) {
     $m = new Manage();
     $result = $m->deleteRecord("user", "id", $_POST["id"]);
@@ -467,42 +465,58 @@ if (isset($_POST["updatePeople"])) {
 }
 
 //Update Record after getting data
-if (isset($_POST["update_name"]) AND isset($_POST["update_usertype"])) {
+if (isset($_POST["update_name_people"]) AND isset($_POST["update_usertype"])) {
     $m = new User();
+    $n = new Manage();
     $id = $_POST["id"];
-    $name = $_POST["update_name"];
+    $name = $_POST["update_name_people"];
     $employeeid = $_POST["update_employeeid"];
     $cat = $_POST["update_email"];
     $contactno = $_POST["update_contactno"];
-    $password = $_POST["update_pass1"];
-    $price = $_POST["update_type"];
+    $password = $_POST["password1"];
+    $price = $_POST["update_usertype"];
+    $date = date("Y-m-d");
     $qty = $_POST["update_notes"];
     $status = $_POST["update_status"];
-    $date = $_POST["added_date"];
-    $result = $m->updateUserAccount($id, $name, $employeeid, $cat, $contactno, 0, $password, $price, $qty, $status, $date);
-    echo $result;
+
+    if($password !== ""){
+        $pass_hash = $m->passwordEncrypt($password);
+        $result = $n->update_record("user",["id" => $id], ["username" => $name, "employeeid" => $employeeid,"email" => $cat, "contactno" => $contactno, "password" => $pass_hash, "usertype" => $price,"register_date" => $date, "status" => $status, "notes" => $qty]);
+        echo $result;
+    } else {
+        $result = $n->update_record("user",["id" => $id], ["username" => $name, "employeeid" => $employeeid,"email" => $cat, "contactno" => $contactno, "usertype" => $price,"register_date" => $date, "status" => $status, "notes" => $qty]);
+        echo $result;
+    }
 }
 
 //Update Me after getting data
-if (isset($_POST["update_name"]) AND isset($_POST["oldPassword"])) {
+if (isset($_POST["update_name_me"])) {
     $m = new User();
+    $n = new Manage();
     $id = $_POST["id"];
-    $name = $_POST["update_name"];
+    $name = $_POST["update_name_me"];
     $employeeid = $_POST["update_employeeid"];
     $cat = $_POST["update_email"];
     $contactno = $_POST["update_contactno"];
     $oldpassword = $_POST["oldPassword"];
-    $password = $_POST["update_pass1"];
-    $price = $_POST["update_type"];
+    $password = $_POST["password1"];
+    $date = date("Y-m-d");
     $qty = $_POST["update_notes"];
     $status = $_POST["update_status"];
-    $date = $_POST["added_date"];
-    $result = $m->updateUserAccount($id, $name, $employeeid, $cat, $contactno, $oldpassword, $password, $price, $qty, $status, $date);
-    echo $result;
+
+    if($oldpassword !== "" || $password !== ""){
+        if($m->passwordCheck($id, $oldpassword)){
+            $pass_hash = $m->passwordEncrypt($password);
+            $result = $n->update_record("user",["id" => $id], ["username" => $name, "employeeid" => $employeeid,"email" => $cat, "contactno" => $contactno, "password" => $pass_hash, "register_date" => $date, "status" => $status, "notes" => $qty]);
+            echo $result;
+        } else echo "old password does not match";
+    } else {
+        $result = $n->update_record("user",["id" => $id], ["username" => $name, "employeeid" => $employeeid,"email" => $cat, "contactno" => $contactno,"register_date" => $date, "status" => $status, "notes" => $qty]);
+        echo $result;
+    }
 }
 
 //----------------Purchase---------------------
-
 if (isset($_POST["getNewPurchaseItem"]) AND isset($_POST["supplierID"])) {
     $supplierID = $_POST["supplierID"];
     $obj = new DBOperation();
@@ -511,34 +525,31 @@ if (isset($_POST["getNewPurchaseItem"]) AND isset($_POST["supplierID"])) {
     <tr>
         <td><b class="number">1</b></td>
         <td>
-            <label>
-                <select name="pid[]" class="form-control form-control-sm pid" required>
-                    <option value="">Choose Product</option>
-                    <?php
-                    foreach ($rows as $row) {
-                        ?>
-                        <option value="<?php echo $row['pid']; ?>"><?php echo $row["product_name"]; ?></option><?php
-                    }
+            <select name="pid[]" class="form-control form-control-sm pid" required>
+                <option value="">Choose Product</option>
+                <?php
+                foreach ($rows as $row) {
                     ?>
-                </select>
-            </label>
+                    <option value="<?php echo $row['pid']; ?>"><?php echo $row["product_name"]; ?></option><?php
+                }
+                ?>
+            </select>
         </td>
-        <td><label>
-                <input name="tqty[]" readonly type="text" class="form-control form-control-sm tqty">
-            </label></td>
-        <td><label>
-                <input name="qty[]" type="number" class="form-control form-control-sm qty" onfocus="this.value=''"
-                       required>
-            </label></td>
-        <td><label>
-                <input name="price[]" type="text" class="form-control form-control-sm price" onfocus="this.value=''">
-            </label></td>
-        <td><label>
-                <input name="amt[]" readonly type="text" class="form-control form-control-sm amt">
-            </label></td>
-        <td><input name="tpid[]" type="hidden" class="form-control form-control-sm tpid"></td>
-        <td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name"></td>
-
+        <td>
+            <input class="form-control form-control-sm tqty" name="tqty[]" readonly type="text">
+        </td>
+        <td>
+            <input class="form-control form-control-sm qty" name="qty[]" onfocus="this.value=''" required
+                   type="number">
+        </td>
+        <td>
+            <input class="form-control form-control-sm price" name="price[]" onfocus="this.value=''" type="text">
+        </td>
+        <td>
+            <input class="form-control form-control-sm amt" name="amt[]" readonly type="text">
+        </td>
+        <td><input class="form-control form-control-sm tpid" name="tpid[]" type="hidden"></td>
+        <td><input class="form-control form-control-sm pro_name" name="pro_name[]" type="hidden"></td>
     </tr>
     <?php
     exit();
@@ -621,7 +632,6 @@ if (isset($_POST["manageSummary"])) {
 }
 
 //----------------View Summary---------------------
-
 if (isset($_POST["viewSummary"])) {
     $m = new Manage();
     $result = $m->viewSummaryWithPagination($_POST["stdate"], $_POST["eddate"], $_POST["userid"], $_POST["pageno"]);
@@ -652,6 +662,5 @@ if (isset($_POST["viewSummary"])) {
         exit();
     }
 }
-
 
 ?>

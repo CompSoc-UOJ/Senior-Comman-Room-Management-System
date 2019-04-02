@@ -12,8 +12,9 @@
             <div class="modal-body">
                 <form id="update_people_form" onsubmit="return false">
                     <div class="form-group">
+                        <input type="hidden" name="id" id="id" value=""/>
                         <label for="update_name">User Name</label>
-                        <input type="text" name="update_name" class="form-control" id="update_name"
+                        <input type="text" name="update_name_people" class="form-control" id="update_name_people"
                                placeholder="User Name"/>
                         <small id="uname_error" class="form-text text-muted"></small>
                     </div>
@@ -59,6 +60,7 @@
                         <label for="update_usertype">Usertype</label>
                         <select name="update_usertype" class="form-control" id="update_usertype">
                             <option value="">Choose User Type</option>
+                            <option value="admin">Admin</option>
                             <option value="Canteen Staff">Canteen Staff</option>
                             <option value="SCR Member">SCR Member</option>
                         </select>
