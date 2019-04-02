@@ -230,7 +230,8 @@ class Manage
                 }
                 return $invoice_no;
             }
-        } else if ($typ == "sale") {
+        }
+        if ($typ == "sale") {
             $pre_stmt = $this->con->prepare("INSERT INTO 
 			`sale_invoice`(`customer_name`, `order_date`, `sub_total`,
 			 `discount`, `paid`, `payment_type`,`cashier`) VALUES (?,?,?,?,?,?,?)");

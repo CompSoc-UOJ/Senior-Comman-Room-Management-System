@@ -155,7 +155,7 @@ $(document).ready(function () {
             $.ajax({
                 url: DOMAIN + "/includes/process.php",
                 method: "POST",
-                data: $("#get_purchase_data").serialize(),
+                data: $("#get_purchase_data").serialize() + "&cust_name=" + $("#cust_name").val(),
                 success: function (data) {
 
                     if (data < 0) {

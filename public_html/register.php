@@ -67,6 +67,7 @@
                         </div>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
+
                 <div class="form-group">
                     <label for="employeeid">Employee ID</label>
                     <input type="text" name="employeeid" class="form-control" id="employeeid"
@@ -97,7 +98,6 @@
                     <input type="password" name="password1" class="form-control" id="password1" placeholder="Password (Minimum 9 Characters)"/>
                     <small id="p1_error" class="form-text text-muted"></small>
                 </div> -->
-
                 <div class="form-group">
                     <label for="password2">Re-enter Password</label>
                     <input type="password" name="password2" class="form-control" id="password2"

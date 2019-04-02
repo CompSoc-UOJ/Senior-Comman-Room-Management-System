@@ -124,13 +124,14 @@ $(document).ready(function () {
     $("#order_form").click(function () {
         const invoice = $("#get_order_data").serialize();
         if ($("#cust_name").val() === "") {
-            alert("Plaese enter customer name");
+            alert("Please enter customer name");
         } else if ($("#paid").val() === "") {
             alert("Please enter paid amount");
         } else if ($(".cashier").val() === "") {
             alert("Invalid Cashier!!System Hacked!!");
         } else {
             const name = $("[name=cust_name]").find("option:selected").text();
+            alert(invoice);
             $.ajax({
                 url: DOMAIN + "/includes/process.php",
                 method: "POST",
