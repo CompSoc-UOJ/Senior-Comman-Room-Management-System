@@ -1,7 +1,7 @@
 <?php
 include_once("./database/constants.php");
     if ($_SESSION["usertype"] != "admin") {
-        header("location:" . DOMAIN . "/");
+        header("location:" . DOMAIN . "/index.php");
     }
 ?>
 <!DOCTYPE html>

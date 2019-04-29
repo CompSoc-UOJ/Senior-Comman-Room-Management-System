@@ -113,7 +113,7 @@ $(document).ready(function () {
                     } else {
                         alert("You are registered Now you can login");
                         $(".overlay").hide();
-                        window.location.href = "/manage_people.php";
+                        window.location.href =  encodeURI(DOMAIN+"/manage_people.php");
                         // window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
                     }
                 }
@@ -281,4 +281,8 @@ $(document).ready(function () {
             }
         })
     })
+
+    $("#forgetPassword").click(function () {
+        alert("Please Contact System Administrator");
+    });
 });
