@@ -178,7 +178,7 @@ if (isset($_POST["manageBrand"])) {
     }
 }
 
-//Delete 
+//Delete
 if (isset($_POST["deleteBrand"])) {
     $m = new Manage();
     $result = $m->deleteRecord("brands", "bid", $_POST["id"]);
@@ -242,7 +242,7 @@ if (isset($_POST["manageProduct"])) {
     }
 }
 
-//Delete 
+//Delete
 if (isset($_POST["deleteProduct"])) {
     $m = new Manage();
     $result = $m->deleteRecord("products", "pid", $_POST["id"]);
@@ -603,31 +603,171 @@ if (isset($_POST["deletePurchase"])) {
 //----------------Manage Summary---------------------
 if (isset($_POST["manageSummary"])) {
     $m = new Manage();
-    $result = $m->manageSummaryWithPagination($_POST["stdate"], $_POST["eddate"], $_POST["pageno"]);
+    $result = $m->manageSummaryWithPagination($_POST["stdate"], $_POST["eddate"], $_POST["selectType"], $_POST["selectOption"], $_POST["pageno"]);
     $rows = $result["rows"];
     $pagination = $result["pagination"];
-    if (count($rows) > 0) {
-        $n = (($_POST["pageno"] - 1) * 10) + 1;
-        foreach ($rows as $row) {
+    $resultType = $result["resultType"];
+    if($resultType == 1){
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Employee ID</th>
+            <th>Full Name</th>
+            <th>Contact-No</th>
+            <th>User Type</th>
+            <th>Cash Total</th>
+            <th>Account Total</th>
+            <th>Total Pay</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["employeeid"]; ?></td>
+                    <td><?php echo $row["username"]; ?></td>
+                    <td><?php echo $row["contactno"]; ?></td>
+                    <td><?php echo $row["usertype"]; ?></td>
+                    <td><?php echo $row["cash_total"]; ?></td>
+                    <td><?php echo $row["account_total"]; ?></td>
+                    <td><?php echo $row["paid"]; ?></td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
             ?>
             <tr>
-                <td><?php echo $n; ?></td>
-                <td><?php echo $row["employeeid"]; ?></td>
-                <td><?php echo $row["username"]; ?></td>
-                <td><?php echo $row["contactno"]; ?></td>
-                <td><?php echo $row["usertype"]; ?></td>
-                <td><?php echo $row["sub_total"]; ?></td>
-                <td><?php echo $row["paid"]; ?></td>
+                <td colspan="5"><?php echo $pagination; ?></td>
             </tr>
             <?php
-            $n++;
+            exit();
         }
+    }
+    if($resultType == 2){
         ?>
+        <thead>
         <tr>
-            <td colspan="5"><?php echo $pagination; ?></td>
+            <th>#</th>
+            <th>Supplier Name</th>
+            <th>Contact-No</th>
+            <th>Address</th>
+            <th>Total Cost</th>
+            <th>Total Pay</th>
         </tr>
+        </thead>
         <?php
-        exit();
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["brand_name"]; ?></td>
+                    <td><?php echo $row["s_contactno"]; ?></td>
+                    <td><?php echo $row["address"]; ?></td>
+                    <td><?php echo $row["sub_total"]; ?></td>
+                    <td><?php echo $row["paid"]; ?></td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+
+    if($resultType == 3){
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Supplier</th>
+            <th>Sale Qty</th>
+            <th>In Stock</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["product_name"]; ?></td>
+                    <td><?php echo $row["category_name"]; ?></td>
+                    <td><?php echo $row["brand_name"]; ?></td>
+                    <td><?php echo $row["total_sales"]; ?></td>
+                    <td><?php echo $row["product_stock"]; ?></td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+
+    if($resultType == 4){
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Supplier</th>
+            <th>Purchased Qty</th>
+            <th>In Stock</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["product_name"]; ?></td>
+                    <td><?php echo $row["category_name"]; ?></td>
+                    <td><?php echo $row["brand_name"]; ?></td>
+                    <td><?php echo $row["total_purchase"]; ?></td>
+                    <td><?php echo $row["product_stock"]; ?></td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
     }
 }
 

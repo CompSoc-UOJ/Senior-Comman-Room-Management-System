@@ -37,8 +37,8 @@ if ($_SESSION["usertype"] != "admin") {
     <div style="text-align: center;">
         <div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
             <div class="card-body container">
-                <h3>Select date</h3>
                 <form id="date_select_form" onsubmit="return false">
+                    <h3>I want to see details between</h3>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label><strong>Start Date</strong></label>
@@ -51,6 +51,26 @@ if ($_SESSION["usertype"] != "admin") {
                                                                  id="end_date" required/>
                         </div>
                     </div>
+                    <br>
+                    <h3>And I want to see details of</h3>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="radio" class="form-check-input" value="user_wise"  name="typradio" checked="checked"><strong>Users/Suppliers</strong>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="radio" class="form-check-input" value="product_wise"  name="typradio"><strong>Food Items</strong>
+                        </div>
+                    </div>
+                    <br>
+                    <h3>But I want to see details in</h3>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="radio" class="form-check-input" value="in_sales"  name="optradio" checked="checked"><strong>In Sales</strong>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="radio" class="form-check-input" value="in_purchases" name="optradio"><strong>In Purchases</strong>
+                        </div>
+                    </div>
                     <div style="padding:10px; text-align: center;">
                         <button id="search" style="width:150px;" class="btn btn-success">Search</button>
                         <button type="reset" id="clear" style="width:150px;" class="btn btn-danger">Clear</button>
@@ -59,22 +79,22 @@ if ($_SESSION["usertype"] != "admin") {
             </div> <!--Card Body Ends-->
         </div>
         <p></p>
-        <table class="table table-hover table-bordered">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Employee ID</th>
-                <th>Full Name</th>
-                <th>Contact-No</th>
-                <th>User Type</th>
-                <th>Total Cost</th>
-                <th>Total Pay</th>
+        <table id="get_summary" class="table table-hover table-bordered">
+<!--            <thead id="get_summary_head">-->
+<!--            <tr>-->
+<!--                <th>#</th>-->
+<!--                <th>Employee ID</th>-->
+<!--                <th>Full Name</th>-->
+<!--                <th>Contact-No</th>-->
+<!--                <th>User Type</th>-->
+<!--                <th>Total Cost</th>-->
+<!--                <th>Total Pay</th>-->
+<!---->
+<!--            </tr>-->
+<!--            </thead>-->
 
-            </tr>
-            </thead>
-            <tbody id="get_summary">
             <!--on manage.js-->
-            </tbody>
+
         </table>
     </div>
 </div>
