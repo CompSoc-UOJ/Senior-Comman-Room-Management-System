@@ -65,7 +65,7 @@ if (isset($_SESSION["userid"])) { //check if user or password is correct from qu
             </form>
 
         </div>
-        <div class="card-footer"><a href="#">Forget Password ?</a></div>
+        <div class="card-footer"><a href="#" id="forgetPassword" >Forget Password ?</a></div>
     </div>
 </div>
 

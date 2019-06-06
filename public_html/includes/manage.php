@@ -33,9 +33,9 @@ class Manage
 			FROM sale_details s_d,sale_invoice s_i,products p,user u
 			WHERE s_d.invoice_no = s_i.invoice_no AND s_d.product_name = p.pid AND s_i.customer_name = u.id ORDER BY s_d.id DESC ".$a["limit"];
         } else if ($table == "user") {
-            $sql = "SELECT * FROM " . $table . " ORDER BY id DESC " . $a["limit"];
+            $sql = "SELECT * FROM " . $table . " ORDER BY " . $table . ".id DESC " . $a["limit"];
         } else if ($table == "brands") {
-            $sql = "SELECT * FROM " . $table . " ORDER BY bid DESC " . $a["limit"];
+            $sql = "SELECT * FROM " . $table . " ORDER BY " . $table . ".bid DESC " . $a["limit"];
         }
         $result = $this->con->query($sql) or die($this->con->error);
         $rows = array();
@@ -48,14 +48,55 @@ class Manage
 
     }
 
-    public function manageSummaryWithPagination($stdate, $eddate, $pno)
+    public function manageSummaryWithPagination($stdate, $eddate,  $selectType, $selectOption, $pno)
     {
-        $a = $this->pagination($this->con, "user", $pno, 10);
+        //$selectType :- userwise, productwise
+        //$selectOption ;- insales , inpurchases
 
-        $sql = "SELECT u.employeeid,u.username,u.contactno,u.usertype,SUM(s_i.sub_total) AS sub_total,SUM(s_i.paid) AS paid 
-		FROM user u,sale_invoice s_i 
-		WHERE u.id = s_i.customer_name AND order_date BETWEEN '$stdate' AND '$eddate' AND s_i.payment_type = 'Cash'
-		GROUP BY u.username " . $a["limit"];
+        $a = $this->pagination($this->con, "user", $pno, 10);
+        $sql = "";
+        $resultType = 0;
+
+        if($selectType == "user_wise" && $selectOption == "in_sales"){
+            $sql = "SELECT u.employeeid, u.username, u.contactno, u.usertype,c_t.cash_total, a_t.account_total, SUM(s_i.paid) AS paid 
+                        FROM user u
+                        LEFT JOIN 
+                            (SELECT u.username, SUM(s_i.sub_total) cash_total FROM user u, sale_invoice s_i WHERE u.id = s_i.customer_name AND s_i.payment_type = 'Cash' AND order_date BETWEEN '$stdate' AND '$eddate' GROUP BY u.username ) c_t
+                            ON u.username = c_t.username
+                        LEFT JOIN 
+                            (SELECT u.username, SUM(s_i.sub_total) account_total FROM user u, sale_invoice s_i WHERE u.id = s_i.customer_name AND s_i.payment_type = 'Account' AND order_date BETWEEN '$stdate' AND '$eddate' GROUP BY u.username ) a_t
+                            ON u.username = a_t.username
+                        LEFT JOIN sale_invoice s_i
+                            ON u.id = s_i.customer_name
+                         WHERE order_date BETWEEN '$stdate' AND '$eddate'
+                         GROUP BY u.username " . $a["limit"];
+            $resultType = 1;
+        }
+
+        else if($selectType == "user_wise" && $selectOption == "in_purchases"){
+            $sql = "SELECT b.brand_name,b.s_contactno,b.address, SUM(i.sub_total) AS sub_total, SUM(i.paid) AS paid 
+            FROM brands b,invoice i 
+            WHERE b.bid = i.customer_name AND order_date BETWEEN '$stdate' AND '$eddate' AND i.payment_type = 'Cash'
+            GROUP BY b.brand_name " . $a["limit"];
+            $resultType = 2;
+        }
+
+        if($selectType == "product_wise" && $selectOption == "in_sales"){
+            $sql = "SELECT p.product_name,c.category_name ,b.brand_name ,SUM(s_d.qty) AS total_sales, p.product_stock 
+            FROM products p, categories c , brands b , sale_details s_d , sale_invoice s_i
+            WHERE p.cid = c.cid AND p.bid = b.bid AND p.pid = s_d.product_name AND s_d.invoice_no = s_i.invoice_no AND s_i.order_date BETWEEN '$stdate' AND '$eddate'
+            GROUP BY p.product_name " . $a["limit"];
+            $resultType = 3;
+        }
+
+        else if($selectType == "product_wise" && $selectOption == "in_purchases"){
+            $sql = "SELECT p.product_name,c.category_name ,b.brand_name ,SUM(i_d.qty) AS total_purchase, p.product_stock 
+            FROM products p, categories c , brands b , invoice_details i_d , invoice i
+            WHERE p.cid = c.cid AND p.bid = b.bid AND p.pid = i_d.product_name AND i_d.invoice_no = i.invoice_no AND i.order_date BETWEEN '$stdate' AND '$eddate'
+            GROUP BY p.product_name " . $a["limit"];
+            $resultType = 4;
+        }
+
 
         $result = $this->con->query($sql) or die($this->con->error);
         $rows = array();
@@ -64,7 +105,7 @@ class Manage
                 $rows[] = $row;
             }
         }
-        return ["rows" => $rows, "pagination" => $a["pagination"]];
+        return ["rows" => $rows, "pagination" => $a["pagination"], "resultType" => $resultType];
 
     }
 
@@ -230,7 +271,8 @@ class Manage
                 }
                 return $invoice_no;
             }
-        } else if ($typ == "sale") {
+        }
+        if ($typ == "sale") {
             $pre_stmt = $this->con->prepare("INSERT INTO 
 			`sale_invoice`(`customer_name`, `order_date`, `sub_total`,
 			 `discount`, `paid`, `payment_type`,`cashier`) VALUES (?,?,?,?,?,?,?)");

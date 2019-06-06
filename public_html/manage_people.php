@@ -1,10 +1,8 @@
 <?php
 include_once("./database/constants.php");
-if (isset($_SESSION["userid"])) {
     if ($_SESSION["usertype"] != "admin") {
-        header("location:" . DOMAIN . "/");
+        header("location:" . DOMAIN . "/index.php");
     }
-} else header("location:" . DOMAIN . "/");
 ?>
 <!DOCTYPE html>
 <html lang="">

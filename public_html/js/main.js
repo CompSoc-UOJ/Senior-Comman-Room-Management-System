@@ -75,9 +75,9 @@ $(document).ready(function () {
             $("#p1_error").html("");
             count++;
         }
-        if (pass2.val() === "" || pass2.val().length < 9) {
+        if (pass2.val() === "") {
             pass2.addClass("border-danger");
-            $("#p2_error").html("<span class='text-danger'>Please Enter more than 9 digit password</span>");
+            $("#p2_error").html("<span class='text-danger'>Please Enter more than 8 digit password</span>");
         } else {
             pass2.removeClass("border-danger");
             $("#p2_error").html("");
@@ -113,7 +113,7 @@ $(document).ready(function () {
                     } else {
                         alert("You are registered Now you can login");
                         $(".overlay").hide();
-                        window.location.href = "/manage_people.php";
+                        window.location.href =  encodeURI(DOMAIN+"/manage_people.php");
                         // window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
                     }
                 }
@@ -281,4 +281,8 @@ $(document).ready(function () {
             }
         })
     })
+
+    $("#forgetPassword").click(function () {
+        alert("Please Contact System Administrator");
+    });
 });

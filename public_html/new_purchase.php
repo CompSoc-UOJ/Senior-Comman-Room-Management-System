@@ -44,18 +44,18 @@ if ($_SESSION["usertype"] != "admin") {
                 <div class="card-body" style="text-align: center;">
                     <form id="get_purchase_data" onsubmit="return false">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Purchase Date</label>
+                            <label for="order_date" class="col-sm-3 col-form-label">Purchase Date</label>
                             <div class="col-sm-6">
-                                <label for="order_date"></label><input type="text" id="order_date" name="order_date"
-                                                                       readonly class="form-control form-control-sm"
-                                                                       value="<?php echo date("Y-m-d"); ?>">
+                                <input class="form-control form-control-sm" id="order_date" name="order_date"
+                                       readonly type="text"
+                                            value="<?php echo date("Y-m-d"); ?>">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Supplier Name*</label>
+                            <label for="cust_name" class="col-sm-3 col-form-label">Supplier Name*</label>
                             <div class="col-sm-6">
-                                <label for="cust_name"></label><select id="cust_name" name="cust_name"
-                                                                       class="form-control form-control-sm" required>
+                                <select id="cust_name" name="cust_name"
+                                       class="form-control form-control-sm" required>
                                 </select>
                             </div>
                             <button onclick="location.reload(true);" class="btn btn-default btn-sm">
@@ -70,8 +70,7 @@ if ($_SESSION["usertype"] != "admin") {
                                     <tr>
                                         <th>#</th>
                                         <th style="text-align:center;">Item Name</th>
-                                        <!-- <th style="text-align:center;">Supplier Name</th> -->
-                                        <th style="text-align:center;">Available Quantity</th>
+                                        <th style="text-align:center;">Currently Available Quantity</th>
                                         <th style="text-align:center;">Buying Quantity</th>
                                         <th style="text-align:center;">Price Per Item</th>
                                         <th style="text-align:center;">Total Cost</th>
@@ -96,15 +95,15 @@ if ($_SESSION["usertype"] != "admin") {
                                        id="sub_total" required/>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <!-- <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label> -->
-                            <!-- <div class="form-group row">
-                           <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label>
-                           <div class="col-sm-6">
-                             <input type="hidden" value="1" readonly name="gst" class="form-control form-control-sm" id="gst" required/>
-                           </div>
-                         </div> -->
-                        </div>
+<!--                       <div class="form-group row">-->
+<!--                         <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label> -->
+<!--                         <div class="form-group row">-->
+<!--                            <label for="gst" class="col-sm-3 col-form-label" align="right">GST (18%)</label>-->
+<!--                            <div class="col-sm-6">-->
+<!--                             <input type="hidden" value="1" readonly name="gst" class="form-control form-control-sm" id="gst" required/>-->
+<!--                            </div>-->
+<!--                         </div> -->
+<!--                       </div>-->
                         <div class="form-group row">
                             <label for="discount" class="col-sm-3 col-form-label">Discount</label>
                             <div class="col-sm-6">

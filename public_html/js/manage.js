@@ -550,7 +550,7 @@ $(document).ready(function () {
                 $("#p2_error").html("");
             }
         }
-       
+
         if (error_count === 0 && count === 4) {
             $(".overlay").show();
             $.ajax({
@@ -682,14 +682,16 @@ $(document).ready(function () {
     $("#date_select_form").on("submit", function () {
         const stdate = $("#start_date").val();
         const eddate = $("#end_date").val();
-        manageSummary(stdate, eddate, 1);
+        const selectType = $('input[name="typradio"]:checked').val();
+        const selectOption = $('input[name="optradio"]:checked').val();
+        manageSummary(stdate, eddate, selectType, selectOption, 1);
     });
 
-    function manageSummary(startdate, enddate, pn) {
+    function manageSummary(startdate, enddate, selectType, selectOption, pn) {
         $.ajax({
             url: DOMAIN + "/includes/process.php",
             method: "POST",
-            data: {manageSummary: 1, stdate: startdate, eddate: enddate, pageno: pn},
+            data: {manageSummary: 1, stdate: startdate, eddate: enddate, selectType:selectType, selectOption:selectOption, pageno: pn},
             success: function (data) {
                 $("#get_summary").html(data);
             }
@@ -700,7 +702,9 @@ $(document).ready(function () {
         const pn = $(this).attr("pn");
         const stdate = $("#start_date").val();
         const eddate = $("#end_date").val();
-        manageSummary(stdate, eddate, pn);
+        const selectType = $('input[name="typradio"]:checked').val();
+        const selectOption = $('input[name="optradio"]:checked').val();
+        manageSummary(stdate, eddate, selectType, selectOption, pn);
     });
 
     //---------------------View Summary-----------------

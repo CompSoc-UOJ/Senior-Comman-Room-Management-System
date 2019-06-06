@@ -155,14 +155,14 @@ $(document).ready(function () {
             $.ajax({
                 url: DOMAIN + "/includes/process.php",
                 method: "POST",
-                data: $("#get_purchase_data").serialize(),
+                data: $("#get_purchase_data").serialize() + "&cust_name=" + $("#cust_name").val(),
                 success: function (data) {
 
                     if (data < 0) {
                         alert(data);
                     } else {
 
-                        $("#get_purchase_data").trigger("reset");
+                        // $("#get_purchase_data").trigger("reset");
 
                         if (confirm("Do u want to print invoice ?")) {
                             // window.location.href = DOMAIN+"/includes/invoice_bill.php?invoice_no="+data+"&"+invoice;
