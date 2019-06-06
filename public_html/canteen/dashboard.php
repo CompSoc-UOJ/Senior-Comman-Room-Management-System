@@ -24,7 +24,7 @@ if ($_SESSION["usertype"] != "Canteen Staff") {
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="../Password-Strength/password_strength/password_strength_lightweight.js" async></script>
-    <link rel="stylesheet" href="./Password-Strength/password_strength/password_strength.css">
+    <link rel="stylesheet" href="../Password-Strength/password_strength/password_strength.css">
     <script type="text/javascript" src="../js/main.js" async></script>
     <script type="text/javascript" src="../js/manage.js" async></script>
 
