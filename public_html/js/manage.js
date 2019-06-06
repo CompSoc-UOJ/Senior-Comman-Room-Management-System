@@ -474,7 +474,8 @@ $(document).ready(function () {
             })
         } else {
             update_pass2.addClass("border-danger");
-            $("#uname_error").html("<span class='text-danger'>Form did not submitted</span>");
+            // $("#uname_error").html("<span class='text-danger'>Form did not submitted</span>");
+            alert("Sorry,Form did not submit with errors");
         }
     });
 
@@ -576,7 +577,8 @@ $(document).ready(function () {
             })
         } else {
             update_name.addClass("border-danger");
-            $("#uname_error").html("<span class='text-danger'>Form did not submitted</span>");
+            // $("#uname_error").html("<span class='text-danger'>Form did not submitted</span>");
+            alert("Sorry,Form did not submit with errors");
         }
     });
 
