@@ -73,7 +73,7 @@ if ($_SESSION["usertype"] != "admin") {
 
                     <div class="col-sm-4">
                         <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffcc&amp;src=en.lk%23holiday%40group.v.calendar.google.com&amp;color=%230F4B38&amp;ctz=Asia%2FColombo"
-                                style="border:solid 1px #777" width="225%" height="100%" frameborder="0"
+                                style="border:solid 1px #777" width="225%" height="123%" frameborder="0"
                                 scrolling="no"></iframe>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ if ($_SESSION["usertype"] != "admin") {
             <div class="card" style="border:solid 1px #777">
                 <div class="card-body">
                     <h4 class="card-title">Sales Summary</h4>
-                    <p class="card-text">Here you can view your users billing summaries.</p>
+                    <p class="card-text">Here you can view all kind of billing summaries.</p>
                     <br>
                     <div style="text-align: center;">
                         <a href="manage_summary.php" class="btn btn-primary btn-block">View</a>
@@ -144,7 +144,7 @@ if ($_SESSION["usertype"] != "admin") {
             <div class="card" style="border:solid 1px #777">
                 <div class="card-body">
                     <h4 class="card-title">My Summary</h4>
-                    <p class="card-text">Here you can see your billing summaries.</p>
+                    <p class="card-text">Here you can see your personal billing summary.</p>
                     <br>
                     <div style="text-align: center;">
                         <a href="common/view_summary.php" class="btn btn-primary btn-block">View</a>
