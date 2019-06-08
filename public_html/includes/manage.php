@@ -53,11 +53,13 @@ class Manage
         //$selectType :- userwise, productwise
         //$selectOption ;- insales , inpurchases
 
-        $a = $this->pagination($this->con, "user", $pno, 10);
+        $a = "";
         $sql = "";
         $resultType = 0;
 
         if($selectType == "user_wise" && $selectOption == "in_sales"){
+            $a = $this->pagination($this->con, "user", $pno, 10);
+
             $sql = "SELECT u.employeeid, u.username, u.contactno, u.usertype,c_t.cash_total, a_t.account_total, SUM(s_i.paid) AS paid 
                         FROM user u
                         LEFT JOIN 
@@ -74,6 +76,8 @@ class Manage
         }
 
         else if($selectType == "user_wise" && $selectOption == "in_purchases"){
+            $a = $this->pagination($this->con, "brands", $pno, 10);
+
             $sql = "SELECT b.brand_name,b.s_contactno,b.address, SUM(i.sub_total) AS sub_total, SUM(i.paid) AS paid 
             FROM brands b,invoice i 
             WHERE b.bid = i.customer_name AND order_date BETWEEN '$stdate' AND '$eddate' AND i.payment_type = 'Cash'
@@ -81,7 +85,9 @@ class Manage
             $resultType = 2;
         }
 
-        if($selectType == "product_wise" && $selectOption == "in_sales"){
+        else if($selectType == "product_wise" && $selectOption == "in_sales"){
+            $a = $this->pagination($this->con, "products", $pno, 10);
+
             $sql = "SELECT p.product_name,c.category_name ,b.brand_name ,SUM(s_d.qty) AS total_sales, p.product_stock 
             FROM products p, categories c , brands b , sale_details s_d , sale_invoice s_i
             WHERE p.cid = c.cid AND p.bid = b.bid AND p.pid = s_d.product_name AND s_d.invoice_no = s_i.invoice_no AND s_i.order_date BETWEEN '$stdate' AND '$eddate'
@@ -90,6 +96,8 @@ class Manage
         }
 
         else if($selectType == "product_wise" && $selectOption == "in_purchases"){
+            $a = $this->pagination($this->con, "products", $pno, 10);
+
             $sql = "SELECT p.product_name,c.category_name ,b.brand_name ,SUM(i_d.qty) AS total_purchase, p.product_stock 
             FROM products p, categories c , brands b , invoice_details i_d , invoice i
             WHERE p.cid = c.cid AND p.bid = b.bid AND p.pid = i_d.product_name AND i_d.invoice_no = i.invoice_no AND i.order_date BETWEEN '$stdate' AND '$eddate'
@@ -125,6 +133,45 @@ class Manage
             }
         }
         return ["rows" => $rows, "pagination" => $a["pagination"]];
+
+    }
+
+    public function searchWithPagination($query, $table, $pno)
+    {
+        $a = $this->pagination($this->con, $table, $pno, 10);
+        $sql = "";
+        $resultType = 0;
+        if ($table == "categories") {
+            $sql = "SELECT p.cid,p.category_name as category, c.category_name as parent, p.status FROM categories p LEFT JOIN categories c ON p.parent_cat=c.cid WHERE p.category_name LIKE '%$query%' ORDER BY c.cid DESC " . $a["limit"];
+            $resultType = 1;
+        } else if ($table == "products") {
+            $sql = "SELECT p.pid,p.product_name,c.category_name,b.brand_name,p.product_price,p.product_stock,p.added_date,p.p_status FROM products p,brands b,categories c WHERE p.bid = b.bid AND p.cid = c.cid AND p.product_name LIKE '%$query%' ORDER BY p.pid DESC " . $a["limit"];
+            $resultType = 2;
+        } else if($table == "invoice_details"){
+            $sql = "SELECT p.product_name,i_d.price,i_d.qty,b.brand_name,i.order_date,i.sub_total,i.payment_type,i_d.invoice_no
+			FROM invoice_details i_d,invoice i,products p,brands b 
+			WHERE i_d.invoice_no = i.invoice_no AND i_d.product_name = p.pid AND i.customer_name = b.bid AND p.product_name LIKE '%$query%' ORDER BY i_d.id DESC ".$a["limit"];
+            $resultType = 3;
+        } else if($table == "sale_details"){
+            $sql = "SELECT s_d.id,p.product_name,s_d.price,s_d.qty,u.username,s_i.order_date,s_i.sub_total,s_i.discount,(s_i.sub_total-s_i.discount) AS net_total,s_i.paid,((s_i.sub_total-s_i.discount)-s_i.paid) AS due,s_i.payment_type,s_d.invoice_no
+			FROM sale_details s_d,sale_invoice s_i,products p,user u
+			WHERE s_d.invoice_no = s_i.invoice_no AND s_d.product_name = p.pid AND s_i.customer_name = u.id AND p.product_name LIKE '%$query%' ORDER BY s_d.id DESC ".$a["limit"];
+            $resultType = 4;
+        } else if ($table == "user") {
+            $sql = "SELECT * FROM user u WHERE u.username LIKE '%$query%' ORDER BY u.id DESC " . $a["limit"];
+            $resultType = 5;
+        } else if ($table == "brands") {
+            $sql = "SELECT * FROM brands b WHERE b.brand_name LIKE '%$query%' ORDER BY b.bid DESC " . $a["limit"];
+            $resultType = 6;
+        }
+        $result = $this->con->query($sql) or die($this->con->error);
+        $rows = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+        }
+        return ["rows" => $rows, "pagination" => $a["pagination"], "resultType" => $resultType];
 
     }
 
