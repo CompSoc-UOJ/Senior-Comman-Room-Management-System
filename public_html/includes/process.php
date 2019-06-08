@@ -934,7 +934,7 @@ if (isset($_POST["query"]) AND isset($_POST["search_type"])) {
                     <td><?php echo $row["product_name"]; ?></td>
                     <td><?php echo $row["price"]; ?></td>
                     <td><?php echo $row["qty"]; ?></td>
-                    <td><?php echo $row["username"]; ?></td>
+                    <td><?php echo $row["brand_name"]; ?></td>
                     <td><?php echo $row["order_date"]; ?></td>
                     <td><?php echo $row["payment_type"]; ?></td>
                     <td><?php echo $row["invoice_no"]; ?></td>
