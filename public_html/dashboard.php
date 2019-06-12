@@ -27,13 +27,107 @@ if ($_SESSION["usertype"] != "admin") {
     <link rel="stylesheet" href="./Password-Strength/password_strength/password_strength.css">
     <script type="text/javascript" src="./js/main.js" async></script>
     <script type="text/javascript" src="./js/manage.js" async></script>
+    <script type="text/javascript" src="./js/search.js" async></script>
 
 </head>
 <body>
 <!-- Navbar -->
 <?php include_once("./templates/header.php"); ?>
-<br/><br/>
+<br/>
 <div class="container">
+    <form id="search_form" onsubmit="return false">
+        <div class = "row">
+            <div class="col-md-12">
+                <style scoped>
+                    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+                    body{
+                        font-family: 'Open Sans', sans-serif;
+                    }
+
+                    .search {
+                        width: 100%;
+                        position: relative;
+                        display: flex;
+                    }
+
+                    .searchTerm {
+                        width: 100%;
+                        border: 3px solid #00B4CC;
+                        border-right: none;
+                        padding: 5px;
+                        height: 37px;
+                        border-radius: 5px 0 0 5px;
+                        outline: none;
+                        color: #9DBFAF;
+                    }
+
+                    .searchTerm:focus{
+                        color: #00B4CC;
+                    }
+
+                    .searchButton {
+                        width: 40px;
+                        height: 36px;
+                        border: 1px solid #00B4CC;
+                        background: #00B4CC;
+                        text-align: center;
+                        color: #fff;
+                        border-radius: 0 5px 5px 0;
+                        cursor: pointer;
+                        font-size: 20px;
+                    }
+
+                    /*Resize the wrap to see the search bar change!*/
+                    .wrap{
+                        width: 100%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                </style>
+<!--                <input type="text" class="form-control border-input" placeholder="Search By Item Code...." id="searchValue" name ="searchValue">-->
+                <div class="wrap">
+                    <div class="search">
+                        <input class="searchTerm" id="searchValue" placeholder="What are you looking for?" type="text" required>
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <br>
+        <div class = "form-row search_form_buttons" style="display:none">
+            <div class="form-group col-md-2">
+                <input type="radio" class="form-check-input" value="products"  name="search_bar_radio" checked="checked"><strong>Search In Products</strong>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="radio" class="form-check-input" value="sale_details"  name="search_bar_radio"><strong>Search In Sales</strong>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="radio" class="form-check-input" value="invoice_details"  name="search_bar_radio"><strong>Search In Purchases</strong>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="radio" class="form-check-input" value="user"  name="search_bar_radio"><strong>Search In People</strong>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="radio" class="form-check-input" value="categories"  name="search_bar_radio"><strong>Search In Categories</strong>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="radio" class="form-check-input" value="brands"  name="search_bar_radio"><strong>Search In Suppliers</strong>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <table id="get_search" class="table table-hover table-bordered">
+
+            <!--on search.js-->
+
+        </table>
+    </div>
     <div class="row">
         <div class="col-md-3">
             <div class="card mx-auto" style="border:solid 1px #777">
@@ -73,7 +167,7 @@ if ($_SESSION["usertype"] != "admin") {
 
                     <div class="col-sm-4">
                         <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffcc&amp;src=en.lk%23holiday%40group.v.calendar.google.com&amp;color=%230F4B38&amp;ctz=Asia%2FColombo"
-                                style="border:solid 1px #777" width="225%" height="100%" frameborder="0"
+                                style="border:solid 1px #777" width="225%" height="123%" frameborder="0"
                                 scrolling="no"></iframe>
                     </div>
                 </div>
@@ -132,7 +226,7 @@ if ($_SESSION["usertype"] != "admin") {
             <div class="card" style="border:solid 1px #777">
                 <div class="card-body">
                     <h4 class="card-title">Sales Summary</h4>
-                    <p class="card-text">Here you can view your users billing summaries.</p>
+                    <p class="card-text">Here you can view all kind of billing summaries.</p>
                     <br>
                     <div style="text-align: center;">
                         <a href="manage_summary.php" class="btn btn-primary btn-block">View</a>
@@ -144,7 +238,7 @@ if ($_SESSION["usertype"] != "admin") {
             <div class="card" style="border:solid 1px #777">
                 <div class="card-body">
                     <h4 class="card-title">My Summary</h4>
-                    <p class="card-text">Here you can see your billing summaries.</p>
+                    <p class="card-text">Here you can see your personal billing summary.</p>
                     <br>
                     <div style="text-align: center;">
                         <a href="common/view_summary.php" class="btn btn-primary btn-block">View</a>
@@ -176,20 +270,31 @@ if ($_SESSION["usertype"] != "admin") {
 </div>
 
 <?php
-//Update Register Form
-include_once("./templates/update_me.php");
+////Update Register Form
+//include_once("./templates/update_me.php");
+//
+////Categpry Form
+//include_once("./templates/category.php");
+//
+////Brand Form
+//include_once("./templates/brand.php");
+//
+////Products Form
+//include_once("./templates/products.php");
+//
+////Register Form
+//include_once("./templates/registerinside.php");
+//
+////Edit Form
+//include_once("./templates/");
+foreach (glob("templates/*.php") as $filename)
+{
 
-//Categpry Form
-include_once("./templates/category.php");
+        if($filename != "templates/headerInside.php"){
+            require_once $filename;
+        }
 
-//Brand Form
-include_once("./templates/brand.php");
-
-//Products Form
-include_once("./templates/products.php");
-
-//Register Form
-include_once("./templates/registerinside.php");
+}
 ?>
 
 </body>

@@ -131,7 +131,6 @@ $(document).ready(function () {
             alert("Invalid Cashier!!System Hacked!!");
         } else {
             const name = $("[name=cust_name]").find("option:selected").text();
-            alert(invoice);
             $.ajax({
                 url: DOMAIN + "/includes/process.php",
                 method: "POST",

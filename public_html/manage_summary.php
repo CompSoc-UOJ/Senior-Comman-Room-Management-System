@@ -80,18 +80,6 @@ if ($_SESSION["usertype"] != "admin") {
         </div>
         <p></p>
         <table id="get_summary" class="table table-hover table-bordered">
-<!--            <thead id="get_summary_head">-->
-<!--            <tr>-->
-<!--                <th>#</th>-->
-<!--                <th>Employee ID</th>-->
-<!--                <th>Full Name</th>-->
-<!--                <th>Contact-No</th>-->
-<!--                <th>User Type</th>-->
-<!--                <th>Total Cost</th>-->
-<!--                <th>Total Pay</th>-->
-<!---->
-<!--            </tr>-->
-<!--            </thead>-->
 
             <!--on manage.js-->
 

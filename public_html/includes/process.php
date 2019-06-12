@@ -803,4 +803,329 @@ if (isset($_POST["viewSummary"])) {
     }
 }
 
+//----------------Search---------------------
+if (isset($_POST["query"]) AND isset($_POST["search_type"])) {
+    $m = new Manage();
+    $result = $m->searchWithPagination($_POST["query"], $_POST["search_type"], $_POST["pageno"]);
+    $rows = $result["rows"];
+    $pagination = $result["pagination"];
+    $resultType = $result["resultType"];
+
+    if($resultType == 1){ // categories
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Category</th>
+            <th>Parent</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["category"]; ?></td>
+                    <td><?php echo $row["parent"]; ?></td>
+                    <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+                    <td>
+                        <a href="#" did="<?php echo $row['cid']; ?>" class="btn btn-danger btn-sm del_cat">Delete</a>
+                        <a href="#" eid="<?php echo $row['cid']; ?>" data-toggle="modal" data-target="#form_update_category"
+                           class="btn btn-info btn-sm edit_cat">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+    if($resultType == 2){ //products
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Item Name</th>
+            <th>Category</th>
+            <th>Supplier</th>
+            <th>Selling Price</th>
+            <th>Available Stock</th>
+            <th>Added Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <<td><?php echo $n; ?></td>
+                    <td><?php echo $row["product_name"]; ?></td>
+                    <td><?php echo $row["category_name"]; ?></td>
+                    <td><?php echo $row["brand_name"]; ?></td>
+                    <td><?php echo $row["product_price"]; ?></td>
+                    <td><?php echo $row["product_stock"]; ?></td>
+                    <td><?php echo $row["added_date"]; ?></td>
+                    <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+                    <td>
+                        <a href="#" did="<?php echo $row['pid']; ?>" class="btn btn-danger btn-sm del_product">Delete</a>
+                        <a href="#" eid="<?php echo $row['pid']; ?>" data-toggle="modal" data-target="#update_product_form"
+                           class="btn btn-info btn-sm edit_product">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+
+    if($resultType == 3){ //invoice_details
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Item Name</th>
+            <th>Buying Price</th>
+            <th>Buy Quantity</th>
+            <th>Supplier Name</th>
+            <th>Order Date</th>
+            <!-- <th>Sub Total</th>
+                    <th>Discount</th>
+                    <th>Net Total</th>
+                    <th>Paid</th>
+                    <th>Due</th> -->
+            <th>Payment Method</th>
+            <th>Invoice ID</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["product_name"]; ?></td>
+                    <td><?php echo $row["price"]; ?></td>
+                    <td><?php echo $row["qty"]; ?></td>
+                    <td><?php echo $row["brand_name"]; ?></td>
+                    <td><?php echo $row["order_date"]; ?></td>
+                    <td><?php echo $row["payment_type"]; ?></td>
+                    <td><?php echo $row["invoice_no"]; ?></td>
+
+                    <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+                    <td>
+                        <a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_order">Delete</a>
+                        <a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#"
+                           class="btn btn-info btn-sm edit_order">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+
+    if($resultType == 4){ //sale_details
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Item Name</th>
+            <th>Selling Price</th>
+            <th>Sale Quantity</th>
+            <th>Customer Name</th>
+            <th>Sale Date</th>
+            <!-- <th>Sub Total</th>
+                    <th>Discount</th>
+                    <th>Net Total</th>
+                    <th>Paid</th>
+                    <th>Due</th> -->
+            <th>Payment Method</th>
+            <th>Invoice ID</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["product_name"]; ?></td>
+                    <td><?php echo $row["price"]; ?></td>
+                    <td><?php echo $row["qty"]; ?></td>
+                    <td><?php echo $row["username"]; ?></td>
+                    <td><?php echo $row["order_date"]; ?></td>
+                    <td><?php echo $row["payment_type"]; ?></td>
+                    <td><?php echo $row["invoice_no"]; ?></td>
+
+                    <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+                    <td>
+                        <a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_order">Delete</a>
+                        <a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#"
+                           class="btn btn-info btn-sm edit_order">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+
+    if($resultType == 5){ //user
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Employee ID</th>
+            <th>Email</th>
+            <th>Contact-No</th>
+            <th>User Type</th>
+            <th>Register Date</th>
+            <th>Last Login</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["username"]; ?></td>
+                    <td><?php echo $row["employeeid"]; ?></td>
+                    <td><?php echo $row["email"]; ?></td>
+                    <td><?php echo $row["contactno"]; ?></td>
+                    <td><?php echo $row["usertype"]; ?></td>
+                    <td><?php echo $row["register_date"]; ?></td>
+                    <td><?php echo $row["last_login"]; ?></td>
+                    <td>
+                        <?php
+                        if ($row["status"] == '1') {
+                            ?>
+                            <a href='#' eid='<?php echo $row['id']; ?>' class='btn btn-success btn-sm active'>Active</a>
+                            <?php
+                        } else if ($row["status"] == '0') {
+                            ?>
+                            <a href='#' eid='<?php echo $row['id']; ?>' class='btn btn-warning btn-sm pending'>Pending</a>
+                            <?php
+                        }
+                        ?>
+                    </td>
+                    <td><?php echo $row["notes"]; ?></td>
+                    <td>
+                        <a href="#" did="<?php echo $row['id']; ?>" class="btn btn-danger btn-sm del_people">Delete</a>
+                        <a href="#" eid="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#form_update_people"
+                           class="btn btn-info btn-sm edit_people">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+
+    if($resultType == 6){ //brands
+        ?>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Supplier Name</th>
+            <th>Contact No</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <?php
+        if (count($rows) > 0) {
+            $n = (($_POST["pageno"] - 1) * 10) + 1;
+            foreach ($rows as $row) {
+                ?>
+                <tbody>
+                <tr>
+                    <td><?php echo $n; ?></td>
+                    <td><?php echo $row["brand_name"]; ?></td>
+                    <td><?php echo $row["s_contactno"]; ?></td>
+                    <td><?php echo $row["address"]; ?></td>
+                    <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+                    <td>
+                        <a href="#" did="<?php echo $row['bid']; ?>" class="btn btn-danger btn-sm del_brand">Delete</a>
+                        <a href="#" eid="<?php echo $row['bid']; ?>" data-toggle="modal" data-target="#form_update_brand"
+                           class="btn btn-info btn-sm edit_brand">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+
+                <?php
+                $n++;
+            }
+            ?>
+            <tr>
+                <td colspan="5"><?php echo $pagination; ?></td>
+            </tr>
+            <?php
+            exit();
+        }
+    }
+}
 ?>
