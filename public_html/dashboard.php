@@ -285,8 +285,7 @@ if ($_SESSION["usertype"] != "admin") {
 ////Register Form
 //include_once("./templates/registerinside.php");
 //
-////Edit Form
-//include_once("./templates/");
+
 foreach (glob("templates/*.php") as $filename)
 {
 
