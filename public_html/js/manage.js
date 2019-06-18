@@ -687,6 +687,7 @@ $(document).ready(function () {
         const selectType = $('input[name="typradio"]:checked').val();
         const selectOption = $('input[name="optradio"]:checked').val();
         manageSummary(stdate, eddate, selectType, selectOption, 1);
+
     });
 
     function manageSummary(startdate, enddate, selectType, selectOption, pn) {
@@ -696,6 +697,7 @@ $(document).ready(function () {
             data: {manageSummary: 1, stdate: startdate, eddate: enddate, selectType:selectType, selectOption:selectOption, pageno: pn},
             success: function (data) {
                 $("#get_summary").html(data);
+                $('#print_current_summary').removeClass('d-none');
             }
         })
     }

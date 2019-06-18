@@ -25,8 +25,10 @@ if ($_SESSION["usertype"] != "admin") {
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="./Password-Strength/password_strength/password_strength_lightweight.js" async></script>
+    <script src="./Password-Strength/password_strength/password_strength_lightweight.js" ></script>
+    <script type="text/javascript" src="./table-to-json-master/lib/jquery.tabletojson.min.js" async></script>
     <script type="text/javascript" src="./js/manage.js" async></script>
+    <script type="text/javascript" src="./js/printSummary.js" async></script>
 
 </head>
 <body>
@@ -84,6 +86,11 @@ if ($_SESSION["usertype"] != "admin") {
             <!--on manage.js-->
 
         </table>
+        <div style="text-align: center;">
+            <input type="submit" id="print_current_summary" style="width:150px;" class="btn btn-success d-none"
+                   value="Print Summary">
+        </div>
+        <br>
     </div>
 </div>
 </body>
